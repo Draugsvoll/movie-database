@@ -48,14 +48,15 @@ export default {
 <style scoped>
 
 .movie {
-    border:1px solid rgb(102, 104, 116);
+    border:2px solid rgb(33, 33, 34);
     margin:0 20px 20px 0;
     cursor: pointer;
     display: inline-block;
 }
 
 .movie:hover {
-    border:1px solid rgb(233, 15, 233);
+        border: 2px solid rgb(13, 153, 247);
+
 }
 
 img {

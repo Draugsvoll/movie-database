@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    <div class="container">
+    <div class="container" v-on:jump-window="activateInfoWindow">
       <app-leftmenu v-on:fetch-genre="fetchGenre"></app-leftmenu>
       <app-moviegrid  :movies="movies"></app-moviegrid>
       <app-infopage :infoMovie="infoMovie"></app-infopage>
@@ -41,11 +41,17 @@ export default {
                   });
               })
       console.log(this.movies)
+      },
+      activateInfoWindow () {
+        
       }
   },
   created() {
             // FETCH ALL GENRE 
             axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US').then(resp => {
+                console.log(resp)
+            }),
+            axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
                 console.log(resp)
             })
   }

@@ -2,11 +2,12 @@
     <transition name="slide" mode="in-out">
     <div class="infopage" v-bind:style="infoMovie.overview == '' ? 'visibility: hidden;' : ''" v-if=" !infoMovie.overview == ''">
         <div><button class="close" @click="closeInfoPage">Close</button></div>
+        <div><h1>{{ infoMovie.title }}</h1></div>
         <div><img v-bind:src="base_url + infoMovie.poster_path" alt=""></div>
         <div class="overview">{{ infoMovie.overview }}</div>
-        <button>Play</button>
-        <button>Trailer</button>
-        <button>Huskeliste</button>
+        <button>Play <div class="fas fa-play"></div></button>
+        <button>Trailer <div class="far fa-eye"></div></button>
+        <button>Huskeliste <div class="fas fa-list"></div></button>
     </div>
     </transition>
 </template>
@@ -69,6 +70,7 @@ button {
     cursor: pointer;
     border-radius: 5px;
     font-size: 17px;
+    font-weight: 400!important;
 }
 
 .close {
@@ -90,6 +92,10 @@ img {
     max-width: 750px;
 }
 
+h1 {
+  margin:0 0 15px 0;
+  padding:0;
+}
 
 /* SLIDES */
 .slide-enter-active {

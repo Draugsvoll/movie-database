@@ -8,11 +8,13 @@ const state = {
 }
 
 const mutations = { // mutations -> listens to triggers to update state
-    'SET_INFOMOVIE'(state, {movieTitle, moviePosterPath, movieOverview}) {   // disse data kommer fra 
+    'SET_INFOMOVIE'(state, {movieTitle, moviePosterPath, movieOverview, movieRelease, movieVote}) {   // disse data kommer fra 
         const newInfoMovie = {
             title: movieTitle,
             poster_path: moviePosterPath,
             overview: movieOverview,
+            release_date: movieRelease,
+            average_vote: movieVote
         }
         state.infoMovie = newInfoMovie
     }
