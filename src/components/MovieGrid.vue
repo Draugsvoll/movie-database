@@ -18,8 +18,9 @@ import axios from 'axios'
 export default {
     data () {
         return {
-            // index for the movie-grid -> used for tracking 'focused' element
-            ActiveIndex: 0
+            // ActiveIndex for the movie-grid -> used for tracking 'focused' element
+            ActiveIndex: 0,
+            gridKeyboard: this.moviegridKeyboard.grid_keyboard
         }
     },
     methods: {
@@ -35,12 +36,17 @@ export default {
           this.$store.dispatch('setInfoMovie', newInfoMovie) 
       }
     },
-    props: ['movies'],
+    props: ['movies', 'moviegridKeyboard'],
+    watch: {
+        moviegridKeyboard () {
+            this.gridKeyboard = this.moviegridKeyboard
+        }
+    },
     components: {
-        appMovie: Movie
+        appMovie: Movie,
     },
     created () {
-        // Fetches 'Action' genre as a default 
+            // Fetches 'Action' genre as a default 
             axios.get('https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US').then(resp => {
                 resp.data.results.forEach(movie => {   
                     this.movies.push(movie)
@@ -50,63 +56,67 @@ export default {
     },
     // Listens to keyboard input when mounted
     mounted() {
-        window.addEventListener("keyup", (e) => {
-                let keyCode = e.keyCode;
+                window.addEventListener("keyup", (e) => {
 
-                // right arrow
-                console.log(this.ActiveIndex);
-                if(keyCode === 39) {
-                    if ( this.ActiveIndex < 19 ) {
-                    console.log("Moved right");
-                    this.ActiveIndex += 1
-                    console.log(this.ActiveIndex)
+                // only listen to input if 'movie-grid-keyboard' is active    
+                if(this.gridKeyboard == true) {
+                    let keyCode = e.keyCode;
+
+                    // right arrow
+                    console.log(this.ActiveIndex);
+                    if(keyCode === 39) {
+                        if ( this.ActiveIndex < 19 ) {
+                        console.log("Moved right");
+                        this.ActiveIndex += 1
+                        console.log(this.ActiveIndex)
+                        }
                     }
-                }
-                // left arrow
-                if(keyCode === 37) {
-                    if (this.ActiveIndex > 0) {
-                    console.log("Moved left");
-                    this.ActiveIndex -= 1
-                    console.log(this.ActiveIndex)
+                    // left arrow
+                    if(keyCode === 37) {
+                        if (this.ActiveIndex > 0) {
+                        console.log("Moved left");
+                        this.ActiveIndex -= 1
+                        console.log(this.ActiveIndex)
+                        }
                     }
-                }
-                // down arrow
-                if(keyCode === 40) {
-                    if ( this.ActiveIndex < 14) {
-                    console.log("Moved down");
-                    this.ActiveIndex += 5
-                    console.log(this.ActiveIndex)
-                    window.scrollBy(0,360)
+                    // down arrow
+                    if(keyCode === 40) {
+                        if ( this.ActiveIndex < 14) {
+                        console.log("Moved down");
+                        this.ActiveIndex += 5
+                        console.log(this.ActiveIndex)
+                        window.scrollBy(0,360)
+                        }
+                        
                     }
-                    
-                }
-                // up arrow
-                if(keyCode === 38) {
-                    if (this.ActiveIndex > 4) {
-                    console.log("Moved up");
-                    this.ActiveIndex -= 5
-                    console.log(this.ActiveIndex)
-                    window.scrollBy(0,-360)
+                    // up arrow
+                    if(keyCode === 38) {
+                        if (this.ActiveIndex > 4) {
+                        console.log("Moved up");
+                        this.ActiveIndex -= 5
+                        console.log(this.ActiveIndex)
+                        window.scrollBy(0,-360)
+                        }
+                        
                     }
-                    
-                }
-                // enter key
-                if(keyCode === 13) {
-                    const movies = this.movies
-                    console.log("Enter");
-                    console.log(this.ActiveIndex)
-                    const newMovie = movies[this.ActiveIndex]
-                    console.log(newMovie)
-                    this.viewMovie(newMovie)
-                    this.$emit('jump-window')
-                }
-                // B key (back)
-                if(keyCode === 66) {
-                    console.log("Back button");
-                    console.log(this.ActiveIndex)
-                    const movie = []
-                    // sending empty movie in 'viewMovie' reacts with closing the window (infopage div)
-                    this.viewMovie(movie)
+                    // enter key
+                    if(keyCode === 13) {
+                        const movies = this.movies
+                        console.log("Enter");
+                        console.log(this.ActiveIndex)
+                        const newMovie = movies[this.ActiveIndex]
+                        this.viewMovie(newMovie)
+                        this.gridKeyboard = false;
+                        this.$emit('jump-window')
+                    }
+                    // B key (back)
+                    if(keyCode === 66) {
+                        console.log("Back button");
+                        console.log(this.ActiveIndex)
+                        const movie = []
+                        // sending empty movie in 'viewMovie' reacts with closing the window (infopage div)
+                        this.viewMovie(movie)
+                    }
                 }
         });
     }

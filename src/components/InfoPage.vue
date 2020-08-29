@@ -1,13 +1,13 @@
 <template>
     <transition name="slide" mode="in-out">
     <div class="infopage" v-bind:style="infoMovie.overview == '' ? 'visibility: hidden;' : ''" v-if=" !infoMovie.overview == ''">
-        <div><button class="close" @click="closeInfoPage">Close</button></div>
+        <div><button class="close" @click="closeInfoPage" v-bind:class="{ activated: this.index == 0 }" >Close</button></div>
         <div><h1>{{ infoMovie.title }}</h1></div>
         <div><img v-bind:src="base_url + infoMovie.poster_path" alt=""></div>
         <div class="overview">{{ infoMovie.overview }}</div>
-        <button>Play <div class="fas fa-play"></div></button>
-        <button>Trailer <div class="far fa-eye"></div></button>
-        <button>Huskeliste <div class="fas fa-list"></div></button>
+        <button v-bind:class="{ activated: this.index == 1 }">Play <div class="fas fa-play"></div></button>
+        <button v-bind:class="{ activated: this.index == 2 }">Trailer <div class="far fa-eye"></div></button>
+        <button v-bind:class="{ activated: this.index == 3 }">Huskeliste <div class="fas fa-list"></div></button>
     </div>
     </transition>
 </template>
@@ -24,12 +24,22 @@ import {mapGetters} from 'vuex'
 
 
 export default {
+    props: ['infopageKeyboard'],
+    watch: {
+      infopageKeyboard() {
+        this.keyboard = this.infopageKeyboard.infopage_keyboard
+        console.log(this.keyboard)
+      }
+    },
     data () {
         return {
             base_url: "https://image.tmdb.org/t/p/original",
+            // keyboard: false,
+            index: 1
         }
     },
-    // props: ['infoMovie'],
+    // recieves info from App to activate keyboard for this page
+    
     computed: {
         ...mapGetters({
             infoMovie: 'infoMovie'
@@ -41,6 +51,76 @@ export default {
             this.infoMovie.title = ''
             this.infoMovie.poster_path = ''
         }
+    },
+    mounted () {
+      // KEYBOARD LISTENER
+      window.addEventListener("keyup", (e) => {
+
+                    let keyCode = e.keyCode;
+
+                    // only listen to input if 'infopage-keyboard' is active 
+                    if(this.keyboard == true) {
+
+
+                        // right arrow
+                        if(keyCode === 39) {
+                            if(this.index < 3) {
+                              console.log("Moved right");
+                              this.index += 1
+                              console.log(this.index)
+                            }
+                        }
+
+
+                        // left arrow
+                        if(keyCode === 37) {
+                              if (this.index  > 0) {
+                              console.log("Moved left");
+                              this.index  -= 1
+                              console.log(this.index )
+                            }
+                        }
+
+                        
+                        // down arrow
+                        if(keyCode === 40) {
+                            if ( this.index == 0) {
+                              console.log("Moved down");
+                              this.index += 1
+                              console.log(this.index)
+                            }
+                            
+                        }
+
+
+                        // up arrow
+                        if(keyCode === 38) {
+                            if (this.index > 0) {
+                              console.log("Moved up");
+                              this.index -= 1
+                              console.log(this.index)
+                            }
+                            
+                        }
+
+
+                        // enter key
+                        if(keyCode === 13) {
+                            if(this.index == 0) {
+                              this.closeInfoPage()
+                            }
+                        }
+
+                        
+                        // B key (back)
+                        if(keyCode === 66) {
+                          this.$emit('activate-grid-keyboard')
+                          this.keyboard = false;
+                          this.closeInfoPage()
+                        }
+
+                  }// keyboard-active
+        });
     }
 }
 </script>
@@ -125,4 +205,9 @@ h1 {
       opacity: 0;
     }
   } 
+
+
+  .activated {
+    border: 2px solid yellow;
+  }
 </style>

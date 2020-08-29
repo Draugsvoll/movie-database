@@ -1,13 +1,32 @@
 <template>
-  <div id="app">
+  <!-- <div id="app">
     <app-header></app-header>
-    <div class="container" v-on:jump-window="activateInfoWindow">
-      <app-leftmenu v-on:fetch-genre="fetchGenre"></app-leftmenu>
-      <app-moviegrid  :movies="movies"></app-moviegrid>
-      <app-infopage :infoMovie="infoMovie"></app-infopage>
+    <div class="container" @jump-window="infopageWindow"  >
+      <app-leftmenu  v-on:fetch-genre="fetchGenre"></app-leftmenu>
+      <app-moviegrid :movies="movies" v-on:jump-window="infopageWindow"
+                     v-bind:moviegridKeyboard="moviegridKeyboard"
+                                                    ></app-moviegrid>
+      <app-infopage  v-bind:infoMovie="infoMovie" 
+                     v-bind:infopageKeyboard="infopageKeyboard"
+                     @activate-grid-keyboard="activateGridKeyboard"></app-infopage>
+    </div>
+  </div> -->
+
+
+<div id="app">
+    <app-header></app-header>
+    <div class="container" @jump-window="infopageWindow"  >
+      <app-leftmenu  v-on:fetch-genre="fetchGenre"></app-leftmenu>
+      <app-moviegrid :movies="movies" v-on:jump-window="infopageWindow"
+                      v-bind:moviegridKeyboard="moviegridKeyboard"></app-moviegrid>
+      <app-infopage  v-bind:infoMovie="infoMovie" 
+                     v-bind:infopageKeyboard="infopageKeyboard"
+                     @activate-grid-keyboard="activateGridKeyboard"></app-infopage>
     </div>
   </div>
 </template>
+
+
 
 <script>
 import LeftMenu from './components/LeftMenu'
@@ -15,15 +34,24 @@ import MovieGrid from './components/MovieGrid'
 import InfoPage from './components/InfoPage'
 import Header from './components/Header'
 import axios from 'axios'
+import {mapGetters} from 'vuex'
 
 
 export default {
   data () {
     return {
       movies: [],
-      infoMovie: ''
+      infoMovie: '',
+      // infopageKeyboard: false,
+      // moviegridKeyboard: true
     }
   },
+  computed: {
+        ...mapGetters({
+            infopageKeyboard: 'active_keyboard',
+            moviegridKeyboard: 'active_keyboard'
+        })
+    },
   name: 'App',
   components: {
     appLeftmenu: LeftMenu,
@@ -42,11 +70,22 @@ export default {
               })
       console.log(this.movies)
       },
-      activateInfoWindow () {
-        
+      // jump to infopage's keyboard
+      infopageWindow () {
+        this.infopageKeyboard = true
+        console.log('infopage keyboard: ', this.infopageKeyboard)
+      },
+     // jump to movie-grid keyboard
+      activateGridKeyboard() {
+        this.moviegridKeyboard = true
+        console.log('movie-grid keyboard: ', this.moviegridKeyboard)
       }
   },
   created() {
+            // force refresh at top -> keyboard focused element always within screen
+            window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+            }
             // FETCH ALL GENRE 
             axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US').then(resp => {
                 console.log(resp)
