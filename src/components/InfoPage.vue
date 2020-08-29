@@ -22,27 +22,17 @@
 <script>
 import {mapGetters} from 'vuex'
 
-
 export default {
-    props: ['infopageKeyboard'],
-    watch: {
-      infopageKeyboard() {
-        this.keyboard = this.infopageKeyboard.infopage_keyboard
-        console.log(this.keyboard)
-      }
-    },
     data () {
         return {
             base_url: "https://image.tmdb.org/t/p/original",
-            // keyboard: false,
             index: 1
         }
     },
-    // recieves info from App to activate keyboard for this page
-    
     computed: {
         ...mapGetters({
-            infoMovie: 'infoMovie'
+            infoMovie: 'infoMovie',
+            keyboard: 'infopage_keyboard'
         })
     },
     methods: {
@@ -59,8 +49,7 @@ export default {
                     let keyCode = e.keyCode;
 
                     // only listen to input if 'infopage-keyboard' is active 
-                    if(this.keyboard == true) {
-
+                    if(this.keyboard == 1) {
 
                         // right arrow
                         if(keyCode === 39) {
@@ -107,6 +96,8 @@ export default {
                         // enter key
                         if(keyCode === 13) {
                             if(this.index == 0) {
+                              this.index = 1
+                              this.$store.dispatch('activate_grid_keyboard')
                               this.closeInfoPage()
                             }
                         }
@@ -114,8 +105,7 @@ export default {
                         
                         // B key (back)
                         if(keyCode === 66) {
-                          this.$emit('activate-grid-keyboard')
-                          this.keyboard = false;
+                          this.$store.dispatch('activate_grid_keyboard')
                           this.closeInfoPage()
                         }
 

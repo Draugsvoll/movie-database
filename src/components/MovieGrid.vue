@@ -14,13 +14,14 @@
 <script>
 import Movie from './Movie'
 import axios from 'axios'
+import {mapGetters} from 'vuex'
+
 
 export default {
     data () {
         return {
-            // ActiveIndex for the movie-grid -> used for tracking 'focused' element
             ActiveIndex: 0,
-            gridKeyboard: this.moviegridKeyboard.grid_keyboard
+            movies: []
         }
     },
     methods: {
@@ -36,14 +37,13 @@ export default {
           this.$store.dispatch('setInfoMovie', newInfoMovie) 
       }
     },
-    props: ['movies', 'moviegridKeyboard'],
-    watch: {
-        moviegridKeyboard () {
-            this.gridKeyboard = this.moviegridKeyboard
-        }
-    },
     components: {
         appMovie: Movie,
+    },
+    computed: {
+        ...mapGetters({
+            gridKeyboard: 'grid_keyboard'
+        })
     },
     created () {
             // Fetches 'Action' genre as a default 
@@ -56,14 +56,14 @@ export default {
     },
     // Listens to keyboard input when mounted
     mounted() {
+
                 window.addEventListener("keyup", (e) => {
 
                 // only listen to input if 'movie-grid-keyboard' is active    
-                if(this.gridKeyboard == true) {
+                if(this.gridKeyboard == 1) {
                     let keyCode = e.keyCode;
 
                     // right arrow
-                    console.log(this.ActiveIndex);
                     if(keyCode === 39) {
                         if ( this.ActiveIndex < 19 ) {
                         console.log("Moved right");
@@ -85,7 +85,7 @@ export default {
                         console.log("Moved down");
                         this.ActiveIndex += 5
                         console.log(this.ActiveIndex)
-                        window.scrollBy(0,360)
+                        window.scrollBy(0,100)
                         }
                         
                     }
@@ -95,7 +95,7 @@ export default {
                         console.log("Moved up");
                         this.ActiveIndex -= 5
                         console.log(this.ActiveIndex)
-                        window.scrollBy(0,-360)
+                        window.scrollBy(0,-100)
                         }
                         
                     }
@@ -106,8 +106,7 @@ export default {
                         console.log(this.ActiveIndex)
                         const newMovie = movies[this.ActiveIndex]
                         this.viewMovie(newMovie)
-                        this.gridKeyboard = false;
-                        this.$emit('jump-window')
+                        this.$store.dispatch('activate_infopage_keyboard')
                     }
                     // B key (back)
                     if(keyCode === 66) {

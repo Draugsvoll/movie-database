@@ -1,19 +1,19 @@
 
 const state = {
     active_keyboard: { 
-        grid_keyboard: true,
-        infopage_keyboard: false,
+        grid_keyboard: 1,
+        infopage_keyboard: 0
     },
 }
 
 const mutations = { // mutations -> listens to triggers to update state
-    'ACTIVATE_GRID_KEYBOARD'(state) {   // disse data kommer fra 
-        state.grid_keyboard = true
-        state.infopage_keyboard = false
+    'ACTIVATE_GRID_KEYBOARD'(state) {   
+        state.active_keyboard.grid_keyboard = 1,
+        state.active_keyboard.infopage_keyboard = 0
     },
-    'ACTIVATE_INFOPAGE_KEYBOARD'(state) {   // disse data kommer fra 
-        state.grid_keyboard = false,
-        state.infopage_keyboard = true
+    'ACTIVATE_INFOPAGE_KEYBOARD'(state) {   
+        state.active_keyboard.grid_keyboard = 0,
+        state.active_keyboard.infopage_keyboard = 1
     }
 }
 
@@ -28,8 +28,11 @@ const actions = {   // available actions on this site
 
 
 const getters = {   
-        active_keyboard(state) {
-            return state.active_keyboard
+        grid_keyboard(state) {
+            return state.active_keyboard.grid_keyboard
+        },
+        infopage_keyboard(state) {
+            return state.active_keyboard.infopage_keyboard
         }
 }
 
