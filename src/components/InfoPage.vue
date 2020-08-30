@@ -1,21 +1,19 @@
 <template>
     <transition name="slide" mode="in-out">
     <div class="infopage" v-bind:style="infoMovie.overview == '' ? 'visibility: hidden;' : ''" v-if=" !infoMovie.overview == ''">
+        <!-- movie info -->
         <div><button class="close" @click="closeInfoPage" v-bind:class="{ activated: this.index == 0 }" >Close</button></div>
         <div><h1>{{ infoMovie.title }}</h1></div>
         <div><img v-bind:src="base_url + infoMovie.poster_path" alt=""></div>
         <div class="overview">{{ infoMovie.overview }}</div>
+
+        <!-- Buttons -->
         <button v-bind:class="{ activated: this.index == 1 }">Play <div class="fas fa-play"></div></button>
         <button v-bind:class="{ activated: this.index == 2 }">Trailer <div class="far fa-eye"></div></button>
         <button v-bind:class="{ activated: this.index == 3 }">Huskeliste <div class="fas fa-list"></div></button>
     </div>
     </transition>
 </template>
-
-
-
-
-
 
 
 
@@ -36,6 +34,7 @@ export default {
         })
     },
     methods: {
+        // infopage closes if a movie is not provided
         closeInfoPage() {
             this.infoMovie.overview = ''
             this.infoMovie.title = ''
@@ -49,7 +48,7 @@ export default {
                     let keyCode = e.keyCode;
 
                     // only listen to input if 'infopage-keyboard' is active 
-                    if(this.keyboard == 1) {
+                    if(this.keyboard == true) {
 
                         // right arrow
                         if(keyCode === 39) {
@@ -89,7 +88,6 @@ export default {
                               this.index -= 1
                               console.log(this.index)
                             }
-                            
                         }
 
 

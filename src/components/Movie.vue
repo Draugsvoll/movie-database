@@ -7,18 +7,7 @@
 
 
 
-
-
-
-
-
-
-
-
 <script>
-//import axios from 'axios'
-
-
 export default {
     data () {
         return  {
@@ -41,12 +30,7 @@ export default {
 
 
 
-
-
-
-
 <style scoped>
-
 .movie {
     border:2px solid rgb(33, 33, 34);
     margin:0 20px 20px 0;
@@ -63,6 +47,4 @@ img {
     max-width:250px;
     vertical-align: top;
 }
-
-
 </style>

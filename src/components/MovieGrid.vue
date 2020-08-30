@@ -1,13 +1,11 @@
 <template>
     <div id="movie-grid">
-        <app-movie v-for="(movie, index) in movies" :movie="movie" :key="movie.id"  v-on:info-movie="viewMovie" :movies="movies"
-                    :class="{ active2: index===ActiveIndex }"
-                                           ></app-movie>
+        <app-movie  v-for="(movie, index) in movies" :movie="movie" :key="movie.id"  
+                    v-on:info-movie="viewMovie" :movies="movies"
+                    v-bind:class="{ active: index===ActiveIndex }"
+                                                               ></app-movie>
     </div>
 </template>
-
-
-
 
 
 
@@ -16,15 +14,17 @@ import Movie from './Movie'
 import axios from 'axios'
 import {mapGetters} from 'vuex'
 
-
 export default {
     data () {
         return {
+            // index to keep track of 'focused' element with keyboard
             ActiveIndex: 0,
-            movies: []
         }
     },
+    // movie list sent from App.vue
+    props:['movies'],
     methods: {
+
        // sends a movie to infopage (details) 
       viewMovie(newMovie) {
         const newInfoMovie = {
@@ -60,7 +60,7 @@ export default {
                 window.addEventListener("keyup", (e) => {
 
                 // only listen to input if 'movie-grid-keyboard' is active    
-                if(this.gridKeyboard == 1) {
+                if(this.gridKeyboard == true) {
                     let keyCode = e.keyCode;
 
                     // right arrow
@@ -71,6 +71,7 @@ export default {
                         console.log(this.ActiveIndex)
                         }
                     }
+
                     // left arrow
                     if(keyCode === 37) {
                         if (this.ActiveIndex > 0) {
@@ -79,26 +80,27 @@ export default {
                         console.log(this.ActiveIndex)
                         }
                     }
+
                     // down arrow
                     if(keyCode === 40) {
                         if ( this.ActiveIndex < 14) {
                         console.log("Moved down");
                         this.ActiveIndex += 5
                         console.log(this.ActiveIndex)
-                        window.scrollBy(0,100)
+                        window.scrollBy(0,200)
                         }
-                        
                     }
+
                     // up arrow
                     if(keyCode === 38) {
                         if (this.ActiveIndex > 4) {
                         console.log("Moved up");
                         this.ActiveIndex -= 5
                         console.log(this.ActiveIndex)
-                        window.scrollBy(0,-100)
+                        window.scrollBy(0,-200)
                         }
-                        
                     }
+
                     // enter key
                     if(keyCode === 13) {
                         const movies = this.movies
@@ -108,22 +110,16 @@ export default {
                         this.viewMovie(newMovie)
                         this.$store.dispatch('activate_infopage_keyboard')
                     }
+
                     // B key (back)
                     if(keyCode === 66) {
-                        console.log("Back button");
-                        console.log(this.ActiveIndex)
-                        const movie = []
-                        // sending empty movie in 'viewMovie' reacts with closing the window (infopage div)
-                        this.viewMovie(movie)
+                        this.$store.dispatch('activate_genre_keyboard')
                     }
                 }
         });
     }
 }
 </script>
-
-
-
 
 
 
@@ -134,11 +130,10 @@ export default {
     height:100%;
     margin-top: 1%;
     max-width:1400px !important;
+    min-width: 1370px !important;
 }
 
-.active2 {
+.active {
     border: 2px solid rgb(13, 153, 247);
 }
-
-
 </style>

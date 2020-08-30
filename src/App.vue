@@ -1,30 +1,13 @@
 <template>
-  <!-- <div id="app">
+  <div id="app">
     <app-header></app-header>
-    <div class="container" @jump-window="infopageWindow"  >
-      <app-leftmenu  v-on:fetch-genre="fetchGenre"></app-leftmenu>
-      <app-moviegrid :movies="movies" v-on:jump-window="infopageWindow"
-                     v-bind:moviegridKeyboard="moviegridKeyboard"
-                                                    ></app-moviegrid>
-      <app-infopage  v-bind:infoMovie="infoMovie" 
-                     v-bind:infopageKeyboard="infopageKeyboard"
-                     @activate-grid-keyboard="activateGridKeyboard"></app-infopage>
-    </div>
-  </div> -->
-
-
-<div id="app">
-    <app-header></app-header>
-    <div class="container" @jump-window="infopageWindow"  >
-      <app-leftmenu  v-on:fetch-genre="fetchGenre"></app-leftmenu>
-      <app-moviegrid :movies="movies" v-on:jump-window="infopageWindow"
-                      ></app-moviegrid>
-      <app-infopage  v-bind:infoMovie="infoMovie" 
-                     @activate-grid-keyboard="activateGridKeyboard"></app-infopage>
+    <div class="container">
+        <app-leftmenu  v-on:fetch-genre="fetchGenre"></app-leftmenu>
+        <app-moviegrid :movies="movies">             </app-moviegrid>
+        <app-infopage  v-bind:infoMovie="infoMovie" ></app-infopage>
     </div>
   </div>
 </template>
-
 
 
 <script>
@@ -34,14 +17,11 @@ import InfoPage from './components/InfoPage'
 import Header from './components/Header'
 import axios from 'axios'
 
-
 export default {
   data () {
     return {
       movies: [],
       infoMovie: '',
-      // infopageKeyboard: false,
-      // moviegridKeyboard: true
     }
   },
   name: 'App',
@@ -52,7 +32,7 @@ export default {
     appHeader: Header
   },
   methods: {
-      // FETCH ONE GENRE
+      // FETCH A GENRE -> called from menu-component 
       fetchGenre(genre) {
         this.movies = []
         axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
@@ -61,16 +41,6 @@ export default {
                   });
               })
       console.log(this.movies)
-      },
-      // jump to infopage's keyboard
-      infopageWindow () {
-        this.infopageKeyboard = true
-        console.log('infopage keyboard: ', this.infopageKeyboard)
-      },
-     // jump to movie-grid keyboard
-      activateGridKeyboard() {
-        this.moviegridKeyboard = true
-        console.log('movie-grid keyboard: ', this.moviegridKeyboard)
       }
   },
   created() {
@@ -78,10 +48,12 @@ export default {
             window.onbeforeunload = function () {
             window.scrollTo(0, 0);
             }
-            // // FETCH ALL GENRE 
+
+            // FETCH ALL GENRE 
             // axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US').then(resp => {
             //     console.log(resp)
-            // }),
+            // })
+
             // // FETCH ACTION
             // axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
             //     console.log(resp)
@@ -105,9 +77,5 @@ body, html {
   color:white;
   font-family: sans-serif;
 }
-
-
-
-
 
 </style>

@@ -14,15 +14,7 @@
 
 
 
-
-
-
-
-
-
-
 <style  scoped>
-
 li, a, button{
     color:white;
     font-size:28px;
@@ -37,14 +29,12 @@ header{
     display: flex;
     justify-content: space-between;
     align-items:baseline;
-    border-bottom: 1px solid black; 
     padding: 15px 15px 15px 0px;
     background-color: rgb(7, 14, 31);
     height:70px;
     width:100%;
-    margin-top:0;
     position: fixed;
-    
+    margin-top: 0px;
 }
 
 
