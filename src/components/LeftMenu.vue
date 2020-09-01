@@ -157,6 +157,7 @@ li {
 
 li:hover {
     border-left: 2px solid rgb(190, 188, 188);
+    color:rgb(198, 206, 219);
 
 }
 

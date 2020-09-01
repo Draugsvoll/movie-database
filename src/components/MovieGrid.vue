@@ -1,5 +1,6 @@
 <template>
     <div id="movie-grid">
+        <p><button @click="$emit('change-page', 2)" >Prev.</button> 1 of 20 <button>Next</button></p>
         <app-movie  v-for="(movie, index) in movies" :movie="movie" :key="movie.id"  
                     v-on:info-movie="viewMovie" :movies="movies"
                     v-bind:class="{ active: index===ActiveIndex }"
@@ -52,7 +53,7 @@ export default {
                     this.movies.push(movie)
                 });
             })
-        
+
     },
     // Listens to keyboard input when mounted
     mounted() {
