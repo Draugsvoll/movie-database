@@ -3,8 +3,7 @@
     <app-header></app-header>
     <div class="container">
         <app-leftmenu  v-on:fetch-genre="fetchGenre"></app-leftmenu>
-        <app-moviegrid :movies="movies"
-                       v-on:change-page="changePage">             </app-moviegrid>
+        <app-moviegrid v-bind:movies="movies"></app-moviegrid>
         <app-infopage  v-bind:infoMovie="infoMovie" ></app-infopage>
     </div>
   </div>
@@ -34,7 +33,7 @@ export default {
   },
   methods: {
 
-      // FETCH A GENRE -> called from menu-component 
+      // *FETCH A GENRE -> called from menu-component 
       fetchGenre(genre) {
         this.movies = []
         axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
@@ -42,10 +41,10 @@ export default {
                       this.movies.push(movie)
                   });
               })
-      console.log(this.movies)
+        console.log(this.movies)
       },
 
-      // FETCH NEXT PAGE -> called from movie-grid
+      // *FETCH NEXT PAGE -> called from movie-grid
       changePage(page) {
         this.movies = []
         axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=${page}`).then(resp => {
@@ -77,9 +76,10 @@ export default {
 
 
 <style >
+
 .container {
   display: flex;
-    padding-top:101px;
+    padding-top:100px;
 }
 
 body, html {
