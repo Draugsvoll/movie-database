@@ -1,27 +1,9 @@
 <template>
     <div id="genre">
             <ul>
-                <!-- @click updates 'active' element and fetches the genre -->
-                <!-- checking for either 'activeGenre' or 'index' to update active. We have 2 ways to use menu -->
-                <li @click="changeActiveGenre('Action'),  $emit('fetch-genre', 28);"
-                    v-bind:class="{ active: activeGenre == 'Action'}">                   Action</li>
-
-                <li @click="$emit('fetch-genre', 35); changeActiveGenre('Comedy')"
-                    :class="{ active: activeGenre == 'Comedy'}">                        Comedy</li>
-
-                <li @click="$emit('fetch-genre', 18); changeActiveGenre('Drama')"
-                    :class="{ active: activeGenre == 'Drama'}">                         Drama</li>
-
-                <li @click="$emit('fetch-genre', 99); changeActiveGenre('Documentary')"
-                    :class="{ active: activeGenre == 'Documentary' }">                   Documentary</li>
-
-                <li @click="$emit('fetch-genre', 10751); changeActiveGenre('Family')"
-                    :class="{ active: activeGenre == 'Family'}">                        Family</li>  
-
-                <li @click="$emit('fetch-genre', 53); changeActiveGenre('Thriller')"
-                    :class="{ active: activeGenre == 'Thriller'}">                      Thriller</li>  
+                <li v-for="genre in genres" v-bind:genre="genre" :key="genre.id" ></li>
             </ul>
-             
+             <!-- :class="{ active: activeGenre == 'Documentary' }" -->
     </div>
 </template>
 
@@ -36,6 +18,7 @@ export default {
         return {
             activeGenre: 'Action',
             genreId: 0,
+            genres: ['Action', 'Comedy', 'Drama', 'Documentary', 'Family', 'Thriller']
         }
     },
     methods: {

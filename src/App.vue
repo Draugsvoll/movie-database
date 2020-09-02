@@ -2,8 +2,10 @@
   <div id="app">
     <app-header></app-header>
     <div class="container">
-        <app-leftmenu  v-on:fetch-genre="fetchGenre"></app-leftmenu>
-        <app-moviegrid v-bind:movies="movies"></app-moviegrid>
+                      <!-- v-on:fetch-genre="fetchGenre" -->
+        <app-leftmenu  ></app-leftmenu>
+                      <!-- v-bind:movies="movies" -->
+        <app-moviegrid >      </app-moviegrid>
         <app-infopage  v-bind:infoMovie="infoMovie" ></app-infopage>
     </div>
   </div>
@@ -15,12 +17,12 @@ import LeftMenu from './components/LeftMenu'
 import MovieGrid from './components/MovieGrid'
 import InfoPage from './components/InfoPage'
 import Header from './components/Header'
-import axios from 'axios'
+//import axios from 'axios'
 
 export default {
   data () {
     return {
-      movies: [],
+      // movies: [],
       infoMovie: '',
     }
   },
@@ -33,33 +35,30 @@ export default {
   },
   methods: {
 
-      // *FETCH A GENRE -> called from menu-component 
-      fetchGenre(genre) {
-        this.movies = []
-        axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
-                  resp.data.results.forEach(movie => {   
-                      this.movies.push(movie)
-                  });
-              })
-        console.log(this.movies)
-      },
+      // // *FETCH A GENRE -> called from menu-component 
+      // fetchGenre(genre) {
+      //   this.movies = []
+      //   axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
+      //             resp.data.results.forEach(movie => {   
+      //                 this.movies.push(movie)
+      //             });
+      //         })
+      //   console.log(this.movies)
+      // },
 
-      // *FETCH NEXT PAGE -> called from movie-grid
-      changePage(page) {
-        this.movies = []
-        axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=${page}`).then(resp => {
-                  resp.data.results.forEach(movie => {   
-                      this.movies.push(movie)
-                  });
-              })
-      console.log(this.movies)
-      }
+      // // *FETCH NEXT PAGE -> called from movie-grid
+      // changePage(page) {
+      //   this.movies = []
+      //   axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=${page}`).then(resp => {
+      //             resp.data.results.forEach(movie => {   
+      //                 this.movies.push(movie)
+      //             });
+      //         })
+      // console.log(this.movies)
+      // }
   },
   created() {
-            // force refresh at top -> keyboard focused element always within screen
-            window.onbeforeunload = function () {
-            window.scrollTo(0, 0);
-            }
+            
 
             // FETCH ALL GENRE 
             // axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US').then(resp => {
