@@ -1,6 +1,7 @@
 <template>
     <transition name="slide" mode="in-out">
     <div class="infopage" v-bind:style="infoMovie.overview == '' ? 'visibility: hidden;' : ''" v-if=" !infoMovie.overview == ''">
+
         <!-- movie info -->
         <div><button class="close" @click="closeInfoPage"  >Close</button></div>
         <div><h1>{{ infoMovie.title }}</h1></div>
@@ -32,7 +33,7 @@ export default {
         })
     },
     methods: {
-        // infopage closes if a movie is not provided
+        // infopage closes if movie is empty
         closeInfoPage() {
             this.infoMovie.overview = ''
             this.infoMovie.title = ''

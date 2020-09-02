@@ -2,10 +2,8 @@
   <div id="app">
     <app-header></app-header>
     <div class="container">
-                      <!-- v-on:fetch-genre="fetchGenre" -->
-        <app-leftmenu  ></app-leftmenu>
-                      <!-- v-bind:movies="movies" -->
-        <app-moviegrid >      </app-moviegrid>
+        <app-genrelist  ></app-genrelist>
+        <app-moviegrid ></app-moviegrid>
         <app-infopage  v-bind:infoMovie="infoMovie" ></app-infopage>
     </div>
   </div>
@@ -13,7 +11,7 @@
 
 
 <script>
-import LeftMenu from './components/LeftMenu'
+import GenreList from './components/GenreList'
 import MovieGrid from './components/MovieGrid'
 import InfoPage from './components/InfoPage'
 import Header from './components/Header'
@@ -28,7 +26,7 @@ export default {
   },
   name: 'App',
   components: {
-    appLeftmenu: LeftMenu,
+    appGenrelist: GenreList,
     appMoviegrid: MovieGrid,
     appInfopage: InfoPage,
     appHeader: Header

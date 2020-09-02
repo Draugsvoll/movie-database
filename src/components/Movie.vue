@@ -1,6 +1,6 @@
 <template>
         <div class="movie" @click="viewMovie">
-            <div><img  v-bind:src="base_url + movie.poster_path"></div>
+            <div><img  v-bind:src="base_url + movie.poster_path" ></div>
         </div>
 </template>
 
@@ -23,7 +23,6 @@ export default {
                 this.$emit('info-movie', this.infoMovie)
         }
     }
-    
 }
 </script>
 

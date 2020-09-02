@@ -1,11 +1,9 @@
 <template>
     <div id="movie-grid">
-        <p><button  >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button></p>
-
+        <p><button  @click="prevPage" >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button></p>
         <app-movie  v-for="(movie) in movies" v-bind:movie="movie" :key="movie.id"  
                     v-on:info-movie="viewMovie" 
         ></app-movie>
-
         <p><button  >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button></p>
     </div>
 </template>
@@ -13,18 +11,15 @@
 
 <script>
 import Movie from './Movie'
-//import axios from 'axios'
 
 export default {
     data () {
         return {
         }
     },
-    // movie list sent from App.vue
-   // props:['movies'],
+  
     methods: {
-
-       // sends a movie to infopage (details) 
+       // *sends a movie to infopage (details) 
       viewMovie(newMovie) {
         const newInfoMovie = {
                 movieTitle: newMovie.title,
@@ -38,10 +33,19 @@ export default {
 
         // *NEXT PAGE
       nextPage () {
-          var page = this.$store.getters.currentPage
+          var page = this.page
           page++
           this.$store.dispatch('nextPage', page)
-      }
+      },
+
+        // *PREV PAGE
+      prevPage () {
+          var page = this.page
+          if (page > 1) {
+                page--
+                this.$store.dispatch('prevPage', page)
+          }
+      },
     },
     components: {
         appMovie: Movie,

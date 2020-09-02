@@ -3,7 +3,7 @@
             <ul>
                 <app-genre v-for="(genre, index) in genres" v-bind:genre="genre" :key="genre.id"
                             :class="{ active : index == activeIndex}"
-                            @click.native="activeIndex = index"></app-genre>
+                            @click.native="activeIndex = index, fetchGenre(index)"></app-genre>
             </ul>
     </div>
 </template>
@@ -22,15 +22,14 @@ export default {
             activeIndex: 0
         }
     },
-    methods: {
-        // @click calls this method and changes 'active' element
-        changeActiveGenre (active) {
-            this.activeGenre = active
-        },
-        
-    },
+  
     components: {
         appGenre: Genre
+    },
+    methods: {
+        fetchGenre (index) {
+            console.log(index)
+        }
     }
 }
 </script>

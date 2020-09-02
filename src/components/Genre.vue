@@ -2,7 +2,6 @@
     <li > {{ genre }} </li>
 </template>
 
-             <!-- :class="{ active: activeGenre == 'Documentary' }" -->
 
 
 
