@@ -27,9 +27,44 @@ export default {
         appGenre: Genre
     },
     methods: {
+
+        // *FETCHES A GENRE/MOVIE-LIST 
         fetchGenre (index) {
-            console.log(index)
+
+            let genreId
+
+                // *FETCH GENRE BASED ON GENREID
+                switch(index) {
+                    case 0: 
+                    genreId = 28
+                    break
+
+                    case 1:  
+                    genreId = 35
+                    break
+
+                    case 2:  
+                    genreId = 18
+                    break
+
+                    case 3:  
+                    genreId = 99
+                    break
+
+                    case 4:  
+                    genreId = 10751
+                    break
+
+                    case 5:  
+                    genreId = 53
+                    break
+
+                    default:
+                    break
+                }
+            this.$store.dispatch('fetchMovieList', genreId)
         }
+           
     }
 }
 </script>
