@@ -1,6 +1,6 @@
 <template>
         <div class="movie" @click="viewMovie">
-            <div><img id="image" v-bind:src="base_url + movie.poster_path"></div>
+            <div><img  v-bind:src="base_url + movie.poster_path"></div>
         </div>
 </template>
 
@@ -47,4 +47,5 @@ img {
     max-width:250px;
     vertical-align: top;
 }
+
 </style>

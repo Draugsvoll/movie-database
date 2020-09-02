@@ -1,9 +1,10 @@
 <template>
     <div id="genre">
             <ul>
-                <li v-for="genre in genres" v-bind:genre="genre" :key="genre.id" ></li>
+                <app-genre v-for="(genre, index) in genres" v-bind:genre="genre" :key="genre.id"
+                            :class="{ active : index == activeIndex}"
+                            @click.native="activeIndex = index"></app-genre>
             </ul>
-             <!-- :class="{ active: activeGenre == 'Documentary' }" -->
     </div>
 </template>
 
@@ -12,13 +13,13 @@
 
 
 <script>
+import Genre from './Genre'
 
 export default {
     data () {
         return {
-            activeGenre: 'Action',
-            genreId: 0,
-            genres: ['Action', 'Comedy', 'Drama', 'Documentary', 'Family', 'Thriller']
+            genres: ['Action', 'Comedy', 'Drama', 'Documentary', 'Family', 'Thriller'],
+            activeIndex: 0
         }
     },
     methods: {
@@ -28,6 +29,9 @@ export default {
         },
         
     },
+    components: {
+        appGenre: Genre
+    }
 }
 </script>
 
