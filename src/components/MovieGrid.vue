@@ -1,10 +1,14 @@
 <template>
     <div id="movie-grid">
-        <p><button  @click="prevPage" >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button></p>
+        <div class="buttons">
+            <button  @click="prevPage" >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button>
+        </div>
         <app-movie  v-for="(movie) in movies" v-bind:movie="movie" :key="movie.id"  
                     v-on:info-movie="viewMovie" 
         ></app-movie>
-        <p><button  >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button></p>
+        <div class="buttons">
+            <button @click="prevPage" >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button>
+        </div>
     </div>
 </template>
 
@@ -72,15 +76,21 @@ export default {
 
 
 <style scoped>
+* {
+}
 #movie-grid {
     Width:80%;
     margin-left:20%;
     height:100%;
     margin-top: 1%;
-    
 }
-
 .active {
     border: 2px solid rgb(13, 153, 247);
+}
+.buttons {
+    display: flex;
+    width:95%;
+    justify-content: center;
+    /* border:1px solid white; */
 }
 </style>

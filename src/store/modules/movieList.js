@@ -1,4 +1,4 @@
-// * FETCH DEFAULT MOVIELIST
+// * FETCH DEFAULT MOVIELIST (action)
 import axios from 'axios'
 const movies = []
 axios.get('https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US').then(resp => {
@@ -9,13 +9,13 @@ axios.get('https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=88
 
 
 
-// *DEFAULT STATE
 const state = {
     movieList: { 
         genre:28,
         currentPage: 1, 
         movies: movies
-    },
+        },
+    genres: [],
 }
 
 const mutations = {
@@ -52,6 +52,18 @@ const mutations = {
                 });
             })
     },
+    'FETCH_GENRE_LIST' (state) {
+        state.genreList = []
+        axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
+                console.log('response: ', resp.data.genres)
+                resp = resp.data.genres
+                resp.forEach( genre => {
+                    const newGenre = { id: genre.id, name: genre.name }
+                    state.genres.push(newGenre)
+                })
+                
+            })
+    },
 }
 
 const actions = {   // aviable actions on this site
@@ -64,6 +76,10 @@ const actions = {   // aviable actions on this site
     fetchMovieList: ({ commit }, genre) => {
         commit('FETCH_MOVIE_LIST', genre)  // commits 'BUY_STOCK' mutation defined in portfolio module
     },
+    fetchGenreList: ({ commit }) => {
+        commit('FETCH_GENRE_LIST')  // commits 'BUY_STOCK' mutation defined in portfolio module
+    }
+    
 }
 
 const getters = {
@@ -72,6 +88,9 @@ const getters = {
     },
     currentPage(state){
         return state.movieList.currentPage
+    },
+    genres (state) {
+        return state.genres
     }
 }
 

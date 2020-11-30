@@ -1,5 +1,5 @@
 <template>
-    <li > {{ genre }} </li>
+    <li > {{ genre.name }} </li>
 </template>
 
 

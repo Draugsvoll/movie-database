@@ -60,7 +60,7 @@ body, html {
   min-height: 100%;
   margin:0;
   padding:0;
-  background: rgb(33, 33, 34);
+  background: rgb(0, 0, 0);
   color:white;
   font-family: sans-serif;
 }
