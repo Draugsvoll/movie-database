@@ -1,4 +1,4 @@
-// * FETCH DEFAULT MOVIELIST (action)
+// * default movie list (action)
 import axios from 'axios'
 const movies = []
 axios.get('https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US').then(resp => {
@@ -7,6 +7,14 @@ axios.get('https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=88
                 });
             })
 
+//* default tv list
+const tv = []
+axios.get(`https://api.themoviedb.org/3/discover/tv?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
+                resp.data.results.forEach(movie => {   
+                    tv.push(movie)
+                });
+                state.tv = tv
+            })
 
 
 const state = {
@@ -16,6 +24,8 @@ const state = {
         movies: movies
         },
     genres: [],
+    tv: [],
+    searchResult: []
 }
 
 const mutations = {
@@ -30,6 +40,17 @@ const mutations = {
                 });
             })
     },
+    'NEXT_PAGE_TV' (state, currentPage) {
+        var newPage = currentPage++
+        state.tv = []
+        state.movieList.currentPage = newPage
+        var genre = state.movieList.genre
+        axios.get(`https://api.themoviedb.org/3/discover/tv?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=${newPage}`).then(resp => {
+                resp.data.results.forEach(movie => {   
+                    state.tv.push(movie)
+                });
+            })
+    },
     'PREV_PAGE' (state, currentPage) {
         var newPage = currentPage--
         state.movieList.movies = []
@@ -38,6 +59,17 @@ const mutations = {
         axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=${newPage}`).then(resp => {
                 resp.data.results.forEach(movie => {   
                     state.movieList.movies.push(movie)
+                });
+            })
+    },
+    'PREV_PAGE_TV' (state, currentPage) {
+        var newPage = currentPage--
+        state.tv = []
+        state.movieList.currentPage = newPage
+        var genre = state.movieList.genre
+        axios.get(`https://api.themoviedb.org/3/discover/tv?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=${newPage}`).then(resp => {
+                resp.data.results.forEach(movie => {   
+                    state.tv.push(movie)
                 });
             })
     },
@@ -55,7 +87,6 @@ const mutations = {
     'FETCH_GENRE_LIST' (state) {
         state.genreList = []
         axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
-                console.log('response: ', resp.data.genres)
                 resp = resp.data.genres
                 resp.forEach( genre => {
                     const newGenre = { id: genre.id, name: genre.name }
@@ -64,22 +95,50 @@ const mutations = {
                 
             })
     },
+    'FETCH_TV_GENRE_LIST' (state) {
+        state.genreList = []
+        axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
+                console.log('response: ', resp.data.genres)
+                state.genres = []
+                resp = resp.data.genres
+                resp.forEach( genre => {
+                    const newGenre = { id: genre.id, name: genre.name }
+                    state.genres.push(newGenre)
+                })
+                console.log('new tv genres: , ', state.genres)
+            })
+    },
+    'GET_SEARCH_RESULTS' (state, searchResults) {
+        state.movieList.movies = []
+        state.searchResult = searchResults
+    },
 }
 
 const actions = {   // aviable actions on this site
     nextPage: ({ commit }, currentPage) => {
         commit('NEXT_PAGE', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
     },
+    nextPageTv: ({ commit }, currentPage) => {
+        commit('NEXT_PAGE_TV', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
+    },
     prevPage: ({ commit }, currentPage) => {
         commit('PREV_PAGE', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
+    },
+    prevPageTv: ({ commit }, currentPage) => {
+        commit('PREV_PAGE_TV', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
     },
     fetchMovieList: ({ commit }, genre) => {
         commit('FETCH_MOVIE_LIST', genre)  // commits 'BUY_STOCK' mutation defined in portfolio module
     },
     fetchGenreList: ({ commit }) => {
         commit('FETCH_GENRE_LIST')  // commits 'BUY_STOCK' mutation defined in portfolio module
+    },
+    fetchTvGenreList: ({ commit }) => {
+        commit('FETCH_TV_GENRE_LIST') 
+    },
+    searchResults: ({ commit }, searchResults) => {
+        commit('GET_SEARCH_RESULTS', searchResults)  // commits 'BUY_STOCK' mutation defined in portfolio module
     }
-    
 }
 
 const getters = {
@@ -91,7 +150,16 @@ const getters = {
     },
     genres (state) {
         return state.genres
-    }
+    },
+    searchResults (state) {
+        return state.movieList.movies
+    },
+    tv(state) {
+        return state.tv
+    },
+    searchResult(state) {
+        return state.searchResult
+    },
 }
 
 export default {

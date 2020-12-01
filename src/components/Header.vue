@@ -2,7 +2,9 @@
     <header>
         <nav>
             <ul class="nav_links">
-                <li><a href="#">Filmer</a></li>
+                <li :class="{ active : activeIndex == 0 }" @click="activeIndex = 0; showMovies()"> <a href="#">Movies</a></li>
+                <li  :class="{ active : activeIndex == 1}"  @click="activeIndex = 1; showTv()"><a href="#">TV</a></li>
+                <li  :class="{ active : activeIndex == 2}"  @click="activeIndex = 2; showSearch()"><a href="#">Search</a></li>
             </ul>
         </nav>
         <a class="cta" href="#"><button>Logout</button></a>
@@ -11,7 +13,37 @@
 
 
 
-
+<script>
+export default {
+    data () {
+        return {
+            activeIndex: 0,
+            currentRoute: this.$route.path
+        }
+    },
+    methods: {
+       showMovies () {
+           window.location.href = `/movies`
+       },
+       showTv () {
+           window.location.href = `/tv`
+       },
+       showSearch () {
+           window.location.href = `/search`
+       }
+    },
+    created () {
+        if ( this.currentRoute == '/movies') {
+            this.activeIndex = 0
+        } else if ( this.currentRoute == '/tv') {
+            this.activeIndex = 1
+        }
+        else {
+            this.activeIndex = 2
+        }
+    }
+}
+</script>
 
 
 <style  scoped>
@@ -37,6 +69,8 @@ header{
 .nav_links li{
     display: inline-block;
     padding: 0px 20px 0 0;
+}
+.active {
     text-decoration: underline;
 }
 .nav_links li a{

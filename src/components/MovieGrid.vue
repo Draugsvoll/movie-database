@@ -1,29 +1,40 @@
 <template>
+
     <div id="movie-grid">
-        <div class="buttons">
-            <button  @click="prevPage" >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button>
+
+        <!-- btn row  -->
+        <div v-if=" currentRoute != '/search' " class="buttons">
+            <button @click="prevPage" >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button>
         </div>
+
+        <!-- MOVIE GRID  -->
         <app-movie  v-for="(movie) in movies" v-bind:movie="movie" :key="movie.id"  
                     v-on:info-movie="viewMovie" 
         ></app-movie>
-        <div class="buttons">
+
+        <!-- btn row  -->
+        <div v-if=" currentRoute != '/search' " class="buttons">
             <button @click="prevPage" >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button>
         </div>
+
     </div>
 </template>
 
 
 <script>
 import Movie from './Movie'
+import axios from 'axios'
 
 export default {
     data () {
         return {
+            currentRoute: this.$route.path
         }
     },
   
     methods: {
-       // *sends a movie to infopage (details) 
+        
+       // sends a movie to infopage (details) 
       viewMovie(newMovie) {
         const newInfoMovie = {
                 movieTitle: newMovie.title,
@@ -31,23 +42,33 @@ export default {
                 movieOverview: newMovie.overview,
                 movieVote: newMovie.vote_average,
                 movieRelease: newMovie.release_date,
+                movieId: newMovie.id,
             }
           this.$store.dispatch('setInfoMovie', newInfoMovie) 
       },
 
-        // *NEXT PAGE
+        // NEXT PAGE
       nextPage () {
           var page = this.page
           page++
-          this.$store.dispatch('nextPage', page)
+          if ( this.currentRoute == '/movies') {
+            this.$store.dispatch('nextPage', page)
+          } else {
+            this.$store.dispatch('nextPageTv', page)
+          }
       },
 
-        // *PREV PAGE
+        // PREV PAGE
       prevPage () {
           var page = this.page
           if (page > 1) {
                 page--
-                this.$store.dispatch('prevPage', page)
+                if ( this.currentRoute == '/movies') {
+                    this.$store.dispatch('prevPage', page)
+                }
+                else {
+                    this.$store.dispatch('prevPageTv', page)
+                }
           }
       },
     },
@@ -56,7 +77,15 @@ export default {
     },
     computed: {     
         movies() {
-            return this.$store.getters.movies
+            if ( this.currentRoute == '/movies' ) {
+               return this.$store.getters.movies
+            }
+            else if ( this.currentRoute == '/tv' ) {
+               return this.$store.getters.tv
+            }
+            else {
+               return this.$store.getters.searchResult
+            }
         },
         page () {
             return this.$store.getters.currentPage

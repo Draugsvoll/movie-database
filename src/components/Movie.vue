@@ -19,8 +19,8 @@ export default {
     props: ['movie'],
     methods: {
         viewMovie() {
-                this.infoMovie = this.movie
-                this.$emit('info-movie', this.infoMovie)
+                const infoMovie = this.movie
+                this.$emit('info-movie', infoMovie)
         }
     }
 }

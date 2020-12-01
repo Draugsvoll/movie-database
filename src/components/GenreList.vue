@@ -19,7 +19,8 @@ export default {
     data () {
         return {
             genre: [],
-            activeIndex: 0
+            activeIndex: 0,
+            currentSite: this.$route.path
         }
     },
     components: {
@@ -36,7 +37,12 @@ export default {
             }
         },
         created () {
-            this.$store.dispatch('fetchGenreList')
+            if ( this.currentSite == '/movies') {
+                this.$store.dispatch('fetchGenreList')
+            }
+            else {
+                this.$store.dispatch('fetchTvGenreList')
+            }
         }  
 }
 </script>
