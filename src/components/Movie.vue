@@ -1,6 +1,6 @@
 <template>
         <div class="movie" @click="viewMovie(movie.id)">
-            <div><img  v-bind:src="base_url + movie.poster_path" ></div>
+            <div><img  v-bind:src="base_url + movie.poster_path" alt="" ></div>
         </div>
 </template>
 
@@ -45,16 +45,15 @@ export default {
 <style scoped>
 .movie {
     border:2px solid rgb(33, 33, 34);
-    margin:0 20px 20px 0;
+    margin:0 10px 10px 0;
     cursor: pointer;
     display: inline-block;
 }
 .movie:hover {
         border: 2px solid rgb(13, 153, 247);
-
 }
 img {
-    max-width:250px;
+    max-width:200px;
     vertical-align: top;
 }
 </style>

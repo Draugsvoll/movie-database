@@ -1,14 +1,19 @@
 <template>
     <header>
-        <nav>
-            <ul class="nav_links">
+        <div>
+            <img src="../assets/logo2.png" alt="" width="50">
+        </div>
+        <div>
+             <ul class="nav_links">
                 <li :class="{ active : activeIndex == 0 }" @click="activeIndex = 0; showMovies()"> <a href="#">Movies</a></li>
                 <li  :class="{ active : activeIndex == 1}"  @click="activeIndex = 1; showTv()"><a href="#">TV</a></li>
                 <li  :class="{ active : activeIndex == 2}"  @click="activeIndex = 2; showSearch()"><a href="#">Search</a></li>
-                <li  :class="{ active : activeIndex == 2}"  @click="activeIndex = 3; showFavs()"><a href="#">Favourites</a></li>
+                <li  :class="{ active : activeIndex == 3}"  @click="activeIndex = 3; showFavs()"><a href="#">Favourites</a></li>
             </ul>
-        </nav>
-        <a class="cta" href="#"><button>Logout</button></a>
+        </div>
+        <div>
+            <a class="cta" href="#"><button>Logout</button></a>
+        </div>
     </header>
 </template>
 
@@ -51,6 +56,14 @@ export default {
 
 
 <style  scoped>
+header {
+    display: flex;
+    
+}
+nav {
+    display: flex;
+    justify-content: space-evenly;
+}
 li, a, button{
     color:white;
     font-size:28px;
@@ -95,5 +108,9 @@ button{
 button:hover{
     background-color: rgba(22, 41, 78, 0.8);
     border: 1.5px solid rgb(73, 81, 117);
+}
+
+img {
+    margin-left:1.5rem;
 }
 </style>
