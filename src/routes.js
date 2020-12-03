@@ -6,7 +6,7 @@ import PlayTv from './components/sites/PlayTv'
 import InfoPageTv from './components/sites/InfoPageTv'
 import InfoPageMovie from './components/sites/InfoPageMovie'
 import Favourites from './components/sites/Favourites'
-
+import Login from './components/sites/Login'
 
 export const routes = [
     { path: '/movies', component: Movies},
@@ -18,4 +18,5 @@ export const routes = [
     { path: '/infopagetv', component: InfoPageTv},
     { path: '/infopagemovie', component: InfoPageMovie},
     { path: '/favourites', component: Favourites},
+    { path: '/', component: Login},
 ]

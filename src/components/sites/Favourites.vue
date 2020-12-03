@@ -11,7 +11,10 @@ import MovieGrid from '../MovieGrid'
 export default {
      components: {
     appMoviegrid: MovieGrid,
-  },    
+  },
+  created () {
+    console.log('fetching fav store: ', this.$store.getters.favouriteMovies)
+  }    
 }
 </script>
 

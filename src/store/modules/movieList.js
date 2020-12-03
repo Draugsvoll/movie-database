@@ -25,7 +25,9 @@ const state = {
         },
     genres: [],
     tv: [],
-    searchResult: []
+    searchResult: [],
+    favouriteMovies: ['peorbirepib'],
+    favouriteTv: [],
 }
 
 const mutations = {
@@ -128,6 +130,10 @@ const mutations = {
         state.movieList.movies = []
         state.searchResult = searchResults
     },
+    'ADD_FAVOURITE_MOVIE' (state, movie) {
+        state.favouriteMovies.push(movie)
+        console.log('pushing to state: ', movie)
+    },
 }
 
 const actions = {   // aviable actions on this site
@@ -157,6 +163,9 @@ const actions = {   // aviable actions on this site
     },
     searchResults: ({ commit }, searchResults) => {
         commit('GET_SEARCH_RESULTS', searchResults)  // commits 'BUY_STOCK' mutation defined in portfolio module
+    },
+    addFavouriteMovie: ({ commit }, movie) => {
+        commit('ADD_FAVOURITE_MOVIE', movie)  // commits 'BUY_STOCK' mutation defined in portfolio module
     }
 }
 
@@ -178,6 +187,12 @@ const getters = {
     },
     searchResult(state) {
         return state.searchResult
+    },
+    favouriteMovies(state) {
+        return state.favouriteMovies
+    },
+    favouriteTv(state) {
+        return state.favouriteTv
     },
 }
 

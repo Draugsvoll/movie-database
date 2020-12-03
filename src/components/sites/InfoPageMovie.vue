@@ -14,7 +14,7 @@
             <!-- Buttons -->
             <button @click="play(movie.id)">Play <div class="fas fa-play"></div></button>
             <button >Trailer <div class="far fa-eye"></div></button>
-            <button >Huskeliste <div class="fas fa-list"></div></button>
+            <button @click="addFavourite(movie)">Huskeliste <div class="fas fa-list"></div></button>
         </div>
 
         <!-- credits -->
@@ -30,7 +30,7 @@
             <div class="crew-container">
                 <h2>Crew </h2>
                 <div class="crew" v-for=" (member,index) in crew" :key="index" >
-                    <div v-if="index < 10" >
+                    <div v-if=" member.profile_path != null " >
                         <div> <img class="profile" v-bind:src=" base_url + member.profile_path " alt=""></div>
                         {{ member.name }} <br>
                         {{ member.job }} <br>
@@ -76,6 +76,10 @@ export default {
         },
         goBack() {
             window.location.href = "/movies"
+        },
+        addFavourite (movie) {
+            this.$store.dispatch('addFavouriteMovie', movie)
+            console.log('state: ', this.$store.getters.favouriteMovies)
         }
     },
     created () {

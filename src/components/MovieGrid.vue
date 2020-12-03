@@ -90,7 +90,7 @@ export default {
                return this.$store.getters.searchResult
             }
             else {
-               return this.$store.getters.favourites
+               return this.$store.getters.favouriteMovies
             }
         },
         page () {
