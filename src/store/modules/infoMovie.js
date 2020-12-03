@@ -9,9 +9,18 @@ const state = {
 }
 
 const mutations = { // mutations -> listens to triggers to update state
-    'SET_INFOMOVIE'(state, {movieTitle, moviePosterPath, movieOverview, movieRelease, movieVote, movieId}) {   // disse data kommer fra 
+    'SET_INFOMOVIE'(state, { movieTitle, movieTitle2,moviePosterPath,moviePosterPath2, movieOverview, movieRelease, movieVote, movieId }) {   // disse data kommer fra 
+        if ( movieTitle === undefined ) {
+            movieTitle = ''
+        }
+        if ( movieTitle2 === undefined ) {
+            movieTitle2 = ''
+        }
+        if ( moviePosterPath === undefined ) {
+            moviePosterPath = moviePosterPath2
+        }
         const newInfoMovie = {
-            title: movieTitle,
+            title: movieTitle + movieTitle2,
             poster_path: moviePosterPath,
             overview: movieOverview,
             release_date: movieRelease,

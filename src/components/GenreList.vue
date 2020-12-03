@@ -28,7 +28,12 @@ export default {
     },
     methods: {
         getGenres (id) {
-            this.$store.dispatch('fetchMovieList', id)
+            if ( this.currentSite == '/movies') {
+                this.$store.dispatch('fetchMovieList', id)
+            }
+            else {
+                this.$store.dispatch('fetchTvList', id)
+            }
         }         
         },
         computed: {
@@ -67,7 +72,7 @@ li {
     margin-left: 15%;
     padding: 5px;
     margin-bottom: 10px;
-    font-size: 22px;
+    font-size: 1rem;
     cursor: pointer;
     width:60%;
     border-left: 1px solid  black;

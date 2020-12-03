@@ -75,12 +75,28 @@ const mutations = {
     },
     'FETCH_MOVIE_LIST' (state, genre) {
         state.movieList.movies = []
+        state.tv = []
         state.movieList.currentPage = 1
         state.movieList.genre = genre
         var page = state.movieList.currentPage
         axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=${page}`).then(resp => {
                 resp.data.results.forEach(movie => {   
                     state.movieList.movies.push(movie)
+                    // state.tv.push(movie)
+                });
+            })
+    },
+    'FETCH_TV_LIST' (state, genre) {
+        state.movieList.movies = []
+        state.tv = []
+        state.movieList.currentPage = 1
+        state.movieList.genre = genre
+        var page = state.movieList.currentPage
+        axios.get(`https://api.themoviedb.org/3/discover/tv?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=${page}`).then(resp => {
+                resp.data.results.forEach(movie => {   
+                    // state.movieList.movies.push(movie)
+                    state.tv.push(movie)
+                    console.log(movie)
                 });
             })
     },
@@ -129,6 +145,9 @@ const actions = {   // aviable actions on this site
     },
     fetchMovieList: ({ commit }, genre) => {
         commit('FETCH_MOVIE_LIST', genre)  // commits 'BUY_STOCK' mutation defined in portfolio module
+    },
+    fetchTvList: ({ commit }, genre) => {
+        commit('FETCH_TV_LIST', genre)  // commits 'BUY_STOCK' mutation defined in portfolio module
     },
     fetchGenreList: ({ commit }) => {
         commit('FETCH_GENRE_LIST')  // commits 'BUY_STOCK' mutation defined in portfolio module

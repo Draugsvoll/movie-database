@@ -13,7 +13,7 @@
         ></app-movie>
 
         <!-- btn row  -->
-        <div v-if=" currentRoute != '/search' " class="buttons">
+        <div v-if=" currentRoute != '/search' && movies != '' " class="buttons">
             <button @click="prevPage" >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button>
         </div>
 
@@ -33,16 +33,19 @@ export default {
     },
   
     methods: {
-        
        // sends a movie to infopage (details) 
       viewMovie(newMovie) {
+          console.log('movie: ', newMovie)
         const newInfoMovie = {
                 movieTitle: newMovie.title,
+                movieTitle2: newMovie.name,
                 moviePosterPath: newMovie.backdrop_path,
+                moviePosterPath2: newMovie.poster_path,
                 movieOverview: newMovie.overview,
                 movieVote: newMovie.vote_average,
                 movieRelease: newMovie.release_date,
                 movieId: newMovie.id,
+
             }
           this.$store.dispatch('setInfoMovie', newInfoMovie) 
       },
@@ -83,8 +86,11 @@ export default {
             else if ( this.currentRoute == '/tv' ) {
                return this.$store.getters.tv
             }
-            else {
+            else if ( this.currentRoute == '/search') {
                return this.$store.getters.searchResult
+            }
+            else {
+               return this.$store.getters.favourites
             }
         },
         page () {

@@ -1,7 +1,9 @@
 <template>
-    <transition name="slide" mode="in-out">
-    <div class="infopage" v-bind:style="infoMovie.overview == '' ? 'visibility: hidden;' : ''" v-if=" !infoMovie.overview == ''">
-
+    <!-- <transition name="slide" mode="in-out"> -->
+      <!-- v-if=" !infoMovie.overview == ''" -->
+      <!-- v-bind:style="infoMovie.overview == '' ? 'visibility: hidden;' : ''" -->
+    <div class="infopage"  >
+      woefirjgeo
         <!-- movie info -->
         <div><button class="close" @click="closeInfoPage"  >Close</button></div>
         <div><h1>{{ infoMovie.title }}</h1></div>
@@ -14,7 +16,7 @@
         <button >Huskeliste <div class="fas fa-list"></div></button>
         
     </div>
-    </transition>
+    <!-- </transition> -->
 </template>
 
 
@@ -61,10 +63,12 @@ export default {
     width:35%;
     min-width:775px;
     position: fixed;
-    height:100%;
+    height:100vh;
+    width:100%;
     right:0;
     padding: 45px 12px;
     margin: auto auto;
+    color:white;
 }
 button {
     width:125px;
@@ -92,6 +96,8 @@ button:hover {
 }
 img {
     max-width: 750px;
+    max-height:522px;
+
 }
 h1 {
   margin:0 0 15px 0;

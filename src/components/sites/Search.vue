@@ -5,24 +5,28 @@
      
     <div class="container">
       <!-- search field  -->
+      <div class="upper-btn">
+          <button :class="{ activeBtn : searchType === 'movie'}" class="movie-btn" @click="searchMovie">Movies</button>
+          <button :class="{ activeBtn : searchType === 'tv'}" class="tv-btn" @click="searchTv">Series</button>
+      </div>
       <div class="searchField">
-        <input v-model="searchTerm" type="text" placeholder="Movie,tv, actor..">
+        <div class="search-bar">
+        <input v-model="searchTerm" type="text" placeholder="Movie,tv, actor.." value=''>
         <button class="search" @click="search(searchTerm)">Search</button >
+        </div>
       </div>
 
       <!-- movie grid  -->
       <app-moviegrid ></app-moviegrid>
-      <app-infopage  v-bind:infoMovie="infoMovie" ></app-infopage>
     </div>
 
   </div>
 </template>
 
 
-<script>
+<script scoped>
 import axios from 'axios'
 import MovieGrid from '../MovieGrid'
-import InfoPage from './InfoPage'
 import Header from '../Header'
 
 export default {
@@ -30,38 +34,55 @@ export default {
     return {
       infoMovie: '',
       searchTerm: '',
+      searchType: 'movie',
+      searchResults: []
     }
   },
   components: {
     appMoviegrid: MovieGrid,
-    appInfopage: InfoPage,
     appHeader: Header
   },
   methods: {
       search(searchTerm) {
             var searchResults = []
-            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=1&include_adult=false&query=${searchTerm}`).then(resp => {
+            axios.get(`https://api.themoviedb.org/3/search/${this.searchType}?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=1&include_adult=false&query=${searchTerm}`).then(resp => {
                 console.log(resp)
                 resp = resp.data.results
                 resp.forEach( movie => {
-                    const newMovie = { title: movie.original_title, id: movie.id, overview: movie.overview, popularity: movie.popularity, 
-                                        poster_path: movie.poster_path, vote_average: movie.vote_average, release_date: movie.release_date }
-                    searchResults.push(newMovie)
+                   
+                    searchResults.push(movie)
                 });
                 this.$store.dispatch('searchResults', searchResults )
             })
         },
+        searchMovie () {
+          this.searchType = 'movie'
+          console.log(this.searchType)
+          this.$router.push('/search?type=movie')
+        },
+        searchTv () {
+          this.searchType = 'tv'
+          console.log(this.searchType)
+          this.$router.push('/search?type=tv')
+        }
   },
   created () {
-     axios.get(`https://api.themoviedb.org/3/movie/557?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&append_to_response=videos,images`).then(resp => {
-                console.log('wepigjeroigj',resp)
-            })
+    //  axios.get(`https://api.themoviedb.org/3/movie/557?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&append_to_response=videos,images`).then(resp => {
+    //             console.log('response',resp)
+    //         })
   }
  
 }
 </script>
 
-<style >
+<style css >
+button {
+  outline:none;
+}
+.activeBtn {
+  border:1px solid red;
+  color:red;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -78,6 +99,16 @@ body, html {
 input {
   width:400px;
   height:2rem;
+}
+.upper-btn {
+  margin:auto;
+}
+.upper-btn button {
+  width:5rem;
+  height:2rem;
+  background:rgba(0,0,0,0.5);
+  border:1px solid white;
+  color:white;
 }
 .searchField {
   display: inline-flex;

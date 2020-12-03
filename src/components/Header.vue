@@ -5,6 +5,7 @@
                 <li :class="{ active : activeIndex == 0 }" @click="activeIndex = 0; showMovies()"> <a href="#">Movies</a></li>
                 <li  :class="{ active : activeIndex == 1}"  @click="activeIndex = 1; showTv()"><a href="#">TV</a></li>
                 <li  :class="{ active : activeIndex == 2}"  @click="activeIndex = 2; showSearch()"><a href="#">Search</a></li>
+                <li  :class="{ active : activeIndex == 2}"  @click="activeIndex = 3; showFavs()"><a href="#">Favourites</a></li>
             </ul>
         </nav>
         <a class="cta" href="#"><button>Logout</button></a>
@@ -29,7 +30,10 @@ export default {
            window.location.href = `/tv`
        },
        showSearch () {
-           window.location.href = `/search`
+           window.location.href = `/search?type=movie`
+       },
+       showFavs () {
+           window.location.href = `/favourites`
        }
     },
     created () {

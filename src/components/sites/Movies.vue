@@ -4,7 +4,6 @@
     <div class="container">
         <app-genrelist  ></app-genrelist>
         <app-moviegrid ></app-moviegrid>
-        <app-infopage  v-bind:infoMovie="infoMovie" ></app-infopage>
     </div>
   </div>
 </template>
@@ -13,7 +12,6 @@
 <script>
 import GenreList from '../GenreList'
 import MovieGrid from '../MovieGrid'
-import InfoPage from './InfoPage'
 import Header from '../Header'
 
 export default {
@@ -25,7 +23,6 @@ export default {
   components: {
     appGenrelist: GenreList,
     appMoviegrid: MovieGrid,
-    appInfopage: InfoPage,
     appHeader: Header
   },
   methods: {

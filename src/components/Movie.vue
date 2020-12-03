@@ -1,5 +1,5 @@
 <template>
-        <div class="movie" @click="viewMovie">
+        <div class="movie" @click="viewMovie(movie.id)">
             <div><img  v-bind:src="base_url + movie.poster_path" ></div>
         </div>
 </template>
@@ -13,14 +13,27 @@ export default {
         return  {
             base_url: "https://image.tmdb.org/t/p/w500",
             index: 0,
+            path: this.$route.path
         }
     },
     image: 'https://image.tmdb.org/t/p/w500',
     props: ['movie'],
     methods: {
-        viewMovie() {
-                const infoMovie = this.movie
-                this.$emit('info-movie', infoMovie)
+        viewMovie(id) {
+            console.log('router quey: ', this.$route.query.type)
+            console.log('path: ', this.path)
+            if (this.path == '/movies') {
+                this. $router. push(`/infopagemovie?id=${id}`)
+            }
+            else if ( this.path == '/tv' ) {
+                this. $router. push(`/infopagetv?id=${id}`)
+            }
+            else if ( this.$route.query.type === 'movie') {
+                this. $router. push(`/infopagemovie?id=${id}`)
+            }
+            else {
+                this. $router. push(`/infopagetv?id=${id}`)
+            }
         }
     }
 }
@@ -36,15 +49,12 @@ export default {
     cursor: pointer;
     display: inline-block;
 }
-
 .movie:hover {
         border: 2px solid rgb(13, 153, 247);
 
 }
-
 img {
     max-width:250px;
     vertical-align: top;
 }
-
 </style>
