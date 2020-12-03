@@ -35,7 +35,10 @@ export default {
 <style >
 .container {
   display: flex;
-    padding-top:100px;
+  padding-top:100px;
+}
+.box {
+  display: flex;
 }
 body, html {
   min-height: 100%;

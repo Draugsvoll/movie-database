@@ -61,9 +61,11 @@ ul{
     padding:0;
 }
 #genre {
-    width:20%;
+    margin-top:48px;
+    max-width:20%;
     height:100%;
     position: fixed;
+    justify-content: center;
 }
 h1 {
     text-align: center;

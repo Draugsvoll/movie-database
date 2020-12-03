@@ -19,23 +19,27 @@
 
         <!-- credits -->
         <div class="credits">
+            <h2 class="sub-headline">The Cast</h2>
             <div class="actor-container">
-                <h2>Cast</h2>
                 <div class="actor" v-for=" (actor, index) in cast" :key="index">
-                <div> <img class="profile" v-bind:src=" base_url + actor.profile_path " alt=""></div>
-                {{ actor.name }} <br>
-                {{ actor.character }} <br>
+                <div> <img class="profile" v-bind:src="base_url + actor.profile_path" 
+                    @error="$event.target.src='https://progitek.no/privat/bp/wp-content/uploads/2020/09/default.jpg'" alt=""></div>
+                <div class="crew-text">
+                    <h3>{{ actor.name }}</h3>
+                    '{{ actor.character }}'
+                </div>
                 </div>
             </div>
+            <h2 class="sub-headline">The Crew</h2>
             <div class="crew-container">
-                <h2>Crew </h2>
                 <div class="crew" v-for=" (member,index) in crew" :key="index" >
-                    <div v-if=" member.profile_path != null " >
-                        <div> <img class="profile" v-bind:src=" base_url + member.profile_path " alt=""></div>
-                        {{ member.name }} <br>
-                        {{ member.job }} <br>
+                    <div v-if="index<20">
+                        <div> <img class="profile" v-bind:src=" base_url + member.profile_path " @error="$event.target.src='https://progitek.no/privat/bp/wp-content/uploads/2020/09/default.jpg'" alt=""></div>
+                        <div class="crew-text">
+                            <h3>{{ member.name }} </h3>
+                            {{ member.job }}
+                        </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -57,7 +61,8 @@ export default {
             movie: {},
             path: this.$route.path,
             cast: [],
-            crew: []
+            crew: [],
+            profile_pic: '../../assets/logo2.jpg'
         }
     },
     computed: {
@@ -104,24 +109,48 @@ export default {
 
 <style  scoped>
 * {
+    /* border:1px solid purple; */
+
+}
+h3 {
+    margin:0;
+}
+.sub-headline {
+    margin:0 auto;
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+.crew-text {
+    background: white;
+    color:black;
+    padding:0.5rem;
 }
 .actor-container {
-    margin:0 auto;
-    }
+    display: flex;
+    flex-wrap: wrap;
+}
+.actor {
+    margin: 2rem 2rem;
+}
+.crew {
+    margin: 2rem 2rem;
+}
 .crew-container {
-    margin:0 auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 .credits {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 .profile {
-    max-width:300px;
+    width:250px;
     display: flex;
 }
 .preview {
     background-size: cover;
-    padding-left:5%;
+    padding-left:1%;
     min-height:75vh;
 }
 p {
@@ -170,7 +199,7 @@ img {
 }
 h1 {
     position: relative;
-    margin:40% 0 15px 0;
+    margin:45% 0 15px 0;
     text-shadow: 1px 1px 4px black;
 }
 
