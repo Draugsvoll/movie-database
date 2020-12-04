@@ -1,5 +1,5 @@
 <template>
-        <div class="movie" @click="viewMovie(movie.id)">
+        <div v-if="movie.poster_path != null" class="movie" @click="viewMovie(movie.id)">
             <div><img  v-bind:src="base_url + movie.poster_path" alt="" ></div>
         </div>
 </template>

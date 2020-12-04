@@ -47,8 +47,11 @@ export default {
         } else if ( this.currentRoute == '/tv') {
             this.activeIndex = 1
         }
-        else {
+        else if ( this.currentRoute == '/search') {
             this.activeIndex = 2
+        }
+        else {
+            this.activeIndex = 3
         }
     }
 }
@@ -63,10 +66,9 @@ header {
 nav {
     display: flex;
     justify-content: space-evenly;
-
 }
 li, a, button{
-    font-size:28px;
+    font-size:20px;
     color:rgb(159, 158, 158);
 }
 
@@ -77,12 +79,13 @@ header{
     display: flex;
     justify-content: space-between;
     align-items:baseline;
-    padding: 15px 15px 15px 0px;
+    padding: 5px 15px 15px 0px;
     background-color: black;
     height:70px;
     width:100%;
     position: fixed;
     margin-top: 0px;
+    border-bottom:2px solid rgb(154, 127, 23);
 }
 .nav_links li{
     display: inline-block;
@@ -100,12 +103,12 @@ header{
 }
 button{
     padding: 9px 25px;
-    background-color: rgb(14, 28, 48);
-    border:2px solid rgb(73, 101, 145);
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
     margin-right: 35px;
-    font-size: 26px;
+    BORDER:none !important;
+    font-size: 16px;
+    color:rgb(255, 196, 0);
 }
 button:hover{
     background-color: rgba(22, 41, 78, 0.8);

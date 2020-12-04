@@ -121,9 +121,9 @@ h3 {
 }
 .sub-headline {
     margin: 1rem 0;
-    font-size: 2rem;
+    font-size: 1.7rem;
     padding:0.3rem;
-    background: #2657b0;
+    background: #091731;
     max-width: 100%;
     justify-content: center;
     display: flex;

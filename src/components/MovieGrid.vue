@@ -4,7 +4,7 @@
 
         <!-- btn row  -->
         <div v-if=" currentRoute != '/search' " class="buttons">
-            <button @click="prevPage" ><div class="arrow fas fa-arrow-left fa-2x"></div></button> <span class="page">{{ page }} </span> <button @click="nextPage"><div class="fa-2x arrow fas fa-arrow-right"></div></button>
+            <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} </span> <button @click="nextPage"><div class=" arrow fas fa-arrow-right"></div></button>
         </div>
 
         <!-- MOVIE GRID  -->
@@ -14,7 +14,7 @@
 
         <!-- btn row  -->
         <div v-if=" currentRoute != '/search' && movies != '' " class="buttons">
-            <button @click="prevPage" ><div class="arrow fas fa-arrow-left fa-2x"></div></button> <span class="page">{{ page }} </span>  <button @click="nextPage"><div class="fa-2x arrow fas fa-arrow-right"></div></button>
+            <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} </span>  <button @click="nextPage"><div class="arrow fas fa-arrow-right"></div></button>
         </div>
 
     </div>
@@ -123,7 +123,6 @@ export default {
     border: 2px solid rgb(13, 153, 247);
 }
 .buttons {
-    /* width:95%; */
     margin:auto;
     margin-left:40%;
 }
@@ -143,6 +142,6 @@ button {
     margin:8px;
 }
 .page {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 </style>
