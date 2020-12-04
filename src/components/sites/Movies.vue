@@ -32,11 +32,12 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
 .container {
   display: flex;
   padding-top:100px;
 }
+
 .box {
   display: flex;
 }
@@ -48,4 +49,5 @@ body, html {
   color:white;
   font-family: sans-serif;
 }
+
 </style>

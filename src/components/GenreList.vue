@@ -73,6 +73,9 @@ ul{
   background:rgb(103, 99, 99);
   border-radius:10px;
 }
+::-webkit-scrollbar-thumb:hover {
+  background:rgb(125, 120, 120);
+}
 #genre {
     margin-top:48px;
     width:180px;
@@ -102,4 +105,30 @@ li:hover {
     /* text-decoration: underline; */
     border:2px solid rgb(255, 196, 0);
 }
+
+@media only screen and (max-width: 533px) {
+    .active {
+    color:rgb(254, 254, 255);
+    /* text-decoration: underline; */
+}
+ #genre {
+    height:auto;
+    position: relative;
+    width:100%;
+    top:-130px;
+}
+ul {
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+}
+li {
+    margin: auto auto;
+    padding:15px;
+}
+.container {
+    padding-top:0;
+}
+}
+
 </style>

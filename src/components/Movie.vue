@@ -56,4 +56,16 @@ img {
     max-width:200px;
     vertical-align: top;
 }
+
+@media only screen and (max-width: 668px) {
+    img {
+        max-width:175px;
+
+    }
+}
+@media only screen and (max-width: 508px) {
+    img {
+        max-width:220px;
+    }
+}
 </style>

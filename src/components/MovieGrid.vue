@@ -113,7 +113,7 @@ export default {
 
 <style scoped>
 * {
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 #movie-grid {
     max-Width:80%;
@@ -152,4 +152,25 @@ button {
     margin-left:25%;
   }
 }
+
+@media only screen and (max-width: 511px) {
+  .buttons {
+    margin-left:5%;
+  }
+}
+
+@media only screen and (max-width: 533px) {
+    #movie-grid {
+        margin:0 auto 0 20%;
+        margin-top:-125px;
+    }
+}
+
+@media only screen and (max-width: 533px) {
+    #movie-grid {
+        margin:0 auto 0 9%;
+        margin-top:-125px;
+    }
+}
+
 </style>

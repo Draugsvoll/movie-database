@@ -2,7 +2,7 @@
     <div class="container">
         <app-header></app-header>
         <iframe v-bind:src=" `https://www.youtube.com/embed/${trailer}?autoplay=1`" allow="autoplay" frameborder='0'  ></iframe>
-        <div class="text box"><p>Not playing?</p></div>
+        <a href="javascript:history.go(-1)"><button><div class="fas fa-arrow-left" ></div> Back</button></a>
         <div class="text2"><p>Some videos lack a youtube link. This is for display purposes only </p></div>
     </div>
 </template>
@@ -23,9 +23,8 @@ export default {
         appHeader: Header
     },
     created () {
-        console.log(this.id)
-          Axios.get(`https://api.themoviedb.org/3/movie/${this.id}?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&append_to_response=videos,images`).then(resp => {
-               console.log(resp)
+            Axios.get(`https://api.themoviedb.org/3/movie/${this.id}?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&append_to_response=videos,images`).then(resp => {
+            //    console.log(resp)
                this.trailer = resp.data.videos.results[0].key
             })
     }
@@ -54,13 +53,24 @@ iframe {
 }
 p {
     margin: 0px auto;
-    font-size:12px;
+    font-size:10px;
+}
+a {
+    margin:auto auto;   
 }
 button {
-    height:50px;
-    width:150px;
+    height:3rem;
+    width:5rem;
     margin:auto;
+    margin-bottom:10px;
+    margin-top:1rem;
+    border:1px solid white;
+    font-size:18px;
+    cursor:pointer;
+    color:white;
+    background:rgba(0,0,0,0)
 }
+
 .box {
     margin-top:50px;
 }

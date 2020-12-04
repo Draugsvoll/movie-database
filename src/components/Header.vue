@@ -1,7 +1,8 @@
 <template>
     <header>
         <div>
-            <img src="../assets/logo2.png" alt="" width="50">
+            <!-- <img src="../assets/logo2.png" alt="" width="50"> -->
+            <a href="/movies"> <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="" width="50"></a> 
         </div>
         <div>
              <ul class="nav_links">
@@ -59,16 +60,12 @@ export default {
 
 
 <style  scoped>
-header {
-    display: flex;
-    
+* {
+    /* border:1px solid red; */
 }
-nav {
-    display: flex;
-    justify-content: space-evenly;
-}
+
 li, a, button{
-    font-size:20px;
+    font-size:18px;
     color:rgb(159, 158, 158);
 }
 
@@ -93,7 +90,7 @@ header{
 }
 .active {
     color:white !important;
-    border-bottom:2px solid rgb(255, 196, 0);
+    border-bottom:1px solid rgb(255, 196, 0);
 }
 .nav_links li a{
     transition: all 0.2s ease 0s;
@@ -111,11 +108,37 @@ button{
     color:rgb(255, 196, 0);
 }
 button:hover{
-    background-color: rgba(22, 41, 78, 0.8);
-    border: 1.5px solid rgb(73, 81, 117);
+    /* background-color: rgba(22, 41, 78, 0.8); */
+        color:rgb(255, 217, 0);
 }
 
 img {
     margin-left:1.5rem;
+    margin-bottom:-15px;
+}
+
+
+@media only screen and (max-width: 414px) {
+  header {
+    display:flex;
+    flex-direction: column;
+  }
+ ul li {
+      flex-direction: column;
+      display: flex;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+ ul, li {
+      margin:15px;
+      padding:0;
+  }
+}
+
+@media only screen and (max-width: 549px) {
+header {
+    position: initial;
+  }
 }
 </style>
