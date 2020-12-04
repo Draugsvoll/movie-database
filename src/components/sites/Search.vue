@@ -6,19 +6,28 @@
     <div class="container">
       <!-- search field  -->
       <div class="upper-btn">
-          <div :class="{ activeBtn : searchType == 'movie'}" class="movie-btn" @click="searchMovie">Movies</div>
-          <div :class="{ activeBtn : searchType === 'tv'}" class="tv-btn" @click="searchTv">Series</div>
+          <div :class="{ activeBtn : searchType == 'movie'}" class="select-btn" @click="searchMovie">
+            <div :class="{ pointer : searchType == 'movie' }" class="fas fa-chevron-right arrow1"></div> Movies
+          </div>
+          <div :class="{ activeBtn : searchType === 'tv'}" class="select-btn" @click="searchTv">
+            <div :class="{ pointer : searchType == 'tv' }" class="fas fa-chevron-right arrow2"></div> Series
+          </div>
+          <div  class="empty" @click="searchTv">asdsa</div>
       </div>
       <div class="searchField">
         <div class="search-bar">
-        <input v-model="searchTerm" type="text" placeholder="Movie, tv, actor.." value=''>
+        <input v-model="searchTerm" ref="search" type="text" placeholder="Search" value='' autofocus>
         <button class="search" @click="search(searchTerm)">Search</button >
         </div>
       </div>
 
       <div class="query"> {{ query }} </div>
+
       <!-- movie grid  -->
-      <app-moviegrid ></app-moviegrid>
+      <div class="movie-container">
+        <app-moviegrid ></app-moviegrid>
+      </div>
+
     </div>
   </div>
 </template>
@@ -37,7 +46,8 @@ export default {
       searchType: 'movie',
       searchResults: [],
       query: 'Popular',
-      path: this.$route.query.type
+      path: this.$route.query.type,
+      active: 'movies'
     }
   },
   components: {
@@ -78,8 +88,15 @@ export default {
         }
   },
   created () {
+    const ref = this
+    var searchTerm = this.searchTerm
+    window.addEventListener('keyup', function(event) {
+          if (event.keyCode === 13) { 
+            ref.search(ref.searchTerm)
+          }
+        });
      axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=1`).then(resp => {
-                console.log('response',resp)
+                // console.log('response',resp)
                 this.$store.dispatch('searchResults', resp.data.results )
             })
   }
@@ -87,21 +104,32 @@ export default {
 }
 </script>
 
-<style css >
+<style scoped>
 .query {
-  margin-top:2rem;
-  margin-left:15%;
+  margin:1.5rem auto;
+}
+.pointer {
+  color:yellow !important;
+}
+.arrow1, .arrow2 {
+  color:rgba(0,0,0,0);
+}
+.movie-container {
+  margin-left:-80px;
 }
 button {
   outline:none;
   background: rgba(0,0,0,0);
   color: white;
   font-size: 1.1rem;
+  cursor:pointer;
   border:1px solid rgb(255, 196, 0);
 }
+.empty {
+  visibility: hidden;
+}
 .activeBtn {
-  border-bottom:1px solid white;
-  color:white;
+  color:white !important;
 }
 .container {
   display: flex;
@@ -117,7 +145,7 @@ body, html {
   font-family: sans-serif;
 }
 input {
-  width:400px;
+  width:350px;
   height:2rem;
   margin-top:1rem;
   font-size: 1.3rem;
@@ -131,7 +159,7 @@ input {
   color:purple;
 }
 ::placeholder {
-  color: rgb(118, 116, 116);
+  color: rgb(84, 84, 84);
 
 }
 .upper-btn {
@@ -140,15 +168,19 @@ input {
   display: flex;
   color:grey;
 }
-.movie-btn, .tv-btn {
-  margin:0 1rem;
+.upper-btn:hover {
+  color:white;
+}
+.select-btn {
+  margin:0 0rem;
   cursor:pointer;
+  color:grey;
   font-size: 1.2rem;
+  padding:0.5rem
 }
 .searchField {
   display: inline-flex;
   justify-content: center;
-  margin-top:0.5rem;
 }
 .search {
   width:85px;
@@ -156,4 +188,19 @@ input {
   margin-left:10px;
   border-radius: 5px;
 }
+@media only screen and (max-width: 470px) {
+  input {
+    width:250px;
+  }
+}
+@media only screen and (max-width: 371px) {
+  input {
+    margin-left:10%;
+  }
+  .search {
+    margin:1rem auto;
+    margin-left:35%;
+  }
+}
 </style>
+

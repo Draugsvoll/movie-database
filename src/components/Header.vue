@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div>
-            <a class="cta" href="#"><button>Logout</button></a>
+            <a  href="#"><button>Logout</button></a>
         </div>
     </header>
 </template>
@@ -59,7 +59,7 @@ export default {
 </script>
 
 
-<style  scoped>
+<style scoped>
 * {
     /* border:1px solid red; */
 }
@@ -68,29 +68,32 @@ li, a, button{
     font-size:18px;
     color:rgb(159, 158, 158);
 }
-
+a {
+    border:none !important;
+}
 .nav_links li a{
     text-decoration: none;
 }
 header{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items:baseline;
     padding: 5px 15px 10px 0px;
     background-color: black;
     min-height:70px;
     width:100%;
     position: fixed;
-    margin-top: 0px;
-    border-bottom:1.5px solid rgb(237, 145, 6);
+    border-bottom:1px solid rgb(237, 145, 6);
 }
 .nav_links li{
     display: inline-block;
     margin:0.5rem;
+    padding-left:5px;
+    padding-right:5px;
 }
 .active {
     color:white !important;
-    border-bottom:1px solid rgb(255, 196, 0);
+    border-left:1px solid rgb(196, 196, 6);
 }
 .nav_links li a{
     transition: all 0.2s ease 0s;
@@ -99,17 +102,15 @@ header{
     color: rgb(247, 247, 247);
 }
 button{
-    padding: 9px 25px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 35px;
-    BORDER:none !important;
-    font-size: 16px;
-    color:rgb(255, 196, 0);
+  background:rgba(0,0,0,0);
+  border:none !important;
+  outline:none;
+    color:rgb(255, 217, 0);
+
 }
 button:hover{
-    /* background-color: rgba(22, 41, 78, 0.8); */
-        color:rgb(255, 217, 0);
+    background-color: rgba(22, 41, 78, 0);
+    color:rgb(255, 217, 0);
 }
 
 img {
@@ -118,7 +119,7 @@ img {
 }
 
 
-@media only screen and (max-width: 414px) {
+/* @media only screen and (max-width: 414px) {
   header {
     display:flex;
     flex-direction: column;
@@ -140,5 +141,5 @@ img {
 header {
     position: initial;
   }
-}
+} */
 </style>

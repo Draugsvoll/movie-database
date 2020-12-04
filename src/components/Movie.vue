@@ -63,9 +63,14 @@ img {
 
     }
 }
-@media only screen and (max-width: 508px) {
+@media only screen and (max-width: 490px) {
     img {
-        max-width:220px;
+        max-width:150px;
+    }
+}
+@media only screen and (max-width: 413px) {
+    img {
+        max-width:195px;
     }
 }
 </style>

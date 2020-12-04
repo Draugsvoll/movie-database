@@ -1,17 +1,19 @@
 <template>
 
     <div id="movie-grid">
-
+        
         <!-- btn row  -->
         <div v-if=" currentRoute != '/search' " class="buttons">
             <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} </span> <button @click="nextPage"><div class=" arrow fas fa-arrow-right"></div></button>
         </div>
 
-        <!-- MOVIE GRID  -->
-        <app-movie  v-for="(movie) in movies" v-bind:movie="movie" :key="movie.id"  
-                    v-on:info-movie="viewMovie" 
-        ></app-movie>
-
+        <div class="movie-container">
+            <!-- MOVIE GRID  -->
+            <app-movie  v-for="(movie) in movies" v-bind:movie="movie" :key="movie.id"  
+                        v-on:info-movie="viewMovie" 
+            ></app-movie>       
+        </div>
+        
         <!-- btn row  -->
         <div v-if=" currentRoute != '/search' && movies != '' " class="buttons">
             <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} </span>  <button @click="nextPage"><div class="arrow fas fa-arrow-right"></div></button>
@@ -115,18 +117,23 @@ export default {
 * {
     /* border: 1px solid red; */
 }
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 #movie-grid {
-    max-Width:80%;
+    max-width:80%;
     margin-left:200px;
     height:100%;
-    margin-top: 1%;
 }
 .active {
     border: 2px solid rgb(13, 153, 247);
 }
 .buttons {
-    margin:auto;
-    margin-left:40%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 button {
     width: 3rem;
@@ -145,32 +152,15 @@ button {
 }
 .page {
     font-size: 1.3rem;
+    margin: auto 0;
 }
 
-@media only screen and (max-width: 1067px) {
-  .buttons {
-    margin-left:25%;
-  }
-}
 
-@media only screen and (max-width: 511px) {
-  .buttons {
-    margin-left:5%;
-  }
-}
-
-@media only screen and (max-width: 533px) {
+@media only screen and (max-width: 507px) {
     #movie-grid {
-        margin:0 auto 0 20%;
-        margin-top:-125px;
+        margin-top:50px;
     }
 }
 
-@media only screen and (max-width: 533px) {
-    #movie-grid {
-        margin:0 auto 0 9%;
-        margin-top:-125px;
-    }
-}
 
 </style>

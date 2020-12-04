@@ -35,7 +35,7 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  padding-top:100px;
+  
 }
 
 .box {

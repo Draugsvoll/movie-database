@@ -64,7 +64,7 @@ button {
     width:5rem;
     margin:auto;
     margin-bottom:10px;
-    margin-top:1rem;
+    margin-top:2rem;
     border:1px solid white;
     font-size:18px;
     cursor:pointer;

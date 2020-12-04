@@ -113,7 +113,7 @@ export default {
 }
 </script>
 
-<style  scoped>
+<style scoped>
 * {
     /* border:1px solid purple; */
 

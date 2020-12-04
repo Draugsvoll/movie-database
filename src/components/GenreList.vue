@@ -77,8 +77,8 @@ ul{
   background:rgb(125, 120, 120);
 }
 #genre {
-    margin-top:48px;
-    width:180px;
+    margin-top:40px;
+    width:198px;
     height:100%;
     position: fixed;
     justify-content: center;
@@ -87,9 +87,9 @@ h1 {
     text-align: center;
 }
 li {
-    margin-left: 15%;
+    margin: 0 auto;
     padding: 5px;
-    width:70%;
+    width:80%;
     margin-bottom: 10px;
     font-size: 1rem;
     cursor: pointer;
@@ -106,10 +106,12 @@ li:hover {
     border:2px solid rgb(255, 196, 0);
 }
 
-@media only screen and (max-width: 533px) {
-    .active {
+/* @media only screen and (max-width: 533px) {
+.active {
     color:rgb(254, 254, 255);
-    /* text-decoration: underline; */
+}
+::-webkit-scrollbar {
+  height: 10px;
 }
  #genre {
     height:auto;
@@ -129,6 +131,6 @@ li {
 .container {
     padding-top:0;
 }
-}
+} */
 
 </style>
