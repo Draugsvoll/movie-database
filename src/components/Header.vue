@@ -79,13 +79,13 @@ header{
     display: flex;
     justify-content: space-between;
     align-items:baseline;
-    padding: 5px 15px 15px 0px;
+    padding: 5px 15px 10px 0px;
     background-color: black;
-    height:70px;
+    min-height:70px;
     width:100%;
     position: fixed;
     margin-top: 0px;
-    border-bottom:2px solid rgb(154, 127, 23);
+    border-bottom:1.5px solid rgb(237, 145, 6);
 }
 .nav_links li{
     display: inline-block;

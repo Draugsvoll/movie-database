@@ -131,7 +131,7 @@ input {
   color:purple;
 }
 ::placeholder {
-  color: rgb(186, 185, 185);
+  color: rgb(118, 116, 116);
 
 }
 .upper-btn {
@@ -153,6 +153,7 @@ input {
 .search {
   width:85px;
   height:2.5rem;
-  margin-left:5px;
+  margin-left:10px;
+  border-radius: 5px;
 }
 </style>

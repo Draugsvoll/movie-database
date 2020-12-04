@@ -44,13 +44,13 @@ export default {
 
 <style scoped>
 .movie {
-    border:2px solid rgb(33, 33, 34);
+    border:1.5px solid rgb(33, 33, 34);
     margin:0 10px 10px 0;
     cursor: pointer;
     display: inline-block;
 }
 .movie:hover {
-        border: 2px solid rgb(13, 153, 247);
+        border: 1.5px solid rgb(255, 196, 0);
 }
 img {
     max-width:200px;

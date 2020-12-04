@@ -55,14 +55,27 @@ export default {
 
 
 <style scoped>
+* {
+    /* border:1px red solid; */
+}
 ul{
     list-style: none;
     margin:10px 0 0 0;
     padding:0;
+    overflow-y: scroll;
+    height:80%;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background:rgb(23, 22, 22);
+}
+::-webkit-scrollbar-thumb {
+  background:rgb(103, 99, 99);
+  border-radius:10px;
 }
 #genre {
     margin-top:48px;
-    max-width:15%;
+    width:180px;
     height:100%;
     position: fixed;
     justify-content: center;
@@ -73,6 +86,7 @@ h1 {
 li {
     margin-left: 15%;
     padding: 5px;
+    width:70%;
     margin-bottom: 10px;
     font-size: 1rem;
     cursor: pointer;

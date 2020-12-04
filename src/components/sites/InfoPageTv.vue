@@ -12,7 +12,7 @@
                 <!-- Buttons -->
             <button @click="play(movie.id)">Play <div class="fas fa-play"></div></button>
             <button @click="play(movie.id)">Trailer <div class="far fa-eye"></div></button>
-            <button @click="addFavourite(movie)">Huskeliste <div class="fas fa-list"></div></button>
+            <button @click="addFavourite(movie)">+ Add <div class="fas fa-list"></div></button>
                 <div class="overview"> <p>{{ movie.overview }}</p> </div>
             </div>
 
@@ -24,12 +24,14 @@
             <h3 class="sub-headline">The Cast</h3>
             <div class="actor-container">
                 <div class="actor" v-for=" (actor, index) in cast" :key="index">
-                <div> <img class="profile" v-bind:src="base_url + actor.profile_path" 
-                    @error="$event.target.src='https://progitek.no/privat/bp/wp-content/uploads/2020/09/default.jpg'" alt=""></div>
-                <div class="crew-text">
-                    <h3>{{ actor.name }}</h3>
-                    '{{ actor.character }}'
-                </div>
+                    <div v-if="index<20">
+                        <div> <img class="profile" v-bind:src="base_url + actor.profile_path" 
+                            @error="$event.target.src='https://progitek.no/privat/bp/wp-content/uploads/2020/09/default.jpg'" alt=""></div>
+                        <div class="crew-text">
+                            <h3>{{ actor.name }}</h3>
+                            '{{ actor.character }}'
+                        </div>
+                    </div>
                 </div>
             </div>
             <h2 class="sub-headline">The Crew</h2>

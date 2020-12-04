@@ -16,6 +16,7 @@
         <div v-if=" currentRoute != '/search' && movies != '' " class="buttons">
             <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} </span>  <button @click="nextPage"><div class="arrow fas fa-arrow-right"></div></button>
         </div>
+        <br>
 
     </div>
 </template>
@@ -112,10 +113,11 @@ export default {
 
 <style scoped>
 * {
+    border: 1px solid red;
 }
 #movie-grid {
-    Width:80%;
-    margin-left:15%;
+    max-Width:80%;
+    margin-left:200px;
     height:100%;
     margin-top: 1%;
 }
@@ -143,5 +145,11 @@ button {
 }
 .page {
     font-size: 1.3rem;
+}
+
+@media only screen and (max-width: 1067px) {
+  .buttons {
+    margin-left:25%;
+  }
 }
 </style>
