@@ -62,7 +62,7 @@ ul{
 }
 #genre {
     margin-top:48px;
-    max-width:20%;
+    max-width:15%;
     height:100%;
     position: fixed;
     justify-content: center;
@@ -76,17 +76,16 @@ li {
     margin-bottom: 10px;
     font-size: 1rem;
     cursor: pointer;
-    width:60%;
     border-left: 1px solid  black;
     color:rgb(160, 159, 159);
 }
 
 li:hover {
-    border-left: 2px solid white;
     color:white;
 }
 .active {
     color:rgb(254, 254, 255);
-text-decoration: underline;
+    /* text-decoration: underline; */
+    border:2px solid rgb(255, 196, 0);
 }
 </style>

@@ -9,17 +9,18 @@
             <div><button class="close" @click="goBack()"><div class="fas fa-arrow-left"> </div></button></div>
             <div class="text">
                 <div><h1>{{ movie.title }}</h1></div>
+                <!-- Buttons -->
+            <button @click="play(movie.id)">Play <div class="fas fa-play"></div></button>
+            <button @click="play(movie.id)">Trailer <div class="far fa-eye"></div></button>
+            <button @click="addFavourite(movie)">Huskeliste <div class="fas fa-list"></div></button>
                 <div class="overview"> <p>{{ movie.overview }}</p> </div>
             </div>
-            <!-- Buttons -->
-            <button @click="play(movie.id)">Play <div class="fas fa-play"></div></button>
-            <button >Trailer <div class="far fa-eye"></div></button>
-            <button @click="addFavourite(movie)">Huskeliste <div class="fas fa-list"></div></button>
+            
         </div>
 
         <!-- credits -->
         <div class="credits">
-            <h2 class="sub-headline">The Cast</h2>
+            <h3 class="sub-headline">The Cast</h3>
             <div class="actor-container">
                 <div class="actor" v-for=" (actor, index) in cast" :key="index">
                 <div> <img class="profile" v-bind:src="base_url + actor.profile_path" 
@@ -83,8 +84,10 @@ export default {
             window.location.href = "/movies"
         },
         addFavourite (movie) {
-            this.$store.dispatch('addFavouriteMovie', movie)
-            console.log('state: ', this.$store.getters.favouriteMovies)
+            Axios.post('https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/movies.json', movie)
+                .then(function (response) {
+                    console.log(response);
+                })
         }
     },
     created () {
@@ -116,28 +119,26 @@ h3 {
     margin:0;
 }
 .sub-headline {
-    margin:0 auto;
-    margin-top: 1rem;
+    margin: 1rem 0;
     font-size: 2rem;
+    padding:0.3rem;
+    background: #2657b0;
+    max-width: 100%;
+    justify-content: center;
+    display: flex;
 }
 .crew-text {
     background: white;
     color:black;
     padding:0.5rem;
 }
-.actor-container {
+.actor-container, .crew-container {
     display: flex;
     flex-wrap: wrap;
+    margin-top:-10px;
 }
-.actor {
-    margin: 2rem 2rem;
-}
-.crew {
-    margin: 2rem 2rem;
-}
-.crew-container {
-    display: flex;
-    flex-wrap: wrap;
+.actor, .crew {
+    margin: 1rem 0.7rem;
 }
 .credits {
     display: flex;
@@ -145,7 +146,7 @@ h3 {
     justify-content: center;
 }
 .profile {
-    width:250px;
+    width:200px;
     display: flex;
 }
 .preview {
@@ -155,7 +156,8 @@ h3 {
 }
 p {
     font-size: 0.8rem;
-    background: rgba(0, 0, 0, 0.619);
+    background: rgba(0, 0, 0, 0.4);
+    text-shadow: 1px 1px 1px black;
 }
 .text {
     max-width:700px;
@@ -170,25 +172,23 @@ p {
     color:white;
 }
 button {
-    width:125px;
-    height:65px;
-    background: rgba(9, 16, 27, 0.3);
+    padding:0.5rem;
+    background: rgba(9, 16, 27, 0.45);
+    border:none;
     color:white;
-    border:1px solid rgb(55, 107, 185);
-    margin: 15px 10px 5px 0;
+    text-shadow: 1px 1px 1px black;
+        margin: 0px 10px 0px 0;
     cursor: pointer;
-    border-radius: 5px;
     font-size: 17px;
     font-weight: 400!important;
 }
 .close {
-    width:95px;
-    margin-bottom: 15px;
-    color:white;
+    padding: 1rem 2rem;
+    margin-top:50px;
 }
 button:hover {
-    background: rgba(9, 16, 27, 0.584);
-    border: 1px solid rgb(226, 224, 237);
+    background: rgba(9, 16, 27, 0.65);
+    /* border: 1px solid rgb(226, 224, 237); */
 }
 .overview {
     margin-top: 15px;

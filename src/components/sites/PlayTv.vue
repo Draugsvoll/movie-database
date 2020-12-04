@@ -2,8 +2,7 @@
     <div class="container">
         <app-header></app-header>
         <iframe v-bind:src=" `https://www.youtube.com/embed/${trailer}?autoplay=1`" allow="autoplay" frameborder='0'  ></iframe>
-        <button>Back</button>
-        <div class="text box"><p>Not playing?</p></div>
+        <button><div class="fas fa-undo-alt"></div> Back</button>
         <div class="text2"><p>Some videos lack a youtube link. This is for display purposes only </p></div>
     </div>
 </template>
@@ -57,10 +56,16 @@ p {
     font-size:12px;
 }
 button {
-    height:50px;
-    width:150px;
+    height:3rem;
+    width:5rem;
     margin:auto;
+    margin-bottom:10px;
+    border:1px solid white;
+    font-size:18px;
+    color:white;
+    background:rgba(0,0,0,0)
 }
+
 .box {
     margin-top:50px;
 }

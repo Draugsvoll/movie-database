@@ -6,8 +6,8 @@
     <div class="container">
       <!-- search field  -->
       <div class="upper-btn">
-          <button :class="{ activeBtn : searchType === 'movie'}" class="movie-btn" @click="searchMovie">Movies</button>
-          <button :class="{ activeBtn : searchType === 'tv'}" class="tv-btn" @click="searchTv">Series</button>
+          <div :class="{ activeBtn : searchType == 'movie'}" class="movie-btn" @click="searchMovie">Movies</div>
+          <div :class="{ activeBtn : searchType === 'tv'}" class="tv-btn" @click="searchTv">Series</div>
       </div>
       <div class="searchField">
         <div class="search-bar">
@@ -19,7 +19,6 @@
       <!-- movie grid  -->
       <app-moviegrid ></app-moviegrid>
     </div>
-
   </div>
 </template>
 
@@ -80,8 +79,8 @@ button {
   outline:none;
 }
 .activeBtn {
-  border:1px solid red;
-  color:red;
+  border-bottom:1px solid white;
+  color:white;
 }
 .container {
   display: flex;
@@ -102,17 +101,19 @@ input {
 }
 .upper-btn {
   margin:auto;
+  margin-top:2rem;
+  display: flex;
+  color:grey;
 }
-.upper-btn button {
-  width:5rem;
-  height:2rem;
-  background:rgba(0,0,0,0.5);
-  border:1px solid white;
-  color:white;
+.movie-btn, .tv-btn {
+  padding:5px;
+  margin:0 0.5rem;
+  font-size: 1.2rem;
 }
 .searchField {
   display: inline-flex;
   justify-content: center;
+  margin-top:0.5rem;
 }
 .search {
   width:75px;

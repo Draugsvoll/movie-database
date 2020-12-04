@@ -8,34 +8,40 @@
         <div class="preview" :style="{ backgroundImage: `url(${base_url+movie.backdrop_path})` }" >
             <div><button class="close" @click="goBack()"><div class="fas fa-arrow-left"> </div></button></div>
             <div class="text">
-                <div><h1>{{ movie.title }}</h1></div>
+                <div><h1>{{ movie.original_name }}</h1></div>
+                <!-- Buttons -->
+            <button @click="play(movie.id)">Play <div class="fas fa-play"></div></button>
+            <button @click="play(movie.id)">Trailer <div class="far fa-eye"></div></button>
+            <button @click="addFavourite(movie)">Huskeliste <div class="fas fa-list"></div></button>
                 <div class="overview"> <p>{{ movie.overview }}</p> </div>
             </div>
-            <!-- Buttons -->
-            <button @click="play(movie.id)">Play <div class="fas fa-play"></div></button>
-            <button >Trailer <div class="far fa-eye"></div></button>
-            <button @click="addFavourite(movie)">Huskeliste <div class="fas fa-list"></div></button>
+
+            
         </div>
 
         <!-- credits -->
         <div class="credits">
+            <h3 class="sub-headline">The Cast</h3>
             <div class="actor-container">
-                <h2>Cast</h2>
                 <div class="actor" v-for=" (actor, index) in cast" :key="index">
-                <div> <img class="profile" v-bind:src=" base_url + actor.profile_path " alt=""></div>
-                {{ actor.name }} <br>
-                {{ actor.character }} <br>
+                <div> <img class="profile" v-bind:src="base_url + actor.profile_path" 
+                    @error="$event.target.src='https://progitek.no/privat/bp/wp-content/uploads/2020/09/default.jpg'" alt=""></div>
+                <div class="crew-text">
+                    <h3>{{ actor.name }}</h3>
+                    '{{ actor.character }}'
+                </div>
                 </div>
             </div>
+            <h2 class="sub-headline">The Crew</h2>
             <div class="crew-container">
-                <h2>Crew </h2>
                 <div class="crew" v-for=" (member,index) in crew" :key="index" >
-                    <div v-if=" member.profile_path != null " >
-                        <div> <img class="profile" v-bind:src=" base_url + member.profile_path " alt=""></div>
-                        {{ member.name }} <br>
-                        {{ member.job }} <br>
+                    <div v-if="index<20">
+                        <div> <img class="profile" v-bind:src=" base_url + member.profile_path " @error="$event.target.src='https://progitek.no/privat/bp/wp-content/uploads/2020/09/default.jpg'" alt=""></div>
+                        <div class="crew-text">
+                            <h3>{{ member.name }} </h3>
+                            {{ member.job }}
+                        </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -57,7 +63,8 @@ export default {
             movie: {},
             path: this.$route.path,
             cast: [],
-            crew: []
+            crew: [],
+            profile_pic: '../../assets/logo2.jpg'
         }
     },
     computed: {
@@ -78,19 +85,21 @@ export default {
             window.location.href = "/movies"
         },
         addFavourite (movie) {
-            this.$store.dispatch('addFavouriteMovie', movie)
-            console.log('state: ', this.$store.getters.favouriteMovies)
+            Axios.post('https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/series.json', movie)
+                .then(function (response) {
+                    console.log(response);
+                })
         }
     },
     created () {
-         Axios.get(`https://api.themoviedb.org/3/movie/${this.id}?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
+         Axios.get(`https://api.themoviedb.org/3/tv/${this.id}?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
                 console.log(resp.data)
                 resp = resp.data
                 const newMovie = resp
                 this.movie = newMovie
             })
 
-            Axios.get(`https://api.themoviedb.org/3/movie/${this.id}/credits?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
+            Axios.get(`https://api.themoviedb.org/3/tv/${this.id}/credits?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
                 console.log(resp.data)
                 resp = resp.data
                 const cast = resp.cast
@@ -104,19 +113,41 @@ export default {
 
 <style  scoped>
 * {
+    /* border:1px solid purple; */
+
 }
-.actor-container {
-    margin:0 auto;
-    }
-.crew-container {
-    margin:0 auto;
+h3 {
+    margin:0;
+}
+.sub-headline {
+    margin: 1rem 0;
+    font-size: 2rem;
+    padding:0.3rem;
+    background: #2657b0;
+    max-width: 100%;
+    justify-content: center;
+    display: flex;
+}
+.crew-text {
+    background: white;
+    color:black;
+    padding:0.5rem;
+}
+.actor-container, .crew-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top:-10px;
+}
+.actor, .crew {
+    margin: 1rem 0.7rem;
 }
 .credits {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 .profile {
-    max-width:300px;
+    width:200px;
     display: flex;
 }
 .preview {
@@ -126,7 +157,8 @@ export default {
 }
 p {
     font-size: 0.8rem;
-    background: rgba(0, 0, 0, 0.619);
+    background: rgba(0, 0, 0, 0.4);
+    text-shadow: 1px 1px 1px black;
 }
 .text {
     max-width:700px;
@@ -141,25 +173,23 @@ p {
     color:white;
 }
 button {
-    width:125px;
-    height:65px;
-    background: rgba(9, 16, 27, 0.3);
+    padding:0.5rem;
+    background: rgba(9, 16, 27, 0.45);
+    border:none;
     color:white;
-    border:1px solid rgb(55, 107, 185);
-    margin: 15px 10px 5px 0;
+    text-shadow: 1px 1px 1px black;
+    margin: 0px 10px 0px 0;
     cursor: pointer;
-    border-radius: 5px;
     font-size: 17px;
     font-weight: 400!important;
 }
 .close {
-    width:95px;
-    margin-bottom: 15px;
-    color:white;
+    padding: 1rem 2rem;
+    margin-top:50px;
 }
 button:hover {
-    background: rgba(9, 16, 27, 0.584);
-    border: 1px solid rgb(226, 224, 237);
+    background: rgba(9, 16, 27, 0.65);
+    /* border: 1px solid rgb(226, 224, 237); */
 }
 .overview {
     margin-top: 15px;

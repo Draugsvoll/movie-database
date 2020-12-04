@@ -6,6 +6,7 @@
 
 
 <script>
+import Axios from 'axios'
 import MovieGrid from '../MovieGrid'
 
 export default {
@@ -13,7 +14,11 @@ export default {
     appMoviegrid: MovieGrid,
   },
   created () {
-    console.log('fetching fav store: ', this.$store.getters.favouriteMovies)
+    Axios.get(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/movies.json`).then(resp => {
+              console.log(resp.data)
+              const movies = resp.data
+              console.log(movies.length())
+            })
   }    
 }
 </script>

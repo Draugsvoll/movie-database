@@ -31,8 +31,6 @@ export default {
             // axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
             //     console.log(resp)
             // })
-
-           
   }
 }
 </script>

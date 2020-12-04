@@ -5,10 +5,10 @@
         </div>
         <div>
              <ul class="nav_links">
-                <li :class="{ active : activeIndex == 0 }" @click="activeIndex = 0; showMovies()"> <a href="#">Movies</a></li>
-                <li  :class="{ active : activeIndex == 1}"  @click="activeIndex = 1; showTv()"><a href="#">TV</a></li>
-                <li  :class="{ active : activeIndex == 2}"  @click="activeIndex = 2; showSearch()"><a href="#">Search</a></li>
-                <li  :class="{ active : activeIndex == 3}"  @click="activeIndex = 3; showFavs()"><a href="#">Favourites</a></li>
+                <li  :class="{ active : activeIndex == 0}"  @click="activeIndex = 0; showMovies()"> <a :class="{ active : activeIndex == 0}" href="#">Movies</a></li>
+                <li  :class="{ active : activeIndex == 1}"  @click="activeIndex = 1; showTv()"><a :class="{ active : activeIndex == 1}" href="#">TV</a></li>
+                <li  :class="{ active : activeIndex == 2}"  @click="activeIndex = 2; showSearch()"><a :class="{ active : activeIndex == 2}" href="#">Search</a></li>
+                <li  :class="{ active : activeIndex == 3}"  @click="activeIndex = 3; showFavs()"><a :class="{ active : activeIndex == 3}" href="#">Favourites</a></li>
             </ul>
         </div>
         <div>
@@ -23,7 +23,7 @@
 export default {
     data () {
         return {
-            activeIndex: 0,
+            activeIndex: '',
             currentRoute: this.$route.path
         }
     },
@@ -63,10 +63,11 @@ header {
 nav {
     display: flex;
     justify-content: space-evenly;
+
 }
 li, a, button{
-    color:white;
     font-size:28px;
+    color:rgb(159, 158, 158);
 }
 
 .nav_links li a{
@@ -85,16 +86,17 @@ header{
 }
 .nav_links li{
     display: inline-block;
-    padding: 0px 20px 0 0;
+    margin:0.5rem;
 }
 .active {
-    text-decoration: underline;
+    color:white !important;
+    border-bottom:2px solid rgb(255, 196, 0);
 }
 .nav_links li a{
     transition: all 0.2s ease 0s;
 }
 .nav_links li a:hover{
-    color: rgb(146, 157, 194);
+    color: rgb(247, 247, 247);
 }
 button{
     padding: 9px 25px;
