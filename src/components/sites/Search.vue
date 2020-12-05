@@ -71,7 +71,9 @@ export default {
         searchMovie () {
           this.searchType = 'movie'
           console.log(this.searchType)
-          this.$router.push('/search?type=movie')
+          if ( this.$route.path == 'tv') {
+            this.$router.push('/search?type=movie')
+          }
           axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=1`).then(resp => {
                 console.log('response',resp)
                 this.$store.dispatch('searchResults', resp.data.results )
@@ -80,7 +82,9 @@ export default {
         searchTv () {
           this.searchType = 'tv'
           console.log(this.searchType)
-          this.$router.push('/search?type=tv')
+          if ( this.$route.path == 'movie') {
+            this.$router.push('/search?type=tv')
+          }
           axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=1`).then(resp => {
                 console.log('response',resp)
                 this.$store.dispatch('searchResults', resp.data.results )
@@ -200,6 +204,21 @@ input {
   .search {
     margin:1rem auto;
     margin-left:35%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  img {
+    max-width:250px;
+  }
+}
+@media only screen and (max-width: 655px) {
+  .movie-container {
+    margin-left:-30%;
+  }
+}
+@media only screen and (max-width: 525px) {
+  .upper-btn {
+    padding-top:8rem;
   }
 }
 </style>

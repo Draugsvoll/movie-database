@@ -68,8 +68,9 @@ li, a, button{
     font-size:18px;
     color:rgb(159, 158, 158);
 }
-a {
+ul li a {
     border:none !important;
+    text-decoration: none;
 }
 
 header{
