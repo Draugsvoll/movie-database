@@ -151,16 +151,21 @@ button {
     margin:8px;
 }
 .page {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin: auto 0;
 }
 
 
-@media only screen and (max-width: 507px) {
+@media only screen and (max-width: 524px) {
     #movie-grid {
-        margin-top:50px;
+        margin-top:62px;
     }
 }
 
+@media only screen and (max-width: 440px) {
+    #movie-grid {
+        margin-left:150px;
+    }
+}
 
 </style>

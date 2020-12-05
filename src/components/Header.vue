@@ -5,7 +5,7 @@
             <a href="/movies"> <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="" width="50"></a> 
         </div>
         <div>
-             <ul class="nav_links">
+            <ul class="nav_links">
                 <li  :class="{ active : activeIndex == 0}"  @click="activeIndex = 0; showMovies()"> <a :class="{ active : activeIndex == 0}" href="#">Movies</a></li>
                 <li  :class="{ active : activeIndex == 1}"  @click="activeIndex = 1; showTv()"><a :class="{ active : activeIndex == 1}" href="#">TV</a></li>
                 <li  :class="{ active : activeIndex == 2}"  @click="activeIndex = 2; showSearch()"><a :class="{ active : activeIndex == 2}" href="#">Search</a></li>
@@ -71,9 +71,7 @@ li, a, button{
 a {
     border:none !important;
 }
-.nav_links li a{
-    text-decoration: none;
-}
+
 header{
     display: flex;
     justify-content: space-evenly;
@@ -119,27 +117,12 @@ img {
 }
 
 
-/* @media only screen and (max-width: 414px) {
-  header {
+@media only screen and (max-width: 524px) {
+ .nav_links {
+    text-decoration: none;
     display:flex;
     flex-direction: column;
-  }
- ul li {
-      flex-direction: column;
-      display: flex;
-  }
+}
 }
 
-@media only screen and (max-width: 414px) {
- ul, li {
-      margin:15px;
-      padding:0;
-  }
-}
-
-@media only screen and (max-width: 549px) {
-header {
-    position: initial;
-  }
-} */
 </style>

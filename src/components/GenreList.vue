@@ -66,7 +66,7 @@ ul{
     height:80%;
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
   background:rgb(23, 22, 22);
 }
 ::-webkit-scrollbar-thumb {
@@ -104,6 +104,18 @@ li:hover {
     color:rgb(254, 254, 255);
     /* text-decoration: underline; */
     border:2px solid rgb(255, 196, 0);
+}
+
+@media only screen and (max-width: 524px) {
+    #genre {
+        margin-top:100px;
+    }
+}
+
+@media only screen and (max-width: 592px) {
+    #genre {
+        width:150px;
+    }
 }
 
 /* @media only screen and (max-width: 533px) {

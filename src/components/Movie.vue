@@ -59,18 +59,15 @@ img {
 
 @media only screen and (max-width: 668px) {
     img {
-        max-width:175px;
+        max-width:300px;
 
     }
 }
-@media only screen and (max-width: 490px) {
+
+@media only screen and (max-width: 555px) {
     img {
-        max-width:150px;
+        max-width:200px;
     }
 }
-@media only screen and (max-width: 413px) {
-    img {
-        max-width:195px;
-    }
-}
+
 </style>
