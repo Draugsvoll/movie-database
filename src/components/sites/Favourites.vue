@@ -12,15 +12,18 @@ import MovieGrid from '../MovieGrid'
 import Header from '../Header'
 
 export default {
-     components: {
+    components: {
     appMoviegrid: MovieGrid,
     appHeader: Header,
   },
   created () {
     Axios.get(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/movies.json`).then(resp => {
-              console.log(resp.data)
-              const movies = resp.data
-              console.log(movies.length())
+              resp = resp.data
+              const favMovies = []
+              for (let key in resp){
+                favMovies.push(resp[key])
+              }
+              this.$store.dispatch('fetchFavourites', favMovies)
             })
   }    
 }

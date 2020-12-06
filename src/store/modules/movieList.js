@@ -134,38 +134,44 @@ const mutations = {
         state.favouriteMovies.push(movie)
         console.log('pushing to state: ', movie)
     },
+    'FETCH_FAVOURITES' (state, movieList) {
+        state.favouriteMovies = movieList
+    },
 }
 
 const actions = {   // aviable actions on this site
     nextPage: ({ commit }, currentPage) => {
-        commit('NEXT_PAGE', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('NEXT_PAGE', currentPage)  
     },
     nextPageTv: ({ commit }, currentPage) => {
-        commit('NEXT_PAGE_TV', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('NEXT_PAGE_TV', currentPage)  
     },
     prevPage: ({ commit }, currentPage) => {
-        commit('PREV_PAGE', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('PREV_PAGE', currentPage)  
     },
     prevPageTv: ({ commit }, currentPage) => {
-        commit('PREV_PAGE_TV', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('PREV_PAGE_TV', currentPage)  
     },
     fetchMovieList: ({ commit }, genre) => {
-        commit('FETCH_MOVIE_LIST', genre)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('FETCH_MOVIE_LIST', genre)  
     },
     fetchTvList: ({ commit }, genre) => {
-        commit('FETCH_TV_LIST', genre)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('FETCH_TV_LIST', genre)  
     },
     fetchGenreList: ({ commit }) => {
-        commit('FETCH_GENRE_LIST')  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('FETCH_GENRE_LIST')  
     },
     fetchTvGenreList: ({ commit }) => {
         commit('FETCH_TV_GENRE_LIST') 
     },
     searchResults: ({ commit }, searchResults) => {
-        commit('GET_SEARCH_RESULTS', searchResults)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('GET_SEARCH_RESULTS', searchResults)  
     },
     addFavouriteMovie: ({ commit }, movie) => {
-        commit('ADD_FAVOURITE_MOVIE', movie)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('ADD_FAVOURITE_MOVIE', movie)  
+    },
+    fetchFavourites: ({ commit }, movieList) => {
+        commit('FETCH_FAVOURITES', movieList)  
     }
 }
 

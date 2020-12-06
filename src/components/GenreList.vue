@@ -88,8 +88,9 @@ h1 {
 }
 li {
     margin: 0 auto;
-    padding: 5px;
-    width:80%;
+    padding: 3px;
+    padding-left:15px;
+    width:75%;
     margin-bottom: 10px;
     font-size: 1rem;
     cursor: pointer;
@@ -102,8 +103,8 @@ li:hover {
 }
 .active {
     color:rgb(254, 254, 255);
-    /* text-decoration: underline; */
-    border:2px solid rgb(255, 196, 0);
+    border:1px solid rgb(255, 196, 0);
+    /* border-radius:5px; */
 }
 
 @media only screen and (max-width: 524px) {
@@ -117,32 +118,5 @@ li:hover {
         width:150px;
     }
 }
-
-/* @media only screen and (max-width: 533px) {
-.active {
-    color:rgb(254, 254, 255);
-}
-::-webkit-scrollbar {
-  height: 10px;
-}
- #genre {
-    height:auto;
-    position: relative;
-    width:100%;
-    top:-130px;
-}
-ul {
-    display: flex;
-    flex-direction: row;
-    overflow-y: hidden;
-}
-li {
-    margin: auto auto;
-    padding:15px;
-}
-.container {
-    padding-top:0;
-}
-} */
 
 </style>

@@ -9,7 +9,7 @@
 
         <div class="movie-container">
             <!-- MOVIE GRID  -->
-            <app-movie  v-for="(movie) in movies" v-bind:movie="movie" :key="movie.id"  
+            <app-movie  v-for="(movie, index) in movies" v-bind:movie="movie" :key="movie.id+index"  
                         v-on:info-movie="viewMovie" 
             ></app-movie>       
         </div>

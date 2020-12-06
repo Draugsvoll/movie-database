@@ -13,7 +13,7 @@ export default {
       infoMovie: '',
     }
   },
-  name: 'App',
+  // name: 'App',
   components: {
     
   },
