@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div>
-            <a  href="#"><button>Logout</button></a>
+            <a  @click="logout"><button>Logout</button></a>
         </div>
     </header>
 </template>
@@ -21,11 +21,14 @@
 
 
 <script>
+import firebase from 'firebase'
+
 export default {
     data () {
         return {
             activeIndex: '',
-            currentRoute: this.$route.path
+            currentRoute: this.$route.path,
+            user: ''
         }
     },
     methods: {
@@ -40,6 +43,15 @@ export default {
        },
        showFavs () {
            window.location.href = `/favourites?type=movie`
+       },
+       logout () {
+           firebase.auth().signOut()
+            .then(resp => console.log(resp))
+            .catch(err => console.log(err))
+            window.location.href = `/`
+       },
+       myPage () {
+           window.location.href = `/mypage`
        }
     },
     created () {
@@ -54,6 +66,9 @@ export default {
         else {
             this.activeIndex = 3
         }
+        const user = firebase.auth().currentUser.email
+        this.user = user
+        console.log(user)
     }
 }
 </script>
@@ -104,12 +119,12 @@ button{
   background:rgba(0,0,0,0);
   border:none !important;
   outline:none;
-    color:rgb(255, 217, 0);
-
+  color:rgb(255, 217, 0);
+  cursor:pointer;
 }
 button:hover{
     background-color: rgba(22, 41, 78, 0);
-    color:rgb(255, 217, 0);
+    text-decoration: underline;
 }
 
 img {

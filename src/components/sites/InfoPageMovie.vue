@@ -54,6 +54,7 @@
 <script>
 import Axios from 'axios'
 import {mapGetters} from 'vuex'
+import firebase from 'firebase'
 
 export default {
     data () {
@@ -87,8 +88,8 @@ export default {
             this.$router.go(-1);
         },
         addFavourite (movie) {
-            
-            Axios.post('https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/movies.json', movie)
+            const user = firebase.auth().currentUser.uid
+            Axios.post(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/${user}/movies.json`, movie)
                 .then(function (response) {
                     console.log(response);
                 })

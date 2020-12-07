@@ -3,7 +3,7 @@
     <div id="movie-grid">
         
         <!-- btn row  -->
-        <div v-if=" currentRoute != '/search' " class="buttons">
+        <div v-if=" currentRoute != '/favourites' && currentRoute != '/search' " class="buttons">
             <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} </span> <button @click="nextPage"><div class=" arrow fas fa-arrow-right"></div></button>
         </div>
 
@@ -15,7 +15,7 @@
         </div>
         
         <!-- btn row  -->
-        <div v-if=" currentRoute != '/search' && movies != '' " class="buttons">
+        <div v-if=" currentRoute != '/search' && currentRoute != '/favourites' && movies != '' " class="buttons">
             <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} </span>  <button @click="nextPage"><div class="arrow fas fa-arrow-right"></div></button>
         </div>
         <br>

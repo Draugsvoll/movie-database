@@ -6,6 +6,8 @@ import store from './store/store'
 
 Vue.config.productionTip = false
 
+let app = ''
+
 var firebaseConfig = {
   apiKey: "AIzaSyB2Sn-HRG2dr_3JyBz9Dz8x90Ji_eDsbUs",
   authDomain: "netflix-97535.firebaseapp.com",
@@ -21,20 +23,18 @@ firebase.initializeApp(firebaseConfig)
 // setup routes
 import VueRouter from 'vue-router'
 import { routes } from './routes'
-
+import router from './routes'
 
 
 
 Vue.use(VueRouter)
-const router = new VueRouter({
-  mode: 'history', // adjust URLs
-  routes
-  // husk <router-view></router-view> i App.vue
-  
-})
 
-new Vue({
-  store,
-  router,
-  render: h => h(App),
-}).$mount('#app')
+firebase.auth().onAuthStateChanged( () => {
+  if ( !app ) {
+    app = new Vue({
+      store,
+      router,
+      render: h => h(App),
+    }).$mount('#app')
+  }
+})

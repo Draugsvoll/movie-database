@@ -6,11 +6,11 @@
         <!-- <div class="logo"></div> -->
         <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="" width="150">
             <div class="form">
-                <span>email:</span>
-                <input v-model="email" type="text" name="email" placeholder="Email">
+                <span></span>
+                <input v-model="email" type="text" name="email" placeholder="Email"  autofocus>
                 <br>
                 <br>
-                <span>Password:</span>
+                <span></span>
                 <input v-model="password" type="text" name="password" placeholder="Password">
                 <div class="btn">
                     <button @click="login">Login</button>
@@ -18,9 +18,10 @@
                 </div>
                 <br>
                 <br>
-                <div> 
-                    Continue as
-                    <button class="test" @click="loginAsTest">Test User</button>
+                <div>
+                    <div class="text">
+                        Continue as<button class="test" @click="loginAsTest">Test User</button>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -43,7 +44,14 @@ export default {
     },
     methods: {
         loginAsTest () {
-            window.location.href = `/movies`
+            firebase.auth().signInWithEmailAndPassword('test_user@gmail.com', 'pass123')
+                .then( resp => {
+                    console.log(resp)
+                    window.location.href = `/movies`
+                })
+                .catch( err => {
+                    alert('Wrong username/password' + err)
+                })
         },
         signUp () {
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
@@ -70,12 +78,11 @@ export default {
 
 
 <style scoped>
-/* .logo {
-    background-image: url('../../assets/logo.png');
-} */
+* {
+    /* border:1px solid red; */
+}
 .outer-container {
     position:relative;
-    font-size: 0.9rem;
 }
 .container {
     padding:0;
@@ -92,7 +99,10 @@ export default {
     background:rgba(0,0,0,0.85);
 }
 .overlay {
-    background:rgba(0, 3, 16, 0.1);
+    background:rgba(0, 3, 16, 0.3);
+}
+.text button, .text {
+    font-size: 0.7rem;
 }
 .test {
     background:rgba(0,0,0,0);
@@ -101,29 +111,52 @@ export default {
     color: lightblue;
     cursor:pointer;
     text-decoration: underline;
+    padding:0 !important;
+    width:3.5rem !important;
+}
+.test:hover {
+    background:rgba(0,0,0,0);
+    color: rgb(248, 250, 250);
 }
 .btn {
+    display: flex;
+    justify-content: space-between;
+    width:100%;
 }
 .form {
-    padding:3rem 7rem;
+    padding:5rem 7rem;
     margin:3% auto auto auto;
     display: flex;
     flex-direction: column;
 }
 img {
-    margin:auto auto 0 auto;
+    margin:8rem auto 0 auto;
+}
+button {
+    margin-top:0.5rem;
+    width:6rem;
+    height:2.5rem;
+    background:rgba(0,0,0,0);
+    border:1px solid steelblue;
+    color:white;
+    cursor:pointer;
+}
+button:hover {
+    background:rgba(0,0,0,0.8);
 }
 input {
-    margin: 0.5rem 0;
+    margin: 0.2rem 0;
     width:12rem;
+    font-size: 17px;
     height:1.5rem;
     background:rgba(255,255,255,0);
     border:none;
-    color:white;
+    color: rgb(233, 240, 245);
     border-bottom:1px solid white;
     outline:none;
 }
-button {
-    margin:auto;
+input:focus {
+    border-bottom:steelblue 1px solid;
 }
+
 </style>

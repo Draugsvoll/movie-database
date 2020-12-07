@@ -4,7 +4,6 @@
 
     <div class="container">
 
-      <!-- search field  -->
       <div class="upper-btn">
           <div :class="{ activeBtn : type == 'movie'}" class="select-btn" @click="viewMovies">
             <div :class="{ pointer : type == 'movie' }" class="fas fa-chevron-right arrow1"></div> Movies
@@ -13,6 +12,8 @@
             <div :class="{ pointer : type == 'tv' }" class="fas fa-chevron-right arrow2"></div> Series
           </div>
       </div>
+
+      <h3 v-if="listEmpty">No favourites added</h3>
 
       <!-- movie grid  -->
       <div class="movie-container">
@@ -28,11 +29,13 @@
 import Axios from 'axios'
 import MovieGrid from '../MovieGrid'
 import Header from '../Header'
+import firebase from 'firebase'
 
 export default {
   data () {
     return {
       type: this.$route.query.type,
+      listEmpty: false
     }
   },
     components: {
@@ -44,11 +47,17 @@ export default {
       if ( this.type != 'movie' ) {
         this.$router.push('/favourites?type=movie')
         this.type = 'movie'
-        Axios.get(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/movies.json`).then(resp => {
+        const user = firebase.auth().currentUser.uid
+        Axios.get(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/${user}/movies.json`).then(resp => {
               resp = resp.data
               const favMovies = []
               for (let key in resp){
                 favMovies.push(resp[key])
+              }
+              if (favMovies.length == 0 ) {
+                this.listEmpty = true
+              } else {
+                this.listEmpty = false
               }
               this.$store.dispatch('fetchFavourites', favMovies)
             })
@@ -58,11 +67,17 @@ export default {
       if ( this.type != 'tv' ) {
         this.$router.push('/favourites?type=tv')
         this.type = 'tv'
-        Axios.get(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/series.json`).then(resp => {
+        const user = firebase.auth().currentUser.uid
+        Axios.get(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/${user}/series.json`).then(resp => {
               resp = resp.data
               const favMovies = []
               for (let key in resp){
                 favMovies.push(resp[key])
+              }
+              if (favMovies.length == 0 ) {
+                this.listEmpty = true
+              } else {
+                this.listEmpty = false
               }
               this.$store.dispatch('fetchFavourites', favMovies)
             })
@@ -70,7 +85,9 @@ export default {
     }
   },
   created () {
-    Axios.get(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/movies.json`).then(resp => {
+    console.log(this.$route.path)
+    const user = firebase.auth().currentUser.uid
+    Axios.get(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/${user}/movies.json`).then(resp => {
               resp = resp.data
               const favMovies = []
               for (let key in resp){
@@ -84,6 +101,9 @@ export default {
 
 
 <style scoped>
+h3 {
+  margin:auto;
+}
 .query {
   margin:1.5rem auto;
 }
@@ -116,8 +136,7 @@ body, html {
   font-family: sans-serif;
 }
 .upper-btn {
-  margin:auto;
-  margin-top:3rem;
+  margin:3rem auto;
   display: flex;
   color:grey;
 }
