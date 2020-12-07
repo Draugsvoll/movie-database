@@ -12,7 +12,6 @@
           <div :class="{ activeBtn : type === 'tv'}" class="select-btn" @click="viewTv">
             <div :class="{ pointer : type == 'tv' }" class="fas fa-chevron-right arrow2"></div> Series
           </div>
-          <div  class="empty" >asdsa</div>
       </div>
 
       <!-- movie grid  -->
@@ -45,12 +44,28 @@ export default {
       if ( this.type != 'movie' ) {
         this.$router.push('/favourites?type=movie')
         this.type = 'movie'
+        Axios.get(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/movies.json`).then(resp => {
+              resp = resp.data
+              const favMovies = []
+              for (let key in resp){
+                favMovies.push(resp[key])
+              }
+              this.$store.dispatch('fetchFavourites', favMovies)
+            })
       }
     },
     viewTv () {
       if ( this.type != 'tv' ) {
         this.$router.push('/favourites?type=tv')
         this.type = 'tv'
+        Axios.get(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/series.json`).then(resp => {
+              resp = resp.data
+              const favMovies = []
+              for (let key in resp){
+                favMovies.push(resp[key])
+              }
+              this.$store.dispatch('fetchFavourites', favMovies)
+            })
       }
     }
   },

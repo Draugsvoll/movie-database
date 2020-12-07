@@ -1,3 +1,5 @@
+import firebase from 'firebase'
+
 import Movies from './components/sites/Movies'
 import TV from './components/sites/TV'
 import Search from './components/sites/Search'
@@ -7,9 +9,10 @@ import InfoPageTv from './components/sites/InfoPageTv'
 import InfoPageMovie from './components/sites/InfoPageMovie'
 import Favourites from './components/sites/Favourites'
 import Login from './components/sites/Login'
+import VueRouter from 'vue-router'
 
 export const routes = [
-    { path: '/movies', component: Movies},
+    { path: '/movies', component: Movies, meta: { requiresAuth: true } },
     { path: '/tv', component: TV},
     { path: '/search', component: Search},
     { path: '/search?type=movie', component: Search},
@@ -20,3 +23,11 @@ export const routes = [
     { path: '/favourites', component: Favourites},
     { path: '/', component: Login},
 ]
+
+
+// router.beforeEach((to, from, next) => {
+//     const currentUser = firebase.auth().currentUser
+//     const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  
+//     if (requiresAuth && !currentUser) next('/')
+// })

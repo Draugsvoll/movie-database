@@ -4,18 +4,17 @@
         </div>
         <div class="container overlay">
         <!-- <div class="logo"></div> -->
-        <img src="../../assets/logo2.png" alt="" width="250">
+        <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="" width="150">
             <div class="form">
-                <span>Username:</span>
-                <input type="text" name="username" placeholder="Username">
-                <br>
+                <span>email:</span>
+                <input v-model="email" type="text" name="email" placeholder="Email">
                 <br>
                 <br>
                 <span>Password:</span>
-                <input type="text" name="password" placeholder="Password">
+                <input v-model="password" type="text" name="password" placeholder="Password">
                 <div class="btn">
-                    <button>Login</button>
-                    <button>Sign Up</button>
+                    <button @click="login">Login</button>
+                    <button @click=signUp()>Sign Up</button>
                 </div>
                 <br>
                 <br>
@@ -31,10 +30,39 @@
 
 
 <script>
+import firebase from 'firebase'
+require('firebase/auth')
+
 export default {
+    name: 'Login',
+    data () {
+        return {
+            email: '',
+            password: '',
+        }
+    },
     methods: {
         loginAsTest () {
             window.location.href = `/movies`
+        },
+        signUp () {
+            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+                .then(response => console.log(response))
+                .catch(function(error) {
+                // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+            });
+        },
+        login () {
+            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+                .then( resp => {
+                    console.log(resp)
+                    window.location.href = `/movies`
+                })
+                .catch( err => {
+                    alert('Wrong username/password' + err)
+                })
         }
     }
 }
@@ -47,9 +75,12 @@ export default {
 } */
 .outer-container {
     position:relative;
+    font-size: 0.9rem;
 }
 .container {
     padding:0;
+    display: flex;
+    flex-direction: column;
     background-image: url('../../assets/bg.jpg');
     height:100vh;
     width:100%;
@@ -74,16 +105,23 @@ export default {
 .btn {
 }
 .form {
-    padding:4rem 6rem;
-    margin:0 auto;
+    padding:3rem 7rem;
+    margin:3% auto auto auto;
     display: flex;
     flex-direction: column;
 }
 img {
-    margin:0 auto;
+    margin:auto auto 0 auto;
 }
 input {
     margin: 0.5rem 0;
+    width:12rem;
+    height:1.5rem;
+    background:rgba(255,255,255,0);
+    border:none;
+    color:white;
+    border-bottom:1px solid white;
+    outline:none;
 }
 button {
     margin:auto;

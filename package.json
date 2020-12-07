@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
+    "firebase": "^8.1.2",
     "vue": "^2.6.11",
     "vue-cli": "^2.9.6",
     "vue-router": "^3.4.9",

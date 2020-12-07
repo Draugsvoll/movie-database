@@ -83,9 +83,11 @@ export default {
           }
         },
         goBack() {
-            window.location.href = "/movies"
+            // window.location.href = "/movies"
+            this.$router.go(-1);
         },
         addFavourite (movie) {
+            
             Axios.post('https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/movies.json', movie)
                 .then(function (response) {
                     console.log(response);
@@ -154,7 +156,7 @@ h3 {
 .preview {
     background-size: cover;
     padding-left:1%;
-    min-height:75vh;
+    min-height:82vh;
 }
 p {
     font-size: 0.8rem;
