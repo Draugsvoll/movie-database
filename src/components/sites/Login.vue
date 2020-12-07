@@ -139,6 +139,7 @@ button {
     background:rgba(0,0,0,0);
     border:1px solid steelblue;
     color:white;
+    outline:none;
     cursor:pointer;
 }
 button:hover {
