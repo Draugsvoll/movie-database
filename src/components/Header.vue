@@ -39,7 +39,7 @@ export default {
            window.location.href = `/search?type=movie`
        },
        showFavs () {
-           window.location.href = `/favourites`
+           window.location.href = `/favourites?type=movie`
        }
     },
     created () {

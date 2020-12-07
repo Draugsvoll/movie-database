@@ -59,34 +59,28 @@ export default {
             this.query = searchTerm
             var searchResults = []
             axios.get(`https://api.themoviedb.org/3/search/${this.searchType}?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=1&include_adult=false&query=${searchTerm}`).then(resp => {
-                console.log(resp)
                 resp = resp.data.results
                 resp.forEach( movie => {
-                   
-                    searchResults.push(movie)
+                searchResults.push(movie)
                 });
                 this.$store.dispatch('searchResults', searchResults )
             })
         },
         searchMovie () {
           this.searchType = 'movie'
-          console.log(this.searchType)
-          if ( this.$route.path == 'tv') {
+          if ( this.$route.query.type == 'tv' ) {
             this.$router.push('/search?type=movie')
           }
           axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=1`).then(resp => {
-                console.log('response',resp)
                 this.$store.dispatch('searchResults', resp.data.results )
             })
         },
         searchTv () {
           this.searchType = 'tv'
-          console.log(this.searchType)
-          if ( this.$route.path == 'movie') {
+          if ( this.$route.query.type == 'movie' ) {
             this.$router.push('/search?type=tv')
           }
           axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=1`).then(resp => {
-                console.log('response',resp)
                 this.$store.dispatch('searchResults', resp.data.results )
             })
         }
@@ -100,7 +94,6 @@ export default {
           }
         });
      axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=1`).then(resp => {
-                // console.log('response',resp)
                 this.$store.dispatch('searchResults', resp.data.results )
             })
   }
