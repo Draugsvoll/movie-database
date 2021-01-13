@@ -88,9 +88,8 @@ h1 {
 }
 li {
     margin: 0 auto;
-    padding: 3px;
-    padding-left:15px;
-    width:75%;
+    padding: 5px;
+    width:70%;
     margin-bottom: 10px;
     font-size: 1rem;
     cursor: pointer;
@@ -103,8 +102,7 @@ li:hover {
 }
 .active {
     color:rgb(254, 254, 255);
-    border:1px solid rgb(255, 196, 0);
-    /* border-radius:5px; */
+    border-left:2px solid rgb(255, 196, 0);
 }
 
 @media only screen and (max-width: 524px) {

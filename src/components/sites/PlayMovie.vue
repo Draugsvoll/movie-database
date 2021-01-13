@@ -39,6 +39,7 @@ iframe {
     outline:none;
     border:none;
     margin:auto;
+    margin-top:125px;
 }
 .container {
     margin:0;
@@ -52,6 +53,7 @@ iframe {
 .text2 {
     font-size: 16px;
     margin:auto;
+    margin-bottom:25px;
 }
 p {
     margin: 0px auto;
@@ -66,7 +68,7 @@ button {
     margin:auto;
     margin-bottom:10px;
     margin-top:2rem;
-    border:1px solid white;
+    border:none;
     font-size:18px;
     cursor:pointer;
     color:white;

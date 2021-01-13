@@ -63,8 +63,11 @@ export default {
         else if ( this.currentRoute == '/search') {
             this.activeIndex = 2
         }
-        else {
+        else if ( this.currentRoute =='/favourites' ) {
             this.activeIndex = 3
+        }
+        else {
+            this.activeIndex = -1
         }
         const user = firebase.auth().currentUser.email
         this.user = user
