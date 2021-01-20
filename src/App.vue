@@ -6,31 +6,22 @@
 
 
 <script>
+// import Footer from './components/Footer'
 
 export default {
   data () {
     return {
       infoMovie: '',
+      // path: this.$route.path
     }
   },
-  // name: 'App',
+  name: 'App',
   components: {
-    
   },
   methods: {
 
   },
   created() {
-
-            // // *FETCH ALL GENRE 
-            // axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US').then(resp => {
-            //     console.log(resp)
-            // })
-
-            // // FETCH ACTION
-            // axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
-            //     console.log(resp)
-            // })
   }
 }
 </script>

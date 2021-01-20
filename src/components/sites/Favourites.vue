@@ -30,6 +30,7 @@ import Axios from 'axios'
 import MovieGrid from '../MovieGrid'
 import Header from '../Header'
 import firebase from 'firebase'
+// import Footer from '../Footer'
 
 export default {
   data () {
@@ -41,6 +42,7 @@ export default {
     components: {
     appMoviegrid: MovieGrid,
     appHeader: Header,
+    // appFooter: Footer,
   },
   methods: {
     viewMovies () {
@@ -103,6 +105,7 @@ export default {
 <style scoped>
 h3 {
   margin:auto;
+  margin-bottom:290px;
 }
 .query {
   margin:1.5rem auto;
@@ -115,6 +118,8 @@ h3 {
 }
 .movie-container {
   margin-left:-80px;
+  min-width:313px;
+
 }
 .empty {
   visibility: hidden;

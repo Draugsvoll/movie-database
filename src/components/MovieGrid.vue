@@ -27,6 +27,7 @@
 <script>
 import Movie from './Movie'
 import axios from 'axios'
+import Footer from './Footer'
 
 export default {
     data () {
@@ -34,7 +35,6 @@ export default {
             currentRoute: this.$route.path
         }
     },
-  
     methods: {
        // sends a movie to infopage (details) 
       viewMovie(newMovie) {
@@ -52,7 +52,6 @@ export default {
             }
           this.$store.dispatch('setInfoMovie', newInfoMovie) 
       },
-
         // NEXT PAGE
       nextPage () {
           var page = this.page
@@ -63,7 +62,6 @@ export default {
             this.$store.dispatch('nextPageTv', page)
           }
       },
-
         // PREV PAGE
       prevPage () {
           var page = this.page
@@ -123,7 +121,7 @@ export default {
     justify-content: center;
 }
 #movie-grid {
-    max-width:80%;
+    width:80%;
     margin-left:200px;
     height:100%;
 }

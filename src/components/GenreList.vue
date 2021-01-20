@@ -91,7 +91,7 @@ li {
     padding: 5px;
     width:70%;
     margin-bottom: 10px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     border-left: 1px solid  black;
     color:rgb(160, 159, 159);

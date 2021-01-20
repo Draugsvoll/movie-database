@@ -38,6 +38,7 @@ import axios from 'axios'
 import MovieGrid from '../MovieGrid'
 import Header from '../Header'
 
+
 export default {
   data () {
     return {
@@ -52,7 +53,8 @@ export default {
   },
   components: {
     appMoviegrid: MovieGrid,
-    appHeader: Header
+    appHeader: Header,
+    // appFooter: Footer
   },
   methods: {
       search(searchTerm) {

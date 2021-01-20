@@ -1,9 +1,10 @@
 <template>
     <div class="outer-container">
+
         <div class="container">
         </div>
+        
         <div class="container overlay">
-        <!-- <div class="logo"></div> -->
         <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="" width="150">
             <div class="form">
                 <span></span>
@@ -25,6 +26,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     
 </template>
@@ -72,7 +74,7 @@ export default {
                     alert('Wrong username/password' + err)
                 })
         }
-    }
+    },
 }
 </script>
 
@@ -88,21 +90,19 @@ export default {
     padding:0;
     display: flex;
     flex-direction: column;
-    background-image: url('../../assets/bg.jpg');
+    /* background-image: url('../../assets/bg.jpg'); */
     height:100vh;
     width:100%;
     position: absolute;
     background-size: cover;
     z-index: 9;
 }
-.form {
-    background:rgba(0,0,0,0.85);
-}
 .overlay {
-    background:rgba(0, 3, 16, 0.3);
+    /* background:rgba(0, 3, 16, 0.3); */
 }
 .text button, .text {
     font-size: 0.7rem;
+    margin-top:-10px;
 }
 .test {
     background:rgba(0,0,0,0);
@@ -120,20 +120,21 @@ export default {
 }
 .btn {
     display: flex;
-    justify-content: space-between;
     width:100%;
 }
 .form {
-    padding:5rem 7rem;
-    margin:3% auto auto auto;
+    /* padding:5rem 7rem; */
+    margin:5% auto auto auto;
     display: flex;
     flex-direction: column;
+    background:rgba(0,0,0,0.85);
 }
 img {
     margin:8rem auto 0 auto;
 }
 button {
-    margin-top:0.5rem;
+    margin-top:2rem;
+    margin-right:10px;
     width:6rem;
     height:2.5rem;
     background:rgba(0,0,0,0);
@@ -147,7 +148,7 @@ button:hover {
 }
 input {
     margin: 0.2rem 0;
-    width:12rem;
+    width:16rem;
     font-size: 17px;
     height:1.5rem;
     background:rgba(255,255,255,0);
@@ -157,7 +158,9 @@ input {
     outline:none;
 }
 input:focus {
-    border-bottom:steelblue 1px solid;
+    border-bottom:steelblue 2px solid;
 }
-
+footer {
+    display:none;
+}
 </style>
