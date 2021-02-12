@@ -9,7 +9,7 @@ axios.get('https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=88
 
 //* default tv list
 const tv = []
-axios.get(`https://api.themoviedb.org/3/discover/tv?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
+axios.get(`https://api.themoviedb.org/3/discover/tv?with_genres=10759&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
                 resp.data.results.forEach(movie => {   
                     tv.push(movie)
                 });

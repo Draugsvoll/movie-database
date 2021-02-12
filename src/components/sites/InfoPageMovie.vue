@@ -9,11 +9,12 @@
             <div><button class="close" @click="goBack()"><div class="fas fa-arrow-left"> </div></button></div>
             <div class="text">
                 <div><h1>{{ movie.title }}</h1></div>
-                <!-- Buttons -->
+            <!-- Buttons -->
             <button @click="play(movie.id)">Play <div class="fas fa-play"></div></button>
             <button @click="play(movie.id)">Trailer <div class="far fa-eye"></div></button>
             <button @click="addFavourite(movie)">+ Add <div class="fas fa-list"></div></button>
-                <div class="overview"> <p>{{ movie.overview }}</p> </div>
+            <button v-if="addedAnimation == true" class="added">Added to favourites </button>
+            <div class="overview"> <p>{{ movie.overview }}</p> </div>
             </div>
             
         </div>
@@ -66,7 +67,8 @@ export default {
             path: this.$route.path,
             cast: [],
             crew: [],
-            profile_pic: '../../assets/logo2.jpg'
+            profile_pic: '../../assets/logo2.jpg',
+            addedAnimation: false,
         }
     },
     computed: {
@@ -88,6 +90,8 @@ export default {
             this.$router.go(-1);
         },
         addFavourite (movie) {
+            this.addedAnimation = true
+            setTimeout(() => {  this.addedAnimation = false }, 2000);
             const user = firebase.auth().currentUser.uid
             Axios.post(`https://netflix-97535-default-rtdb.europe-west1.firebasedatabase.app/${user}/movies.json`, movie)
                 .then(function (response) {
@@ -124,9 +128,8 @@ h3 {
     margin:0;
 }
 .sub-headline {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     font-size: 1.7rem;
-    padding:0.3rem;
     background: #091731;
     max-width: 100%;
     justify-content: center;
@@ -157,11 +160,13 @@ h3 {
 .preview {
     background-size: cover;
     padding-left:1%;
-    min-height:82vh;
+    min-height:88vh;
 }
 p {
-    font-size: 0.8rem;
-    background: rgba(0, 0, 0, 0.4);
+    font-size: 1rem;
+    padding:0.5rem;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
     text-shadow: 1px 1px 1px black;
 }
 .text {
@@ -172,28 +177,33 @@ p {
     /* background: rgba(17, 27, 41, 0.9); */
     min-width:775px;
     right:0;
-    padding: 45px 12px;
     margin: auto auto;
     color:white;
 }
 button {
-    padding:0.5rem;
-    background: rgba(9, 16, 27, 0.45);
+    outline:none;
+    padding:1rem;
+    background: rgba(9, 16, 27, 0.75);
+    border-radius:5px;
     border:none;
     color:white;
     text-shadow: 1px 1px 1px black;
-        margin: 0px 10px 0px 0;
+    margin: 0px 10px 0px 0;
     cursor: pointer;
-    font-size: 17px;
+    font-size: 19px;
     font-weight: 400!important;
 }
-.close {
-    padding: 1rem 2rem;
-    margin-top:50px;
-}
 button:hover {
-    background: rgba(9, 16, 27, 0.65);
+    background: rgb(4, 7, 12);
     /* border: 1px solid rgb(226, 224, 237); */
+}
+.added {
+    cursor:default;
+}
+
+.close {
+    padding: 1.3rem 2.5rem;
+    margin-top:20px;
 }
 .overview {
     margin-top: 15px;
@@ -203,9 +213,9 @@ img {
     width:100%;
 }
 h1 {
-    position: relative;
-    margin:45% 0 15px 0;
+    margin:200px 0 15px 0;
     text-shadow: 1px 1px 4px black;
+    font-size:50px;
 }
 
 /* SLIDES */

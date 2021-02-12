@@ -39,7 +39,7 @@ iframe {
     outline:none;
     border:none;
     margin:auto;
-    margin-top:125px;
+    margin-top:100px;
 }
 .container {
     margin:0;
@@ -57,7 +57,7 @@ iframe {
 }
 p {
     margin: 0px auto;
-    font-size:10px;
+    font-size:13px;
 }
 a {
     margin:auto;

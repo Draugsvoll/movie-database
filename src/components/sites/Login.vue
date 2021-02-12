@@ -130,7 +130,7 @@ export default {
     background:rgba(0,0,0,0.85);
 }
 img {
-    margin:8rem auto 0 auto;
+    margin:250px auto 0 auto;
 }
 button {
     margin-top:2rem;
