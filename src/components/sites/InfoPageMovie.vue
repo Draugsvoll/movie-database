@@ -129,7 +129,7 @@ h3 {
 }
 .sub-headline {
     margin: 0.5rem 0;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     background: #091731;
     max-width: 100%;
     justify-content: center;
@@ -164,7 +164,7 @@ h3 {
     min-height:88vh;
 }
 p {
-    font-size: 1rem;
+    font-size: 14px;
     padding:0.5rem;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 5px;
@@ -183,7 +183,7 @@ p {
 }
 button {
     outline:none;
-    padding:1rem;
+    padding:1.1rem 1.3rem;
     background: rgba(9, 16, 27, 0.75);
     border-radius:5px;
     border:none;
@@ -191,7 +191,7 @@ button {
     text-shadow: 1px 1px 1px black;
     margin: 0px 10px 0px 0;
     cursor: pointer;
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 400!important;
 }
 button:hover {
@@ -205,6 +205,7 @@ button:hover {
 .close {
     padding: 1.3rem 2.5rem;
     margin-top:20px;
+    font-size:20px;
 }
 .overview {
     margin-top: 15px;
