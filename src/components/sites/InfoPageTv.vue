@@ -9,12 +9,12 @@
             <div><button class="close" @click="goBack()"><div class="fas fa-arrow-left"> </div></button></div>
             <div class="text">
                 <div><h1>{{ movie.original_name }}</h1></div>
-                <!-- Buttons -->
-            <button @click="play(movie.id)">Play <div class="fas fa-play"></div></button>
-            <button @click="play(movie.id)">Trailer <div class="far fa-eye"></div></button>
-            <button @click="addFavourite(movie)">+ Add <div class="fas fa-list"></div></button>
-            <button v-if="addedAnimation == true" class="added">Added to favourites </button>
                 <div class="overview"> <p>{{ movie.overview }}</p> </div>
+                <!-- Buttons -->
+                <button @click="play(movie.id)">Play <div class="fas fa-play"></div></button>
+                <button @click="play(movie.id)">Trailer <div class="far fa-eye"></div></button>
+                <button @click="addFavourite(movie)">+ Add <div class="fas fa-list"></div></button>
+                <button v-if="addedAnimation == true" class="added">Added to favourites </button>
             </div>
 
             
@@ -135,7 +135,7 @@ h3 {
 .sub-headline {
     margin: 0.5rem 0;
     font-size: 1.7rem;
-    padding:0.7rem;
+    padding:0.6rem;
     background: #091731;
     max-width: 100%;
     justify-content: center;
@@ -171,7 +171,7 @@ h3 {
 p {
     font-size: 1rem;
     padding:0.5rem;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     text-shadow: 1px 1px 1px black;
 }
