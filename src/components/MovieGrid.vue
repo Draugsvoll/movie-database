@@ -20,6 +20,8 @@
         </div>
         <br>
 
+        <app-footer></app-footer>
+
     </div>
 </template>
 
@@ -38,8 +40,8 @@ export default {
     methods: {
        // sends a movie to infopage (details) 
       viewMovie(newMovie) {
-          console.log('movie: ', newMovie)
-        const newInfoMovie = {
+            console.log('movie: ', newMovie)
+            const newInfoMovie = {
                 movieTitle: newMovie.title,
                 movieTitle2: newMovie.name,
                 moviePosterPath: newMovie.backdrop_path,
@@ -48,8 +50,7 @@ export default {
                 movieVote: newMovie.vote_average,
                 movieRelease: newMovie.release_date,
                 movieId: newMovie.id,
-
-            }
+        }
           this.$store.dispatch('setInfoMovie', newInfoMovie) 
       },
         // NEXT PAGE
@@ -78,6 +79,7 @@ export default {
     },
     components: {
         appMovie: Movie,
+        appFooter: Footer,
     },
     computed: {     
         movies() {

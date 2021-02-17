@@ -59,7 +59,7 @@ export default {
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
                 .then(response => console.log(response))
                 .catch(function(error) {
-                // Handle Errors here.
+                    alert('Invalid username/password format')
               var errorCode = error.code;
               var errorMessage = error.message;
             });
@@ -135,8 +135,8 @@ img {
 button {
     margin-top:2rem;
     margin-right:10px;
-    width:6rem;
-    height:2.5rem;
+    width:6.3rem;
+    height:2.7rem;
     background:rgba(0,0,0,0);
     border:1px solid steelblue;
     color:white;
@@ -160,7 +160,7 @@ input {
 input:focus {
     border-bottom:steelblue 2px solid;
 }
-footer {
-    display:none;
+::placeholder {
+    font-style:italic;
 }
 </style>

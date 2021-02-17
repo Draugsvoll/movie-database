@@ -3,10 +3,16 @@
 
         <div class="footer-container">
             <div class="column">
+                <p>Powered By:</p>
                 <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="" width="120">
+                <div class="icons">
+                    <a ><i class="fab fa-facebook-f"></i></a>
+                    <a ><i class="fab fa-twitter"></i></a>
+                    <a ><i class="fab fa-github"></i></a>
+                    <a ><i class="fab fa-youtube"></i></a>
+              </div>
             </div>
           </div>
-
           <!-- Copyright -->
         <div class="copyright"> <a>© 2021 Copyright | Ove Henrik Draugsvoll</a> </div>
 
@@ -28,17 +34,28 @@ footer{
   background-color: black;
   min-height: 180px;
   z-index:10;
-  margin-top:50px;
+  padding:40px;
+}
+.icons {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+  /* color:rgb(33, 190, 230); */
+  color:rgb(143, 168, 179);
+}
+i:hover {
+  color:rgb(227, 245, 248);
 }
 .copyright {
     display: flex;
     justify-content: center;
     font-size: 0.7rem !important;
-    margin-top:10px;
     color:rgb(141, 155, 156);
-    /* margin-bottom:55px; */
 }
-
+p {
+  color:rgb(233, 233, 233);
+  text-align: center;
+}
 .footer-container {
     display: inline-flex;
     justify-content: space-evenly;
