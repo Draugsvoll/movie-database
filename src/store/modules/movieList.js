@@ -110,7 +110,7 @@ const mutations = {
                     const newGenre = { id: genre.id, name: genre.name }
                     state.genres.push(newGenre)
                 })
-                
+                console.log(state.genres)
             })
     },
     'FETCH_TV_GENRE_LIST' (state) {

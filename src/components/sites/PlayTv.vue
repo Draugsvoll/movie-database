@@ -62,13 +62,7 @@ a {
     margin-top: 12px;   
 }
 button {
-    width:5rem;
-    margin:auto;
-    border:none;
-    font-size:20px;
-    cursor:pointer;
-    color:white;
-    background:rgba(0,0,0,0)
+    padding:5px;
 }
 
 .box {

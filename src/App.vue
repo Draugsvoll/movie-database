@@ -36,7 +36,7 @@ body, html {
   min-height: 100%;
   margin:0;
   padding:0;
-  background: rgb(0, 0, 0);
+  background: rgb(17, 19, 22);
   color:white;
   font-family: sans-serif;
 }

@@ -80,6 +80,7 @@ export default {
 <style scoped>
 * {
     /* border:1px solid red; */
+    font-family: 'Helvetica';
 }
 
 li, a, button{
@@ -96,7 +97,7 @@ header{
     justify-content: space-evenly;
     align-items:baseline;
     padding: 5px 15px 10px 0px;
-    background-color: black;
+    background: rgb(14, 16, 19);
     min-height:70px;
     width:100%;
     position: fixed;

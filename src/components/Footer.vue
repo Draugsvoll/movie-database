@@ -31,10 +31,12 @@ i:hover {
 color:rgb(100, 184, 218);
 }
 footer{
-  background-color: black;
+
+  background: rgb(17, 19, 22);
   min-height: 180px;
   z-index:10;
-  padding:40px;
+  padding:20px;
+  padding-top:0px;
 }
 .icons {
   display: flex;
@@ -42,6 +44,8 @@ footer{
   font-size: 22px;
   /* color:rgb(33, 190, 230); */
   color:rgb(143, 168, 179);
+  margin-top:20px;
+  margin-bottom:10px;
 }
 i:hover {
   color:rgb(227, 245, 248);

@@ -66,18 +66,19 @@ ul{
     height:80%;
 }
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 9px;
   background:rgb(23, 22, 22);
 }
 ::-webkit-scrollbar-thumb {
-  background:rgb(103, 99, 99);
+  background:rgb(45, 69, 76);
   border-radius:10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background:rgb(125, 120, 120);
+    background:rgb(58, 85, 93);
+
 }
 #genre {
-    margin-top:40px;
+    /* margin-top:40px; */
     width:198px;
     height:100%;
     position: fixed;
@@ -93,7 +94,7 @@ li {
     margin-bottom: 10px;
     font-size: 1.1rem;
     cursor: pointer;
-    border-left: 1px solid  black;
+    border-left: 1px solid  rgb(17, 19, 22);
     color:rgb(160, 159, 159);
 }
 

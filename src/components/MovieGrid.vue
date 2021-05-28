@@ -38,7 +38,6 @@ export default {
         }
     },
     methods: {
-       // sends a movie to infopage (details) 
       viewMovie(newMovie) {
             console.log('movie: ', newMovie)
             const newInfoMovie = {
@@ -117,6 +116,7 @@ export default {
 * {
     /* border: 1px solid red; */
 }
+
 .movie-container {
     display: flex;
     flex-wrap: wrap;
@@ -146,12 +146,13 @@ button {
     margin:8px;
     margin-bottom:10px;
     margin-right:12px;
+    font-size: 18px;
 }
 .arrow {
     margin:8px;
 }
 .page {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     margin: auto 0;
 }
 

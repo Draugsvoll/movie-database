@@ -127,7 +127,7 @@ export default {
     margin:5% auto auto auto;
     display: flex;
     flex-direction: column;
-    background:rgba(0,0,0,0.85);
+    background: rgb(17, 19, 22);
 }
 img {
     margin:205px auto 0 auto;
