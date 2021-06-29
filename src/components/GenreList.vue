@@ -103,7 +103,7 @@ li:hover {
 }
 .active {
     color:rgb(254, 254, 255);
-    border-left:2px solid rgb(255, 196, 0);
+    border-left:2px solid rgb(41, 171, 194);
 }
 
 @media only screen and (max-width: 524px) {

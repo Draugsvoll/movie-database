@@ -16,7 +16,7 @@
       </div>
       <div class="searchField">
         <div class="search-bar">
-        <input v-model="searchTerm" ref="search" type="text" placeholder="Search" value='' autofocus>
+        <input v-model="searchTerm" ref="search" type="text" placeholder=" Search" value='' autofocus>
         <button class="search" @click="search(searchTerm)">Search</button >
         </div>
       </div>
@@ -105,10 +105,11 @@ export default {
 
 <style scoped>
 .query {
-  margin:1.5rem auto;
+  margin:1.5rem 0;
+  visibility: hidden;
 }
 .pointer {
-  color:yellow !important;
+  color:rgb(41, 171, 194) !important;
 }
 .arrow1, .arrow2 {
   color:rgba(0,0,0,0);
@@ -122,7 +123,10 @@ button {
   color: white;
   font-size: 1.1rem;
   cursor:pointer;
-  border:1px solid rgb(255, 196, 0);
+  border:1px solid rgb(41, 171, 194);
+}
+button:hover {
+  color:rgb(166, 223, 233);
 }
 .empty {
   visibility: hidden;
@@ -146,13 +150,13 @@ body, html {
 input {
   width:350px;
   height:2rem;
-  margin-top:1rem;
-  font-size: 1.3rem;
-  background: rgba(0,0,0,0.5);
+  margin-top:2rem;
+  font-size: 1.2rem;
+  background: rgba(0,0,0,0);
   border:none;
   color: white;
   outline:none;
-  border-bottom:1.5px solid rgb(255, 196, 0);
+  border-bottom:1.5px solid rgb(41, 171, 194);
 }
 ::marker {
   color:purple;

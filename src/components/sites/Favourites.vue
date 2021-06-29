@@ -111,7 +111,7 @@ h3 {
   margin:1.5rem auto;
 }
 .pointer {
-  color:yellow !important;
+  color:rgb(41, 171, 194) !important;
 }
 .arrow1, .arrow2 {
   color:rgba(0,0,0,0);

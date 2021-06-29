@@ -101,7 +101,7 @@ header{
     min-height:70px;
     width:100%;
     position: fixed;
-    border-bottom:1px solid rgb(237, 145, 6);
+    border-bottom:1px solid rgb(41, 171, 194);
 }
 .nav_links li{
     display: inline-block;
@@ -111,7 +111,7 @@ header{
 }
 .active {
     color:white !important;
-    border-left:1px solid rgb(196, 196, 6);
+    border-left:1px solid rgb(41, 171, 194);
 }
 .nav_links li a{
     transition: all 0.2s ease 0s;
@@ -123,7 +123,7 @@ button{
   background:rgba(0,0,0,0);
   border:none !important;
   outline:none;
-  color:rgb(255, 217, 0);
+  color:rgb(87, 205, 226);
   cursor:pointer;
 }
 button:hover{

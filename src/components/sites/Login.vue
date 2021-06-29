@@ -8,11 +8,11 @@
         <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="" width="150">
             <div class="form">
                 <span></span>
-                <input v-model="email" type="text" name="email" placeholder="Email"  autofocus>
+                <input v-model="email" type="text" name="email" placeholder=" Email"  autofocus>
                 <br>
                 <br>
                 <span></span>
-                <input v-model="password" type="text" name="password" placeholder="Password">
+                <input v-model="password" type="text" name="password" placeholder=" Password">
                 <div class="btn">
                     <button @click="login">Login</button>
                     <button @click=signUp()>Sign Up</button>
@@ -90,7 +90,7 @@ export default {
     padding:0;
     display: flex;
     flex-direction: column;
-    /* background-image: url('../../assets/bg.jpg'); */
+    background: url('../../assets/bg.jpg') no-repeat center center fixed; 
     height:100vh;
     width:100%;
     position: absolute;
@@ -98,10 +98,10 @@ export default {
     z-index: 9;
 }
 .overlay {
-    /* background:rgba(0, 3, 16, 0.3); */
+    background:rgba(0, 3, 16, 0.55);
 }
 .text button, .text {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     margin-top:-10px;
 }
 .test {
@@ -112,7 +112,9 @@ export default {
     cursor:pointer;
     text-decoration: underline;
     padding:0 !important;
-    width:3.5rem !important;
+    text-align: left;
+    margin-left:5px;
+    /* width:3.5rem !important; */
 }
 .test:hover {
     background:rgba(0,0,0,0);
@@ -123,28 +125,31 @@ export default {
     width:100%;
 }
 .form {
-    /* padding:5rem 7rem; */
-    margin:5% auto auto auto;
+    padding:3rem 4rem;
+    margin:20px auto auto auto;
     display: flex;
     flex-direction: column;
-    background: rgb(17, 19, 22);
+    background: rgba(17, 19, 22, 0);
 }
 img {
-    margin:205px auto 0 auto;
+    margin:130px auto 0 auto;
 }
 button {
     margin-top:2rem;
     margin-right:10px;
-    width:6.3rem;
-    height:2.7rem;
-    background:rgba(0,0,0,0);
-    border:1px solid steelblue;
+    padding:12px 20px;
+    min-width:100px;
+    background:rgb(10, 120, 148);
+    border:none;
+    border-radius:3px;
     color:white;
     outline:none;
     cursor:pointer;
 }
 button:hover {
-    background:rgba(0,0,0,0.8);
+    background:rgba(2, 33, 43, 1);
+    /* color: rgb(53, 219, 241); */
+    /* border: 1px solid rgb(53, 219, 241); */
 }
 input {
     margin: 0.2rem 0;
@@ -158,9 +163,11 @@ input {
     outline:none;
 }
 input:focus {
-    border-bottom:steelblue 2px solid;
+    /* border-bottom:rgb(164, 241, 252) 1px solid; */
+    border-bottom:rgb(133, 246, 250) 1px solid;
 }
 ::placeholder {
     font-style:italic;
+    color:rgb(131, 131, 131);
 }
 </style>
