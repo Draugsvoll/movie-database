@@ -90,8 +90,8 @@ li {
     margin: 0 auto;
     padding: 5px;
     width:70%;
-    margin-bottom: 10px;
-    font-size: 1rem;
+    margin-bottom: 7px;
+    font-size: 16px;
     cursor: pointer;
     border-left: 1px solid  rgb(17, 19, 22);
     color:rgb(160, 159, 159);
@@ -99,6 +99,7 @@ li {
 
 li:hover {
     color:white;
+
 }
 .active {
     color:rgb(254, 254, 255);

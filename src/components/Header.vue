@@ -84,7 +84,7 @@ export default {
 }
 
 li, a, button{
-    font-size:18px;
+    font-size:17px;
     color:rgb(159, 158, 158);
 }
 ul li a {

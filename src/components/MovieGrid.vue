@@ -4,7 +4,7 @@
         
         <!-- btn row  -->
         <div v-if=" currentRoute != '/favourites' && currentRoute != '/search' " class="buttons">
-            <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} </span> <button @click="nextPage"><div class=" arrow fas fa-arrow-right"></div></button>
+            <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} / 20</span> <button @click="nextPage"><div class=" arrow fas fa-arrow-right"></div></button>
         </div>
 
         <div class="movie-container">
@@ -16,7 +16,7 @@
         
         <!-- btn row  -->
         <div v-if=" currentRoute != '/search' && currentRoute != '/favourites' && movies != '' " class="buttons">
-            <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} </span>  <button @click="nextPage"><div class="arrow fas fa-arrow-right"></div></button>
+            <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} / 20</span>  <button @click="nextPage"><div class="arrow fas fa-arrow-right"></div></button>
         </div>
         <br>
 
@@ -150,9 +150,10 @@ button {
 }
 .arrow {
     margin:8px;
+    font-size:19px;
 }
 .page {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin: auto 0;
 }
 
