@@ -70,12 +70,11 @@ ul{
   background:rgb(23, 22, 22);
 }
 ::-webkit-scrollbar-thumb {
-  background:rgb(45, 69, 76);
+  background:rgb(36, 80, 94);
   border-radius:10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background:rgb(58, 85, 93);
-
+      background:rgb(39, 92, 108);
 }
 #genre {
     /* margin-top:40px; */
@@ -92,7 +91,7 @@ li {
     padding: 5px;
     width:70%;
     margin-bottom: 10px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     border-left: 1px solid  rgb(17, 19, 22);
     color:rgb(160, 159, 159);

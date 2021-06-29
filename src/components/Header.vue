@@ -80,7 +80,7 @@ export default {
 <style scoped>
 * {
     /* border:1px solid red; */
-    font-family: 'Helvetica';
+    font-family: Sans-serif;
 }
 
 li, a, button{
@@ -96,7 +96,6 @@ header{
     display: flex;
     justify-content: space-evenly;
     align-items:baseline;
-    padding: 5px 15px 10px 0px;
     background: rgb(14, 16, 19);
     min-height:70px;
     width:100%;
@@ -111,7 +110,7 @@ header{
 }
 .active {
     color:white !important;
-    border-left:1px solid rgb(41, 171, 194);
+    border-bottom:1px solid rgb(41, 171, 194);
 }
 .nav_links li a{
     transition: all 0.2s ease 0s;

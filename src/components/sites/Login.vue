@@ -139,7 +139,7 @@ button {
     margin-right:10px;
     padding:12px 20px;
     min-width:100px;
-    background:rgb(10, 120, 148);
+    background:rgb(7, 108, 133);
     border:none;
     border-radius:3px;
     color:white;
@@ -147,9 +147,7 @@ button {
     cursor:pointer;
 }
 button:hover {
-    background:rgba(2, 33, 43, 1);
-    /* color: rgb(53, 219, 241); */
-    /* border: 1px solid rgb(53, 219, 241); */
+    background:rgb(8, 91, 111);
 }
 input {
     margin: 0.2rem 0;
@@ -163,8 +161,8 @@ input {
     outline:none;
 }
 input:focus {
-    /* border-bottom:rgb(164, 241, 252) 1px solid; */
-    border-bottom:rgb(133, 246, 250) 1px solid;
+    /* border-bottom:rgb(133, 246, 250) 1px solid; */
+    border-bottom:aqua 1px solid;
 }
 ::placeholder {
     font-style:italic;
