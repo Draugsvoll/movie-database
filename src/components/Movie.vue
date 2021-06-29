@@ -50,7 +50,7 @@ export default {
     display: inline-block;
 }
 .movie:hover {
-        border: 1.5px solid rgb(255, 196, 0);
+        border: 1.5px solid rgb(41, 171, 194);
 }
 img {
     max-width:200px;
