@@ -70,11 +70,11 @@ ul{
   background:rgb(23, 22, 22);
 }
 ::-webkit-scrollbar-thumb {
-  background:rgb(36, 80, 94);
+  background:rgb(21, 127, 145);
   border-radius:10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-      background:rgb(39, 92, 108);
+      background:rgb(30, 145, 165);
 }
 #genre {
     /* margin-top:40px; */
@@ -95,6 +95,7 @@ li {
     cursor: pointer;
     border-left: 1px solid  rgb(17, 19, 22);
     color:rgb(160, 159, 159);
+     transition: all 0.25s ease 0s;
 }
 
 li:hover {
@@ -105,6 +106,7 @@ li:hover {
     color:rgb(254, 254, 255);
     border-left:2px solid rgb(41, 171, 194);
 }
+
 
 @media only screen and (max-width: 524px) {
     #genre {

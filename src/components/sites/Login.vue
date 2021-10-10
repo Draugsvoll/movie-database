@@ -102,7 +102,7 @@ export default {
 }
 .text button, .text {
     font-size: 0.9rem;
-    margin-top:-10px;
+    margin-top:-25px;
 }
 .test {
     background:rgba(0,0,0,0);
@@ -123,6 +123,7 @@ export default {
 .btn {
     display: flex;
     width:100%;
+    margin-top:15px;
 }
 .form {
     padding:3rem 4rem;
@@ -136,10 +137,10 @@ img {
 }
 button {
     margin-top:2rem;
-    margin-right:10px;
+    margin-right:15px;
     padding:12px 20px;
     min-width:100px;
-    background:rgb(7, 108, 133);
+        background: rgb(5 90 111);
     border:none;
     border-radius:3px;
     color:white;
@@ -147,7 +148,7 @@ button {
     cursor:pointer;
 }
 button:hover {
-    background:rgb(8, 91, 111);
+    background:rgb(14, 103, 125);
 }
 input {
     margin: 0.2rem 0;
@@ -166,6 +167,6 @@ input:focus {
 }
 ::placeholder {
     font-style:italic;
-    color:rgb(131, 131, 131);
+    color:rgb(162, 162, 162);
 }
 </style>

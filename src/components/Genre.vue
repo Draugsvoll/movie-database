@@ -18,6 +18,5 @@ export default {
 
 
 <style scoped>
-li  {
-}
+
 </style>

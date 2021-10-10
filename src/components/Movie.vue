@@ -1,5 +1,5 @@
 <template>
-        <div v-if="movie.poster_path != null" class="movie" @click="viewMovie(movie.id)">
+        <div v-if="movie.poster_path != null" class="movie" @click="viewMovie(movie.id)" >
             <div><img  v-bind:src="base_url + movie.poster_path" alt="" ></div>
         </div>
 </template>
@@ -45,12 +45,14 @@ export default {
 <style scoped>
 .movie {
     border:1.5px solid rgb(33, 33, 34);
-    margin:0 10px 10px 0;
+    margin:14px 7px;
     cursor: pointer;
     display: inline-block;
+    transition: transform 0.35s ease;
 }
 .movie:hover {
         border: 1.5px solid rgb(41, 171, 194);
+        transform: translateY(-5px);
 }
 img {
     max-width:200px;
@@ -59,7 +61,7 @@ img {
 
 @media only screen and (max-width: 668px) {
     img {
-        max-width:300px;
+        max-width:225px;
 
     }
 }
@@ -67,6 +69,18 @@ img {
 @media only screen and (max-width: 555px) {
     img {
         max-width:200px;
+    }
+}
+
+@media only screen and (max-width: 407px) {
+    img {
+        max-width:175px;
+    }
+}
+
+@media only screen and (max-width: 365px) {
+    img {
+        max-width:145px;
     }
 }
 

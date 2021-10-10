@@ -160,7 +160,7 @@ button {
 
 @media only screen and (max-width: 524px) {
     #movie-grid {
-        margin-top:62px;
+        margin-top:85px;
     }
 }
 

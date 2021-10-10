@@ -113,7 +113,7 @@ header{
     border-bottom:1px solid rgb(41, 171, 194);
 }
 .nav_links li a{
-    transition: all 0.2s ease 0s;
+    transition: all 0.25s ease 0s;
 }
 .nav_links li a:hover{
     color: rgb(247, 247, 247);
