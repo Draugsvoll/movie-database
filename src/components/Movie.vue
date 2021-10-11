@@ -1,6 +1,6 @@
 <template>
         <div v-if="movie.poster_path != null" class="movie" @click="viewMovie(movie.id)" >
-            <div><img  v-bind:src="base_url + movie.poster_path" alt="" ></div>
+            <div><img ref="image" @load="loaded"  v-bind:src="base_url + movie.poster_path" alt="" ></div>
         </div>
 </template>
 
@@ -13,7 +13,8 @@ export default {
         return  {
             base_url: "https://image.tmdb.org/t/p/w500",
             index: 0,
-            path: this.$route.path
+            path: this.$route.path,
+            transition:1
         }
     },
     image: 'https://image.tmdb.org/t/p/w500',
@@ -34,7 +35,10 @@ export default {
             else {
                 this. $router. push(`/infopagetv?id=${id}`)
             }
-        }
+        },
+        loaded() {
+            this.$refs.image.classList.add('loaded')
+        },
     }
 }
 </script>
@@ -57,6 +61,12 @@ export default {
 img {
     max-width:200px;
     vertical-align: top;
+
+    opacity: 0;
+    transition:1s;
+}
+.loaded {
+    opacity:1;
 }
 
 @media only screen and (max-width: 668px) {
