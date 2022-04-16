@@ -57,6 +57,8 @@ export default {
 <style scoped>
 * {
     /* border:1px red solid; */
+    letter-spacing: 1px;
+
 }
 ul{
     list-style: none;
@@ -66,15 +68,17 @@ ul{
     height:80%;
 }
 ::-webkit-scrollbar {
-  width: 9px;
-  background:rgb(23, 22, 22);
+  width: 7px;
+  background:rgb(28, 30, 32);
+  border-radius:10px;
 }
 ::-webkit-scrollbar-thumb {
-  background:rgb(21, 127, 145);
+  background:rgb(19, 135, 156);
   border-radius:10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-      background:rgb(30, 145, 165);
+    background: var(--primary-color);
+      /* background:rgb(30, 145, 165); */
 }
 #genre {
     /* margin-top:40px; */
@@ -87,10 +91,12 @@ h1 {
     text-align: center;
 }
 li {
-    margin: 0 auto;
-    padding: 5px;
-    width:70%;
-    margin-bottom: 7px;
+    margin-left:16px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 7px;
+    margin-bottom:1px;
+    width:85%;
     font-size: 16px;
     cursor: pointer;
     border-left: 1px solid  rgb(17, 19, 22);
@@ -100,11 +106,14 @@ li {
 
 li:hover {
     color:white;
+    background: var(--background-color-1);
 
 }
 .active {
     color:rgb(254, 254, 255);
-    border-left:2px solid rgb(41, 171, 194);
+    border-left:1px solid rgb(41, 171, 194);
+    background: var(--background-color-1);
+
 }
 
 

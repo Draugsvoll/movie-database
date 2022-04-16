@@ -141,7 +141,7 @@ body, html {
   font-family: sans-serif;
 }
 .upper-btn {
-  margin:3rem auto;
+  margin:2rem auto;
   display: flex;
   color:grey;
 }
@@ -152,7 +152,7 @@ body, html {
   margin:0 0rem;
   cursor:pointer;
   color:grey;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding:0.5rem
 }
 @media only screen and (max-width: 500px) {

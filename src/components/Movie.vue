@@ -1,6 +1,21 @@
 <template>
-        <div v-if="movie.poster_path != null" class="movie" @click="viewMovie(movie.id)" >
-            <div><img ref="image" @load="loaded"  v-bind:src="base_url + movie.poster_path" alt="" ></div>
+        <!-- MOVIE-CONTAINER -->
+        <div class="movie" ref="image" v-if="movie.poster_path != null"  @click="viewMovie(movie.id)" >
+            <div class="box">
+                <img  @load="loaded"  v-bind:src="base_url + movie.poster_path" alt="" >
+            </div>
+
+            <!-- INFO ON HOVER  -->
+            <div class="extra">
+                <h1 class="title" v-if="path.includes('movie')"> {{movie.title}} <span id="year">({{movie.release_date.split('-')[0]}})</span> </h1>
+                <h1 class="title" v-else-if="path.includes('tv')"> {{movie.name}} </h1>
+                    <p> {{movie.overview}}</p>
+                <div class="row1">
+                    <div class="movie-score">{{movie.vote_average}} <i id="star" class="fa fa-solid fa-star"></i></div>
+                    <div class="movie-popularity">{{parseInt(movie.popularity)}} <i id="likes" class="fa fa-solid fa-thumbs-up"></i></div>
+                </div>
+            </div>
+            
         </div>
 </template>
 
@@ -13,20 +28,19 @@ export default {
         return  {
             base_url: "https://image.tmdb.org/t/p/w500",
             index: 0,
-            path: this.$route.path,
-            transition:1
+            path: this.$route.path + this.$route.query.type
         }
     },
     image: 'https://image.tmdb.org/t/p/w500',
     props: ['movie'],
     methods: {
         viewMovie(id) {
-            console.log('router quey: ', this.$route.query.type)
-            console.log('path: ', this.path)
-            if (this.path == '/movies') {
+            // console.log('router quey: ', this.$route.query.type)
+            // console.log('path: ', this.path)
+            if (this.path.includes('/movies')) {
                 this. $router. push(`/infopagemovie?id=${id}`)
             }
-            else if ( this.path == '/tv' ) {
+            else if ( this.path.includes('/tv') ) {
                 this. $router. push(`/infopagetv?id=${id}`)
             }
             else if ( this.$route.query.type === 'movie') {
@@ -39,7 +53,9 @@ export default {
         loaded() {
             this.$refs.image.classList.add('loaded')
         },
-    }
+    },
+    mounted () {
+    },
 }
 </script>
 
@@ -47,23 +63,99 @@ export default {
 
 
 <style scoped>
+#star {
+    color: #e8b923;
+    font-size: 16px;
+    padding-bottom:1px;
+}
+#likes {
+    color:var(--primary-color);
+    padding-bottom:2px;
+    font-size: 17px;
+}
+#year {
+    font-size:14px;
+}
 .movie {
-    border:1.5px solid rgb(33, 33, 34);
-    margin:14px 7px;
+    margin:18px 13px;
     cursor: pointer;
     display: inline-block;
-    transition: transform 0.35s ease;
+    max-width: var(--asset-width);
+    transition:var(--transition-duration-asset);
 }
+
+
+.box {
+    margin-bottom:-1px;
+}
+
 .movie:hover {
-        border: 1.5px solid rgb(41, 171, 194);
-        transform: translateY(-5px);
+    transform: scale(1.09);
+}
+.extra {
+    background: var(--background-color-1);
+    padding: 7px;
+    padding-bottom: 12px;
+    display:block;
+    opacity:0;
+    position: absolute;
+    width:100%;
+    max-width: var(--asset-width);
+    visibility: hidden;
+    margin-top:-25px;
+    transition:var(--transition-duration-asset);
+}
+.extra > p {
+overflow: hidden; 
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;
+
+    font-size:14px;
+  line-height: 1rem;
+  text-align: left;
+  margin-left:5px;
+  margin-top:0;
+}
+.movie:hover > .extra {
+    opacity:1;
+    display:block;
+    height:fit-content;
+    visibility: visible;
+    margin-top:0;
+}
+.row1 {
+    display:flex;
+    font-size:14px;
+    padding: 0 8px 0 8px;
+    overflow:hidden;
+}
+.row1 > div {
+    width:50%;
+}
+.movie-popularity {
+    text-align: right;
 }
 img {
-    max-width:200px;
+    max-width: var(--asset-width);
     vertical-align: top;
-
-    opacity: 0;
-    transition:1s;
+    border:1px solid rgb(33, 33, 34);
+    border:none;
+}
+img:hover {
+    /* border: 1px solid rgb(41, 171, 194); */
+}
+.title {
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0.05rem;
+    margin:5px 0 8px 0;
+}
+p {
+    overflow:hidden;
+    max-width:200px;
+    text-align: center;
 }
 .loaded {
     opacity:1;
@@ -72,13 +164,19 @@ img {
 @media only screen and (max-width: 668px) {
     img {
         max-width:225px;
-
     }
+    p {
+        max-width:225px;
+    }
+   
 }
 
 @media only screen and (max-width: 555px) {
     img {
         max-width:200px;
+    }
+    p {
+        max-width:20px;
     }
 }
 
@@ -86,10 +184,16 @@ img {
     img {
         max-width:175px;
     }
+    p {
+        max-width:175px;
+    }
 }
 
 @media only screen and (max-width: 365px) {
     img {
+        max-width:145px;
+    }
+    p {
         max-width:145px;
     }
 }

@@ -98,7 +98,7 @@ export default {
     z-index: 9;
 }
 .overlay {
-    background:rgba(0, 3, 16, 0.55);
+    background: rgb(2 5 22 / 45%);
 }
 .text button, .text {
     font-size: 0.9rem;
@@ -140,7 +140,7 @@ button {
     margin-right:15px;
     padding:12px 20px;
     min-width:100px;
-        background: rgb(5 90 111);
+    background: rgb(0, 94, 115);
     border:none;
     border-radius:3px;
     color:white;

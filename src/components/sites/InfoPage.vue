@@ -58,7 +58,7 @@ export default {
 <style scoped>
 .infopage {
     border-left: 1px solid black;
-    background: rgba(17, 27, 41, 0.9);
+    background:  var(--background-color);
     width:35%;
     min-width:775px;
     position: fixed;

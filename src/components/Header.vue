@@ -96,17 +96,21 @@ header{
     display: flex;
     justify-content: space-evenly;
     align-items:baseline;
-    background: rgb(14, 16, 19);
-    min-height:70px;
+    background: rgb(15 18 23 / 93%);
+    min-height:75px;
     width:100%;
     position: fixed;
-    border-bottom:1px solid rgb(41, 171, 194);
+    border-bottom:1px solid var(--primary-color);
+    z-index:99;
+    letter-spacing: 1px;
+}
+header > div {
+    margin-top:auto;
+    margin-bottom:auto;
 }
 .nav_links li{
     display: inline-block;
-    margin:0.5rem;
-    padding-left:5px;
-    padding-right:5px;
+   margin: 8px 15px;
 }
 .active {
     color:white !important;
@@ -131,8 +135,8 @@ button:hover{
 }
 
 img {
-    margin-left:1.5rem;
-    margin-bottom:-15px;
+    /* margin-left:1.5rem;
+    margin-bottom:-15px; */
 }
 
 

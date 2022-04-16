@@ -1,7 +1,6 @@
 <template>
 
     <div id="movie-grid">
-        
         <!-- btn row  -->
         <div v-if=" currentRoute != '/favourites' && currentRoute != '/search' " class="buttons">
             <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} / 20</span> <button @click="nextPage"><div class=" arrow fas fa-arrow-right"></div></button>
@@ -14,7 +13,7 @@
             ></app-movie>       
         </div>
         
-        <!-- btn row  -->
+       <!-- btn row  -->
         <div v-if=" currentRoute != '/search' && currentRoute != '/favourites' && movies != '' " class="buttons">
             <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} / 20</span>  <button @click="nextPage"><div class="arrow fas fa-arrow-right"></div></button>
         </div>
@@ -113,14 +112,13 @@ export default {
 
 
 <style scoped>
-* {
-    /* border: 1px solid red; */
-}
 
 .movie-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    min-height:60vh;
+    margin-top:-10px;
 }
 #movie-grid {
     width:80%;
@@ -134,6 +132,8 @@ export default {
     display: flex;
     justify-content: center;
     text-align: center;
+    margin-top:-5px;
+    margin-bottom:-14px;
 }
 button {
     width: 3rem;
@@ -145,15 +145,20 @@ button {
     cursor:pointer;
     margin:8px;
     margin-bottom:10px;
-    margin-right:12px;
+    margin-right:2px;
+    margin-left:2px;
     font-size: 18px;
 }
 .arrow {
     margin:8px;
     font-size:19px;
+    transition: 0.25s;
+}
+.arrow:hover {
+    color: var(--primary-color);
 }
 .page {
-    font-size: 1.1rem;
+    font-size: 17px;
     margin: auto 0;
 }
 

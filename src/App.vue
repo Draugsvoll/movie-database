@@ -30,13 +30,13 @@ export default {
 <style >
 .container {
   display: flex;
-    padding-top:100px;
+    padding-top:95px;
 }
 body, html {
   min-height: 100%;
   margin:0;
   padding:0;
-  background: rgb(17, 19, 22);
+  background: var(--background-color);
   color:white;
   font-family: sans-serif;
 }

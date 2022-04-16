@@ -18,5 +18,7 @@ export default {
 
 
 <style scoped>
-
+    li {
+        letter-spacing:0.05rem;
+    }
 </style>

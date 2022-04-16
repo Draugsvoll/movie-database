@@ -135,11 +135,13 @@ h3 {
     justify-content: center;
     display: flex;
     padding:0.6rem;
+    letter-spacing: 0.15rem;
 }
 .crew-text {
     background: white;
     color:black;
     padding:0.5rem;
+    max-width:200px;
 }
 .actor-container, .crew-container {
     display: flex;

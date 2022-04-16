@@ -121,7 +121,7 @@ button {
   outline:none;
   background: rgba(0,0,0,0);
   color: white;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor:pointer;
   border:1px solid rgb(41, 171, 194);
 }
@@ -148,7 +148,7 @@ body, html {
   font-family: sans-serif;
 }
 input {
-  width:350px;
+  width:300px;
   height:2rem;
   margin-top:2rem;
   font-size: 1.2rem;
@@ -166,8 +166,7 @@ input {
 
 }
 .upper-btn {
-  margin:auto;
-  margin-top:3rem;
+  margin:2rem auto;
   display: flex;
   color:grey;
 }
@@ -186,9 +185,9 @@ input {
   justify-content: center;
 }
 .search {
-  width:85px;
-  height:2.5rem;
-  margin-left:10px;
+  width:78px;
+  height:2.2rem;
+  margin-left:20px;
   border-radius: 5px;
 }
 @media only screen and (max-width: 470px) {

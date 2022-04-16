@@ -31,8 +31,7 @@ i:hover {
 color:rgb(100, 184, 218);
 }
 footer{
-
-  background: rgb(17, 19, 22);
+  background: var(--background-color);
   min-height: 180px;
   z-index:10;
   padding:20px;
