@@ -9,7 +9,7 @@ axios.get('https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=88
 
 //* default tv list
 const tv = []
-axios.get(`https://api.themoviedb.org/3/discover/tv?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
+axios.get(`https://api.themoviedb.org/3/discover/tv?with_genres=10759&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
                 resp.data.results.forEach(movie => {   
                     tv.push(movie)
                 });
@@ -25,7 +25,9 @@ const state = {
         },
     genres: [],
     tv: [],
-    searchResult: []
+    searchResult: [],
+    favouriteMovies: ['peorbirepib'],
+    favouriteTv: [],
 }
 
 const mutations = {
@@ -108,7 +110,7 @@ const mutations = {
                     const newGenre = { id: genre.id, name: genre.name }
                     state.genres.push(newGenre)
                 })
-                
+                console.log(state.genres)
             })
     },
     'FETCH_TV_GENRE_LIST' (state) {
@@ -128,35 +130,48 @@ const mutations = {
         state.movieList.movies = []
         state.searchResult = searchResults
     },
+    'ADD_FAVOURITE_MOVIE' (state, movie) {
+        state.favouriteMovies.push(movie)
+        console.log('pushing to state: ', movie)
+    },
+    'FETCH_FAVOURITES' (state, movieList) {
+        state.favouriteMovies = movieList
+    },
 }
 
 const actions = {   // aviable actions on this site
     nextPage: ({ commit }, currentPage) => {
-        commit('NEXT_PAGE', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('NEXT_PAGE', currentPage)  
     },
     nextPageTv: ({ commit }, currentPage) => {
-        commit('NEXT_PAGE_TV', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('NEXT_PAGE_TV', currentPage)  
     },
     prevPage: ({ commit }, currentPage) => {
-        commit('PREV_PAGE', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('PREV_PAGE', currentPage)  
     },
     prevPageTv: ({ commit }, currentPage) => {
-        commit('PREV_PAGE_TV', currentPage)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('PREV_PAGE_TV', currentPage)  
     },
     fetchMovieList: ({ commit }, genre) => {
-        commit('FETCH_MOVIE_LIST', genre)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('FETCH_MOVIE_LIST', genre)  
     },
     fetchTvList: ({ commit }, genre) => {
-        commit('FETCH_TV_LIST', genre)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('FETCH_TV_LIST', genre)  
     },
     fetchGenreList: ({ commit }) => {
-        commit('FETCH_GENRE_LIST')  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('FETCH_GENRE_LIST')  
     },
     fetchTvGenreList: ({ commit }) => {
         commit('FETCH_TV_GENRE_LIST') 
     },
     searchResults: ({ commit }, searchResults) => {
-        commit('GET_SEARCH_RESULTS', searchResults)  // commits 'BUY_STOCK' mutation defined in portfolio module
+        commit('GET_SEARCH_RESULTS', searchResults)  
+    },
+    addFavouriteMovie: ({ commit }, movie) => {
+        commit('ADD_FAVOURITE_MOVIE', movie)  
+    },
+    fetchFavourites: ({ commit }, movieList) => {
+        commit('FETCH_FAVOURITES', movieList)  
     }
 }
 
@@ -178,6 +193,12 @@ const getters = {
     },
     searchResult(state) {
         return state.searchResult
+    },
+    favouriteMovies(state) {
+        return state.favouriteMovies
+    },
+    favouriteTv(state) {
+        return state.favouriteTv
     },
 }
 

@@ -1,21 +1,25 @@
 <template>
 
     <div id="movie-grid">
-
         <!-- btn row  -->
-        <div v-if=" currentRoute != '/search' " class="buttons">
-            <button @click="prevPage" >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button>
+        <div v-if=" currentRoute != '/favourites' && currentRoute != '/search' " class="buttons">
+            <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} / 20</span> <button @click="nextPage"><div class=" arrow fas fa-arrow-right"></div></button>
         </div>
 
-        <!-- MOVIE GRID  -->
-        <app-movie  v-for="(movie) in movies" v-bind:movie="movie" :key="movie.id"  
-                    v-on:info-movie="viewMovie" 
-        ></app-movie>
-
-        <!-- btn row  -->
-        <div v-if=" currentRoute != '/search' && movies != '' " class="buttons">
-            <button @click="prevPage" >Prev.</button> Page {{ page }}  <button @click="nextPage">Next</button>
+        <div class="movie-container">
+            <!-- MOVIE GRID  -->
+            <app-movie  v-for="(movie, index) in movies" v-bind:movie="movie" :key="movie.id+index"  
+                        v-on:info-movie="viewMovie" 
+            ></app-movie>       
         </div>
+        
+       <!-- btn row  -->
+        <div v-if=" currentRoute != '/search' && currentRoute != '/favourites' && movies != '' " class="buttons">
+            <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} / 20</span>  <button @click="nextPage"><div class="arrow fas fa-arrow-right"></div></button>
+        </div>
+        <br>
+
+        <app-footer></app-footer>
 
     </div>
 </template>
@@ -24,6 +28,7 @@
 <script>
 import Movie from './Movie'
 import axios from 'axios'
+import Footer from './Footer'
 
 export default {
     data () {
@@ -31,12 +36,10 @@ export default {
             currentRoute: this.$route.path
         }
     },
-  
     methods: {
-       // sends a movie to infopage (details) 
       viewMovie(newMovie) {
-          console.log('movie: ', newMovie)
-        const newInfoMovie = {
+            console.log('movie: ', newMovie)
+            const newInfoMovie = {
                 movieTitle: newMovie.title,
                 movieTitle2: newMovie.name,
                 moviePosterPath: newMovie.backdrop_path,
@@ -45,11 +48,9 @@ export default {
                 movieVote: newMovie.vote_average,
                 movieRelease: newMovie.release_date,
                 movieId: newMovie.id,
-
-            }
+        }
           this.$store.dispatch('setInfoMovie', newInfoMovie) 
       },
-
         // NEXT PAGE
       nextPage () {
           var page = this.page
@@ -60,7 +61,6 @@ export default {
             this.$store.dispatch('nextPageTv', page)
           }
       },
-
         // PREV PAGE
       prevPage () {
           var page = this.page
@@ -77,6 +77,7 @@ export default {
     },
     components: {
         appMovie: Movie,
+        appFooter: Footer,
     },
     computed: {     
         movies() {
@@ -90,7 +91,7 @@ export default {
                return this.$store.getters.searchResult
             }
             else {
-               return this.$store.getters.favourites
+               return this.$store.getters.favouriteMovies
             }
         },
         page () {
@@ -111,21 +112,67 @@ export default {
 
 
 <style scoped>
-* {
+
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height:60vh;
+    margin-top:-10px;
 }
 #movie-grid {
-    Width:80%;
-    margin-left:20%;
+    width:80%;
+    margin-left:200px;
     height:100%;
-    margin-top: 1%;
 }
 .active {
     border: 2px solid rgb(13, 153, 247);
 }
 .buttons {
     display: flex;
-    width:95%;
     justify-content: center;
-    /* border:1px solid white; */
+    text-align: center;
+    margin-top:-5px;
+    /* margin-bottom:-5px; */
 }
+button {
+    width: 3rem;
+    height:2rem;
+    background: rgba(0,0,0,0);
+    outline: none;
+    border:none;
+    color:white;
+    cursor:pointer;
+    margin:8px;
+    margin-bottom:10px;
+    margin-right:2px;
+    margin-left:2px;
+    font-size: 18px;
+}
+.arrow {
+    margin:8px;
+    font-size:19px;
+    transition: 0.25s;
+}
+.arrow:hover {
+    color: var(--primary-color);
+}
+.page {
+    font-size: 17px;
+    margin: auto 0;
+}
+
+
+@media only screen and (max-width: 524px) {
+    #movie-grid {
+        margin-top:85px;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    #movie-grid {
+        margin-left:150px;
+    }
+}
+
 </style>

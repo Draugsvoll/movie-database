@@ -17,6 +17,8 @@ export default {
 </script>
 
 
-<style  scoped>
-
+<style scoped>
+    li {
+        letter-spacing:0.05rem;
+    }
 </style>

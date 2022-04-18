@@ -3,7 +3,6 @@
       <!-- v-if=" !infoMovie.overview == ''" -->
       <!-- v-bind:style="infoMovie.overview == '' ? 'visibility: hidden;' : ''" -->
     <div class="infopage"  >
-      woefirjgeo
         <!-- movie info -->
         <div><button class="close" @click="closeInfoPage"  >Close</button></div>
         <div><h1>{{ infoMovie.title }}</h1></div>
@@ -56,10 +55,10 @@ export default {
 
  
 
-<style  scoped>
+<style scoped>
 .infopage {
     border-left: 1px solid black;
-    background: rgba(17, 27, 41, 0.9);
+    background:  var(--background-color);
     width:35%;
     min-width:775px;
     position: fixed;

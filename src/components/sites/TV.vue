@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style >
+<style scoped >
 .container {
   display: flex;
     padding-top:100px;
