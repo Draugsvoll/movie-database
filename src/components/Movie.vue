@@ -77,7 +77,7 @@ export default {
     font-size:14px;
 }
 .movie {
-    margin:18px 12px;
+    margin:18px 8px;
     cursor: pointer;
     display: inline-block;
     max-width: var(--asset-width);
@@ -91,7 +91,7 @@ export default {
 
 .movie:hover {
     /* transform: scale(1.09); */
-    transform: translateY(-15px);
+    transform: translateY(-12px);
 }
 
 .extra {
@@ -103,11 +103,12 @@ export default {
     width:100%;
     width: var(--asset-width);
     visibility: hidden;
-    margin-top:-40px;
+    margin-top:-60px;
     transition:var(--transition-duration-asset);
     border-radius: 5px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+    z-index:-1;
 }
 .extra > p {
     overflow: hidden; 
@@ -148,6 +149,7 @@ img {
     vertical-align: top;
     border:1px solid rgb(33, 33, 34);
     border:none;
+    z-index:1;
 }
 img:hover {
     /* border: 1px solid rgb(41, 171, 194); */
@@ -155,7 +157,6 @@ img:hover {
 .title {
     font-size: 16px;
     text-align: center;
-    letter-spacing: 0.02rem;
     margin:5px 0 8px 0;
 }
 p {
