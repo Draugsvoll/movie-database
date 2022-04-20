@@ -144,7 +144,7 @@ button {
     color:white;
     cursor:pointer;
     margin:8px;
-    margin-bottom:10px;
+    margin-bottom:12px;
     margin-right:2px;
     margin-left:2px;
     font-size: 18px;
@@ -159,7 +159,7 @@ button {
 }
 .page {
     font-size: 17px;
-    margin: auto 0;
+    margin: auto 15px;
 }
 
 

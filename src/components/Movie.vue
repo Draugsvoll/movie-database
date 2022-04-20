@@ -1,6 +1,6 @@
 <template>
         <!-- MOVIE-CONTAINER -->
-        <div class="movie" ref="image" v-if="movie.poster_path != null"  @click="viewMovie(movie.id)" >
+        <div class="movie" ref="movie" v-if="movie.poster_path != null"  @click="viewMovie(movie.id)" >
             <div class="box">
                 <img  @load="loaded"  v-bind:src="base_url + movie.poster_path" alt="" >
             </div>
@@ -51,7 +51,7 @@ export default {
             }
         },
         loaded() {
-            this.$refs.image.classList.add('loaded')
+            this.$refs.movie.classList.add('loaded')
         },
     },
     mounted () {
@@ -81,7 +81,8 @@ export default {
     cursor: pointer;
     display: inline-block;
     max-width: var(--asset-width);
-    transition:var(--transition-duration-asset);
+    transition:all var(--transition-duration-asset);
+    opacity:0;
 }
 
 
