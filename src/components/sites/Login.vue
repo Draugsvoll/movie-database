@@ -9,19 +9,15 @@
             <div class="form">
                 <span></span>
                 <input v-model="email" type="text" name="email" placeholder=" Email"  autofocus>
-                <br>
-                <br>
                 <span></span>
                 <input v-model="password" type="text" name="password" placeholder=" Password">
                 <div class="btn">
                     <button @click="login">Login</button>
                     <button @click=signUp()>Sign Up</button>
                 </div>
-                <br>
-                <br>
                 <div>
                     <div class="text">
-                        Continue as<button class="test" @click="loginAsTest">Test User</button>
+                        Login as<button class="test" @click="loginAsTest">Test User</button>
                     </div> 
                 </div>
             </div>
@@ -58,8 +54,8 @@ export default {
         signUp () {
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
                 .then(response => console.log(response))
-                .catch(function(error) {
-                    alert('Invalid username/password format')
+                .catch(error => {
+                    alert('Please enter a valid email/password format ')
               var errorCode = error.code;
               var errorMessage = error.message;
             });
@@ -71,7 +67,7 @@ export default {
                     window.location.href = `/movies`
                 })
                 .catch( err => {
-                    alert('Wrong username/password' + err)
+                    alert(err)
                 })
         }
     },
@@ -82,6 +78,7 @@ export default {
 <style scoped>
 * {
     /* border:1px solid red; */
+    transition: 0.2s;
 }
 .outer-container {
     position:relative;
@@ -98,11 +95,11 @@ export default {
     z-index: 9;
 }
 .overlay {
-    background: rgb(2 5 22 / 45%);
+    background: rgba(8, 21, 37, 0.45);
 }
 .text button, .text {
-    font-size: 0.9rem;
-    margin-top:-25px;
+    font-size: 1rem;
+    margin-top:10px;
 }
 .test {
     background:rgba(0,0,0,0);
@@ -123,11 +120,12 @@ export default {
 .btn {
     display: flex;
     width:100%;
-    margin-top:15px;
+    margin-top:10px;
+    justify-content: space-between;
 }
 .form {
     padding:3rem 4rem;
-    margin:20px auto auto auto;
+    margin:-10px auto auto auto;
     display: flex;
     flex-direction: column;
     background: rgba(17, 19, 22, 0);
@@ -137,9 +135,8 @@ img {
 }
 button {
     margin-top:2rem;
-    margin-right:15px;
     padding:12px 20px;
-    min-width:100px;
+    width:47%;
     background: rgb(0, 94, 115);
     border:none;
     border-radius:3px;
@@ -151,8 +148,8 @@ button:hover {
     background:rgb(14, 103, 125);
 }
 input {
-    margin: 0.2rem 0;
-    width:16rem;
+    margin-top:33px;
+    width:15rem;
     font-size: 17px;
     height:1.5rem;
     background:rgba(255,255,255,0);
@@ -162,11 +159,10 @@ input {
     outline:none;
 }
 input:focus {
-    /* border-bottom:rgb(133, 246, 250) 1px solid; */
     border-bottom:aqua 1px solid;
 }
 ::placeholder {
     font-style:italic;
-    color:rgb(162, 162, 162);
+    color:rgb(175, 175, 175);
 }
 </style>
