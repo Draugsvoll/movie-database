@@ -9,11 +9,11 @@
                 <li  :class="{ active : activeIndex == 0}"  @click="activeIndex = 0; showMovies()"> <a :class="{ active : activeIndex == 0}" href="#">Movies</a></li>
                 <li  :class="{ active : activeIndex == 1}"  @click="activeIndex = 1; showTv()"><a :class="{ active : activeIndex == 1}" href="#">TV</a></li>
                 <li  :class="{ active : activeIndex == 2}"  @click="activeIndex = 2; showSearch()"><a :class="{ active : activeIndex == 2}" href="#">Search</a></li>
-                <li  :class="{ active : activeIndex == 3}"  @click="activeIndex = 3; showFavs()"><a :class="{ active : activeIndex == 3}" href="#">Favourites</a></li>
+                <li  :class="{ active : activeIndex == 3}"  @click="activeIndex = 3; showFavs()"><a :class="{ active : activeIndex == 3}" href="#">My Favourites</a></li>
             </ul>
         </div>
         <div>
-            <a  @click="logout"><button>Logout</button></a>
+            <a  @click="logout"><button>Logout</button></a> <span class="user">({{user}})</span>
         </div>
     </header>
 </template>
@@ -138,7 +138,10 @@ img {
     /* margin-left:1.5rem;
     margin-bottom:-15px; */
 }
-
+.user {
+    font-size: 14px;
+    color:rgb(226, 234, 235);
+}
 
 @media only screen and (max-width: 524px) {
  .nav_links {

@@ -5,12 +5,12 @@
     <div class="container">
 
       <div class="upper-btn">
-          <div :class="{ activeBtn : type == 'movie'}" class="select-btn" @click="viewMovies">
-            <div :class="{ pointer : type == 'movie' }" class="fas fa-chevron-right arrow1"></div> Movies
-          </div>
-          <div :class="{ activeBtn : type === 'tv'}" class="select-btn" @click="viewTv">
-            <div :class="{ pointer : type == 'tv' }" class="fas fa-chevron-right arrow2"></div> Series
-          </div>
+        <div :class="{ activeBtn : type == 'movie'}" class="select-btn" @click="viewMovies">
+          <div :class="{ pointer : type == 'movie' }" class="fas fa-chevron-right arrow1"></div> Movies
+        </div>
+        <div :class="{ activeBtn : type === 'tv'}" class="select-btn" @click="viewTv">
+          <div :class="{ pointer : type == 'tv' }" class="fas fa-chevron-right arrow2"></div> Series
+        </div>
       </div>
 
       <h3 v-if="listEmpty">No favourites added</h3>
@@ -94,6 +94,9 @@ export default {
               const favMovies = []
               for (let key in resp){
                 favMovies.push(resp[key])
+              }
+              if (favMovies.length === 0) {
+                this.listEmpty = true
               }
               this.$store.dispatch('fetchFavourites', favMovies)
             })
