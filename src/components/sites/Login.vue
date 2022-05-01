@@ -109,7 +109,7 @@ export default {
     padding-top:85px;
 }
 .overlay {
-    background: rgba(8, 21, 37, 0.4);
+    background: rgba(8, 21, 37, 0.5);
 }
 .text button, .text {
     font-size: 1rem;
