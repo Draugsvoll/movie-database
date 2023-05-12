@@ -7,7 +7,7 @@
 
         
         <div class="container overlay">
-        <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="" width="150">
+        <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="" width="135">
             <div class="form">
                 <span></span>
                 <input v-model="email" type="text" name="email" placeholder=" Email"  autofocus>
@@ -109,7 +109,7 @@ export default {
     padding-top:85px;
 }
 .overlay {
-    background: rgba(8, 21, 37, 0.5);
+    background: rgba(8, 21, 37, 0.52);
 }
 .text button, .text {
     font-size: 1rem;
@@ -139,7 +139,7 @@ export default {
 }
 .form {
     padding:3rem 4rem;
-    margin:-10px auto auto auto;
+    margin:0px auto auto auto;
     display: flex;
     flex-direction: column;
     background: rgba(17, 19, 22, 0);
@@ -164,19 +164,19 @@ button:hover {
 input {
     margin-top:33px;
     width:16rem;
-    font-size: 17px;
+    font-size: 15px;
     height:1.5rem;
     background:rgba(255,255,255,0);
     border:none;
     color: rgb(233, 240, 245);
-    border-bottom:1px solid white;
+    border-bottom:1px solid rgba(255, 255, 255, 0.906);
     outline:none;
 }
 input:focus {
     border-bottom:aqua 1px solid;
 }
 ::placeholder {
-    color:rgb(175, 175, 175);
+    color:rgba(194, 194, 194, 0.867);
 }
 
 .loader {
@@ -206,7 +206,7 @@ input:focus {
 }
 @media only screen and (min-height: 650px) {
   .container {
-    padding-top:165px;
+    padding-top:150px;
   }
 }
 @media only screen and (min-height: 1200px) {

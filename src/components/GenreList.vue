@@ -68,7 +68,7 @@ ul{
     height:80%;
 }
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 5px;
   background:rgb(28, 30, 32);
   border-radius:10px;
 }

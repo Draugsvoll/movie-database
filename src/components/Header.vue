@@ -84,7 +84,7 @@ export default {
 }
 
 li, a, button{
-    font-size:17px;
+    font-size:15px;
     color:rgb(159, 158, 158);
 }
 ul li a {
@@ -97,12 +97,11 @@ header{
     justify-content: space-evenly;
     align-items:baseline;
     background: rgb(15 18 23 / 93%);
-    min-height:75px;
     width:100%;
     position: fixed;
     border-bottom:1px solid var(--primary-color);
     z-index:99;
-    letter-spacing: 0.03rem;
+    letter-spacing: 0.015rem;
 }
 header > div {
     margin-top:auto;
@@ -139,7 +138,7 @@ img {
     margin-bottom:-15px; */
 }
 .user {
-    font-size: 14px;
+    font-size: 13px;
     color:rgb(226, 234, 235);
 }
 

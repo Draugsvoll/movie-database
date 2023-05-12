@@ -46,6 +46,10 @@ footer{
   margin-top:20px;
   margin-bottom:10px;
 }
+.icons > a:hover {
+  transition:0.2s;
+  color:white;
+}
 i:hover {
   color:rgb(227, 245, 248);
 }

@@ -140,7 +140,7 @@ h3 {
 .crew-text {
     background: white;
     color:black;
-    padding:0.5rem;
+    padding:0.65rem 0.5rem; 
     max-width:200px;
 }
 .actor-container, .crew-container {
@@ -149,7 +149,10 @@ h3 {
     margin-top:-10px;
 }
 .actor, .crew {
-    margin: 1rem 0.7rem;
+    margin: 1rem 0.75rem;
+}
+.actor > div, .crew > div {
+    border-radius: 4px;
 }
 .credits {
     display: flex;
@@ -168,7 +171,7 @@ h3 {
 p {
     font-size: 14px;
     padding:0.5rem;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     text-shadow: 1px 1px 1px black;
 }
@@ -205,7 +208,7 @@ button:hover {
 }
 
 .close {
-    padding: 1.3rem 2.5rem;
+    padding: 1.2rem 2.3rem;
     margin-top:20px;
     font-size:20px;
 }

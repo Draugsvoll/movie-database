@@ -148,10 +148,10 @@ body, html {
   font-family: sans-serif;
 }
 input {
-  width:300px;
+  width:275px;
   height:2rem;
-  margin-top:2rem;
-  font-size: 1.2rem;
+  margin-top:1rem;
+  font-size: 1.1rem;
   background: rgba(0,0,0,0);
   border:none;
   color: white;
@@ -177,7 +177,7 @@ input {
   margin:0 0rem;
   cursor:pointer;
   color:grey;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding:0.5rem
 }
 .searchField {
@@ -189,6 +189,7 @@ input {
   height:2.2rem;
   margin-left:20px;
   border-radius: 5px;
+  font-size:0.9rem;
 }
 @media only screen and (max-width: 470px) {
   input {

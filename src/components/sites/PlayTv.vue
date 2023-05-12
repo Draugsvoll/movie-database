@@ -2,7 +2,10 @@
     <div class="container">
         <!-- <app-header></app-header> -->
         <iframe v-bind:src=" `https://www.youtube.com/embed/${trailer}?autoplay=1`" allow="autoplay" frameborder='0'  ></iframe>
-        <a href="javascript:history.go(-1)"><button><div class="fas fa-arrow-left" ></div> Back</button></a>
+        <div class="btn-row">
+            <a href="javascript:history.go(-1)"><button><div class="fas fa-arrow-left" ></div> Back</button></a> 
+            <p>Not playing? try <a href="javascript:window.location.reload()">refresh</a> </p>
+        </div>
     </div>
 </template>
 
@@ -39,6 +42,23 @@ export default {
     margin:auto;
     /* margin-top:125px; */
 }
+.btn-refresh {
+    width:5rem;
+}
+.btn-row {
+    display:flex;
+    justify-content: center;
+}
+.btn-row > * {
+    display:block;
+    padding-top:0.7rem;
+}
+.btn-row p {
+    margin:auto 0;
+    height:fit-content;
+    margin-left:1rem;
+    font-size: 0.75rem;
+}
 .container {
     margin:0;
     padding:0;
@@ -58,11 +78,11 @@ p {
     font-size:10.5px;
 }
 a {
-    margin:0 auto;
-    margin-top: 12px;   
+    margin:auto 0; 
 }
 button {
     padding:5px;
+    margin: auto;
 }
 
 .box {

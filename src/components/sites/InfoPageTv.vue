@@ -170,7 +170,7 @@ h3 {
 p {
     font-size: 14px;
     padding:0.5rem;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     text-shadow: 1px 1px 1px black;
 }
@@ -207,7 +207,7 @@ button:hover {
 }
 
 .close {
-    padding: 1.3rem 2.5rem;
+    padding: 1.2rem 2.3rem;
     margin-top:20px;
     font-size:20px;
 }

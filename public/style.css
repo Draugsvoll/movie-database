@@ -9,9 +9,11 @@ html {
 	--primary-color: rgb(41, 171, 194);
 
     --background-color: rgb(17, 19, 22);
-    --background-color-1: rgb(39, 45, 54);
+    --background-color-1: rgba(39, 45, 54, 1);
 
-    --asset-width:220px;
+    --white-font:rgb(247, 249, 250);
+
+    --asset-width:200px;
 
     --transition-duration: 0.2s;
     --transition-duration-asset: 0.4s;
