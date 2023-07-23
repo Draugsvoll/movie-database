@@ -103,15 +103,17 @@ const mutations = {
             })
     },
     'FETCH_GENRE_LIST' (state) {
-        state.genreList = []
-        axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
-                resp = resp.data.genres
-                resp.forEach( genre => {
-                    const newGenre = { id: genre.id, name: genre.name }
-                    state.genres.push(newGenre)
-                })
-                console.log(state.genres)
-            })
+        state.genreList = [];
+        const uniqueParam = new Date().getTime();
+        axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&v=${uniqueParam}`)
+        .then(resp => {
+            resp = resp.data.genres;
+            resp.forEach(genre => {
+            const newGenre = { id: genre.id, name: genre.name };
+            state.genres.push(newGenre);
+            });
+            console.log(state.genres);
+        });
     },
     'FETCH_TV_GENRE_LIST' (state) {
         state.genreList = []

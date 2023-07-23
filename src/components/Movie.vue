@@ -104,7 +104,7 @@ export default {
 }
 
 .extra {
-    background: var(--background-color-1);
+    background: rgb(34, 44, 58);
     padding: 12px;
     opacity:0;
     position: absolute;
