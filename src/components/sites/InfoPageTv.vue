@@ -168,7 +168,7 @@ h3 {
     min-height:88vh;
 }
 p {
-    font-size: 14px;
+    font-size: 0.9rem;
     padding:0.5rem;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
@@ -195,7 +195,7 @@ button {
     text-shadow: 1px 1px 1px black;
     margin: 0px 10px 0px 0;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400!important;
 }
 button:hover {
@@ -208,12 +208,12 @@ button:hover {
 
 .close {
     padding: 1.2rem 2.3rem;
-    margin-top:20px;
-    font-size:20px;
+    margin-top:1.2rem;
+    font-size:1.1rem;
 }
 .overview {
-    margin-top: 15px;
-    font-size: 18px;
+    margin-top:1.0rem;
+    font-size: 1.1rem;
 }
 img {
     width:100%;
@@ -221,7 +221,7 @@ img {
 h1 {
     margin:200px 0 15px 0;
     text-shadow: 1px 1px 4px black;
-    font-size:50px;
+    font-size:3rem;
 }
 
 /* SLIDES */

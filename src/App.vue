@@ -30,7 +30,7 @@ export default {
 <style >
 .container {
   display: flex;
-    padding-top:95px;
+    padding-top:5.9rem;
 }
 body, html {
   min-height: 100%;

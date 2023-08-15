@@ -155,8 +155,9 @@ body, html {
   margin:0 0rem;
   cursor:pointer;
   color:grey;
-  font-size: 1.1rem;
-  padding:0.5rem
+  font-size: 1.05rem;
+  padding:0.5rem;
+  letter-spacing: 0.005rem;
 }
 @media only screen and (max-width: 500px) {
   img {

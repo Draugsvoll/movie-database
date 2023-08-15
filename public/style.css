@@ -15,7 +15,7 @@ html {
 
     --white-font:rgb(247, 249, 250);
 
-    --asset-width:200px;
+    --asset-width:12.5rem;
 
     --transition-duration: 0.2s;
     --transition-duration-asset: 0.4s;
@@ -23,3 +23,14 @@ html {
 
     /* overflow-x:hidden; */
 }
+
+  @media screen and (min-width: 2000px) {
+    :root {
+      font-size: 22px;
+    }
+  }
+  @media screen and (min-width: 3500px) {
+    :root {
+      font-size: 27px;
+    }
+  }
