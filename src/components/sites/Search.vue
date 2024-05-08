@@ -148,10 +148,11 @@ body, html {
   font-family: sans-serif;
 }
 input {
-  width:275px;
+  width:15rem;
   height:2rem;
   margin-top:1rem;
-  font-size: 1.1rem;
+  font-size: 1.03rem;
+  letter-spacing: 0.005rem;
   background: rgba(0,0,0,0);
   border:none;
   color: white;
@@ -177,19 +178,22 @@ input {
   margin:0 0rem;
   cursor:pointer;
   color:grey;
-  font-size: 1.1rem;
-  padding:0.5rem
+  font-size: 1.0rem;
+  padding:0.5rem;
+  letter-spacing: 0.03rem;
 }
 .searchField {
   display: inline-flex;
   justify-content: center;
 }
 .search {
-  width:78px;
+  width:4.8rem;
   height:2.2rem;
   margin-left:20px;
   border-radius: 5px;
-  font-size:0.9rem;
+  font-size:0.82rem;
+  transition: all 0.25s;
+  letter-spacing: 0.05rem;
 }
 @media only screen and (max-width: 470px) {
   input {

@@ -67,19 +67,18 @@ export default {
 <style scoped>
 #star {
     color: #e8b923;
-    font-size: 16px;
-    padding-bottom:1px;
+    font-size: 0.9rem;
 }
 #likes {
     color:var(--primary-color);
-    padding-bottom:2px;
-    font-size: 17px;
+    font-size: 1rem;
+    padding-left:0.08rem;
 }
 #year {
-    font-size:14px;
+    font-size:0.87rem;
 }
 .movie {
-    margin:20px 15px;
+    margin:1.15rem 1rem;
     cursor: pointer;
     display: inline-block;
     max-width: var(--asset-width);
@@ -95,22 +94,22 @@ export default {
 
 
 .box {
-    margin-bottom:-1px;
+    margin-bottom:-0.07rem;
 }
 
 .movie:hover {
-    /* transform: scale(1.09); */
-    transform: translateY(-8px);
+    transform: translateY(-0.33rem);
 }
 
 .extra {
     background: rgb(34, 44, 58);
-    padding: 12px;
+    background: var(--background-color-lighter);
+    padding: 0.75rem;
     opacity:0;
     position: absolute;
     width:inherit;
     visibility: hidden;
-    margin-top:-37px;
+    margin-top:-1.5rem;
     transition:var(--transition-duration-asset);
     border-radius: 12px;
     border-top-left-radius: 0px;
@@ -127,11 +126,11 @@ export default {
     -webkit-box-orient: vertical;
 
     width: inherit;
-    font-size:13px;
+    font-size:0.81rem;
     line-height: 1rem;
     text-align:left;
     margin:auto auto;
-    margin-bottom:12px;
+    margin-bottom:0.75rem;
 }
 .movie:hover > .extra {
     opacity:1;
@@ -141,8 +140,8 @@ export default {
 }
 .row1 {
     display:flex;
-    font-size:14px;
-    padding: 0 2px 0 2px;
+    font-size:0.9rem;
+    padding: 0 0.18rem 0 0.18rem;
     overflow:hidden;
 }
 .row1 > div {
@@ -163,21 +162,22 @@ img:hover {
     /* border: 1px solid rgb(41, 171, 194); */
 }
 .title {
-    font-size: 16px;
+    font-size: 0.95rem;
     text-align: center;
-    margin:5px 0 8px 0;
+    margin:0.35rem 0 0.6rem 0;
     z-index:1;
     position: relative;
 }
 .title2 {
+    font-size: 0.95rem;
     margin-bottom:0;
-    margin-top:12px;
+    margin-top:0.8rem;
     color:rgb(247, 249, 250);
     letter-spacing: 0.035rem;
 }
 p {
     overflow:hidden;
-    max-width:200px;
+    max-width:100%;
     text-align: center;
 }
 .loaded {

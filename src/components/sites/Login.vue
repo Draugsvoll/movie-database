@@ -7,7 +7,7 @@
 
         
         <div class="container overlay">
-        <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="" width="135">
+        <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="">
             <div class="form">
                 <span></span>
                 <input v-model="email" type="text" name="email" placeholder=" Email"  autofocus>
@@ -90,7 +90,6 @@ export default {
 
 <style scoped>
 * {
-    /* border:1px solid red; */
     transition: 0.2s;
 }
 .outer-container {
@@ -109,11 +108,13 @@ export default {
     padding-top:85px;
 }
 .overlay {
-    background: rgba(8, 21, 37, 0.52);
+    background: rgba(8, 21, 37, 0.48);
 }
 .text button, .text {
-    font-size: 1rem;
-    margin-top:10px;
+    font-size: 0.9rem;
+    letter-spacing: 0.02rem;
+    margin-top:0.65rem;
+    font-family: arial;
 }
 .test {
     background:rgba(0,0,0,0);
@@ -124,8 +125,7 @@ export default {
     text-decoration: underline;
     padding:0 !important;
     text-align: left;
-    margin-left:5px;
-    /* width:3.5rem !important; */
+    margin-left:0.31rem;
 }
 .test:hover {
     background:rgba(0,0,0,0);
@@ -134,8 +134,13 @@ export default {
 .btn {
     display: flex;
     width:100%;
-    margin-top:10px;
+    margin-top:0.62rem;
     justify-content: space-between;
+}
+.btn > button {
+    letter-spacing:0.02rem;
+    font-size:0.74rem;
+    font-weight: 600;
 }
 .form {
     padding:3rem 4rem;
@@ -146,10 +151,11 @@ export default {
 }
 img {
     margin:0 auto 0 auto;
+    width:7.5rem;
 }
 button {
     margin-top:2rem;
-    padding:12px 20px;
+    padding:0.75rem 1.25rem;
     width:47%;
     background: rgb(0, 94, 115);
     border:none;
@@ -162,9 +168,10 @@ button:hover {
     background:rgb(14, 103, 125);
 }
 input {
-    margin-top:33px;
+    letter-spacing: 0.02rem;
+    margin-top:2rem;
     width:16rem;
-    font-size: 15px;
+    font-size: 0.9rem;
     height:1.5rem;
     background:rgba(255,255,255,0);
     border:none;
@@ -183,8 +190,8 @@ input:focus {
   border: 10px solid #f3f3f3ef; /* Light grey */
   border-top: 10px solid #0d4a72e8; /* Blue */
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   animation: spin 1s linear infinite;
   position:absolute;
   right:47%;
@@ -211,7 +218,7 @@ input:focus {
 }
 @media only screen and (min-height: 1200px) {
   .container {
-    padding-top:280px;
+    padding-top:17.5rem;
   }
 }
 </style>

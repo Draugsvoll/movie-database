@@ -4,7 +4,7 @@
         <iframe v-bind:src=" `https://www.youtube.com/embed/${trailer}?autoplay=1`" allow="autoplay" frameborder='0'  ></iframe>
         <div class="btn-row">
             <a href="javascript:history.go(-1)"><button><div class="fas fa-arrow-left" ></div> Back</button></a> 
-            <p>Not playing? try <a href="javascript:window.location.reload()">refresh</a> </p>
+            <p>Not playing? <a href="javascript:window.location.reload()">refresh</a> </p>
         </div>
     </div>
 </template>
@@ -12,7 +12,6 @@
 
 <script>
 import Axios from 'axios'
-import Header from '../Header'
 
 export default {    
     data () {
@@ -40,7 +39,6 @@ export default {
     outline:none;
     border:none;
     margin:auto;
-    /* margin-top:125px; */
 }
 .btn-refresh {
     width:5rem;
@@ -57,7 +55,7 @@ export default {
     margin:auto 0;
     height:fit-content;
     margin-left:1rem;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
 }
 .container {
     margin:0;
@@ -74,18 +72,24 @@ export default {
 }
 p {
     margin:0 auto;
-    margin-top:10px;
-    font-size:10.5px;
+    margin-top:0.62rem;
+    font-size:0.65rem;
 }
 a {
     margin:auto 0; 
+    color:var(--primary-color);
 }
 button {
-    padding:5px;
-    margin: auto;
+    padding:0.5rem 0.7rem;
+    background: transparent;
+    color:white;
+    border:1px solid var(--primary-color);
+    cursor:pointer;
+    font-size:0.8rem;
+    border-radius:3px;
 }
 
 .box {
-    margin-top:50px;
+    margin-top:3.1rem;
 }
 </style>

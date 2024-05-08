@@ -56,9 +56,7 @@ export default {
 
 <style scoped>
 * {
-    /* border:1px red solid; */
-    letter-spacing: 1px;
-
+    letter-spacing: 0.06rem;
 }
 ul{
     list-style: none;
@@ -68,7 +66,7 @@ ul{
     height:80%;
 }
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 0.31rem;
   background:rgb(28, 30, 32);
   border-radius:10px;
 }
@@ -81,8 +79,7 @@ ul{
       /* background:rgb(30, 145, 165); */
 }
 #genre {
-    /* margin-top:40px; */
-    width:198px;
+    width:12rem;
     height:100%;
     position: fixed;
     justify-content: center;
@@ -91,13 +88,13 @@ h1 {
     text-align: center;
 }
 li {
-    margin-left:16px;
+    margin-left:1rem;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    padding: 7px;
-    margin-bottom:1px;
+    padding: 0.4rem;
+    margin-bottom:0.06rem;
     width:85%;
-    font-size: 16px;
+    font-size: 0.88rem;
     cursor: pointer;
     border-left: 1px solid  rgb(17, 19, 22);
     color:rgb(160, 159, 159);

@@ -118,11 +118,11 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
     min-height:60vh;
-    margin-top:-15px;
+    margin-top:-0.95rem;
 }
 #movie-grid {
     width:80%;
-    margin-left:200px;
+    margin-left:12.5rem;
     height:100%;
 }
 .active {
@@ -132,7 +132,7 @@ export default {
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-bottom:20px;
+    margin-bottom:1.25rem;
 }
 button {
     width: 3rem;
@@ -142,23 +142,23 @@ button {
     border:none;
     color:var(--white-font);
     cursor:pointer;
-    margin:8px;
-    margin-bottom:12px;
-    margin-right:2px;
-    margin-left:2px;
-    font-size: 18px;
+    margin:0.5rem;
+    margin-bottom:0.75rem;
+    margin-right:0.12rem;
+    margin-left:0.12rem;
+    font-size: 1.12rem;
 }
 .arrow {
-    margin:8px;
-    font-size:18px;
+    margin:0.5rem;
+    font-size:1.12rem;
     transition: 0.25s;
 }
 .arrow:hover {
     color: var(--primary-color);
 }
 .page {
-    font-size: 16px;
-    margin: auto 15px;
+    font-size: 0.97rem;
+    margin: auto 0.95rem;
     color: var(--white-font);
 }
 

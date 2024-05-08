@@ -2,8 +2,9 @@
     <div class="container">
         <!-- <app-header></app-header> -->
         <iframe v-bind:src=" `https://www.youtube.com/embed/${trailer}?autoplay=1`" allow="autoplay" frameborder='0'  ></iframe>
-        <div class="text2">
-            <a href="javascript:history.go(-1)"><button><div class="fas fa-arrow-left" ></div> Back</button></a>
+        <div class="btn-row">
+            <a href="javascript:history.go(-1)"><button><div class="fas fa-arrow-left" ></div> Back</button></a> 
+            <p>Not playing? <a href="javascript:window.location.reload()">refresh</a> </p>
         </div>
     </div>
 </template>
@@ -11,7 +12,6 @@
 
 <script>
 import Axios from 'axios'
-import Header from '../Header'
 
 export default {    
     data () {
@@ -40,7 +40,6 @@ iframe {
     outline:none;
     border:none;
     margin:auto;
-    /* margin-top:125px; */
 }
 .container {
     margin:0;
@@ -57,18 +56,50 @@ iframe {
 }
 p {
     margin:0 auto;
-    margin-top:10px;
-    font-size:10.5px;
+    margin-top:0.62rem;
+    font-size:0.65rem;
 }
 a {
     margin:0 auto;   
-    margin-top: 12px;   
+    margin-top: 0.75rem; 
+    color:var(--primary-color);
 }
 button {
-    padding:5px;
+    padding:0.5rem 0.7rem;
+    background: transparent;
+    color:white;
+    border:1px solid var(--primary-color);
+    font-size:0.8rem;
+    border-radius:3px;
+    cursor:pointer;
 }
 
 .box {
-    margin-top:50px;
+    margin-top:3.1rem;
+}
+.btn-refresh {
+    width:5rem;
+}
+.btn-row {
+    display:flex;
+    justify-content: center;
+}
+.btn-row > * {
+    display:block;
+    padding-top:0.7rem;
+}
+.btn-row p {
+    margin:auto 0;
+    height:fit-content;
+    margin-left:1rem;
+    font-size: 0.65rem;
+}
+p {
+    margin:0 auto;
+    margin-top:0.62rem;
+    font-size:0.65rem;
+}
+a {
+    margin:auto 0; 
 }
 </style>
