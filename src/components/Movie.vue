@@ -99,10 +99,10 @@ export default {
 
 .movie:hover {
     transform: translateY(-0.33rem);
+    transform: scale(1.025);
 }
 
 .extra {
-    background: rgb(34, 44, 58);
     background: var(--background-color-lighter);
     padding: 0.75rem;
     opacity:0;
