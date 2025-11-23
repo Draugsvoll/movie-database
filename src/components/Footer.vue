@@ -14,14 +14,21 @@
             </div>
           </div>
           <!-- Copyright -->
-        <div class="copyright"> <a>© 2021 Copyright | Ove Henrik Draugsvoll</a> </div>
+        <div class="copyright"> <a>© {{currentYear}} | Ove Henrik Draugsvoll</a> </div>
 
     </footer>
 </template>
 
-
-
-
+<script>
+export default {
+  name: "FooterCopyright",
+  data() {
+    return {
+      currentYear: new Date().getFullYear()
+    };
+  }
+};
+</script>
 
 <style scoped>
 i {

@@ -140,15 +140,26 @@ h3 {
     letter-spacing: 0.15rem;
 }
 .crew-text {
-    background: white;
-    color:black;
+    background: var(--background-color-lighter);
+    color:white;
     padding:0.5rem;
-    max-width:200px;
+    max-width:220px;
+    width:220px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;          /* hides text outside box */
+    text-overflow: ellipsis;   /* adds ... when clipped */
+    white-space: nowrap;       /* keeps text on one line */
+}
+.crew-text > h3 {
+    margin-bottom:0.15rem;
 }
 .actor-container, .crew-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top:-10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 220px); /* fixed item width */
+    justify-content: center;  /* centers all rows horizontally */
+    gap: 1.5rem;               /* spacing between items */
+    margin-top: 1rem;
 }
 .actor, .crew {
     margin: 1rem 0.7rem;
@@ -159,8 +170,11 @@ h3 {
     justify-content: center;
 }
 .profile {
-    width:200px;
+    max-width:220px;
+    width:220px;
     display: flex;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .preview {
     background-size: cover;
@@ -216,7 +230,7 @@ button:hover {
     font-size: 1.1rem;
 }
 img {
-    width:100%;
+    width:inherit;
 }
 h1 {
     margin:200px 0 15px 0;

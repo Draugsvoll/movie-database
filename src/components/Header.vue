@@ -99,7 +99,8 @@ header{
     display: flex;
     justify-content: space-evenly;
     align-items:baseline;
-    background: rgb(15 18 23 / 93%);
+    background: rgba(15, 18, 23, 0.936);
+    backdrop-filter: blur(3px);
     width:100%;
     position: fixed;
     border-bottom:1px solid var(--primary-color);
