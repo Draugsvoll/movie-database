@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "postinstall": "node scripts/patch-http-parser.js",
+    "serve": "node scripts/run-vue.js serve",
+    "build": "node scripts/run-vue.js build",
     "lint": "vue-cli-service lint"
+  },
+  "engines": {
+    "node": ">=14"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -21,8 +25,10 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "http-parser-js": "^0.5.10",
     "vue-template-compiler": "^2.6.11"
   },
   "ansi-styles": {

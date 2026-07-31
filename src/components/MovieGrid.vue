@@ -1,9 +1,21 @@
 <template>
 
-    <div id="movie-grid">
-        <!-- btn row  -->
-        <div v-if=" currentRoute != '/favourites' && currentRoute != '/search' " class="buttons">
-            <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} / 20</span> <button @click="nextPage"><div class=" arrow fas fa-arrow-right"></div></button>
+    <div id="movie-grid" ref="movieGrid">
+        <!-- category + pagination -->
+        <div v-if=" currentRoute != '/favourites' && currentRoute != '/search' " class="grid-toolbar">
+            <div class="category-block">
+                <span class="category-label">Genre</span>
+                <h2 class="category-title">{{ selectedGenre || 'Browse' }}</h2>
+            </div>
+            <div class="pager" role="navigation" aria-label="Pagination">
+                <button class="page-btn" @click="prevPage" aria-label="Previous page">
+                    <span class="arrow fas fa-arrow-left"></span>
+                </button>
+                <span class="page"><span class="page-current">{{ page }}</span><span class="page-sep">/</span><span class="page-total">20</span></span>
+                <button class="page-btn" @click="nextPage" aria-label="Next page">
+                    <span class="arrow fas fa-arrow-right"></span>
+                </button>
+            </div>
         </div>
 
         <div class="movie-container">
@@ -13,11 +25,16 @@
             ></app-movie>       
         </div>
         
-       <!-- btn row  -->
-        <div v-if=" currentRoute != '/search' && currentRoute != '/favourites' && movies != '' " class="buttons">
-            <button @click="prevPage" ><div class="arrow fas fa-arrow-left"></div></button> <span class="page">{{ page }} / 20</span>  <button @click="nextPage"><div class="arrow fas fa-arrow-right"></div></button>
+       <!-- bottom pagination -->
+        <div v-if=" currentRoute != '/search' && currentRoute != '/favourites' && movies != '' " class="pager bottom" role="navigation" aria-label="Pagination">
+            <button class="page-btn" @click="prevPage" aria-label="Previous page">
+                <span class="arrow fas fa-arrow-left"></span>
+            </button>
+            <span class="page"><span class="page-current">{{ page }}</span><span class="page-sep">/</span><span class="page-total">20</span></span>
+            <button class="page-btn" @click="nextPage" aria-label="Next page">
+                <span class="arrow fas fa-arrow-right"></span>
+            </button>
         </div>
-        <br>
 
         <app-footer></app-footer>
 
@@ -60,6 +77,7 @@ export default {
           } else {
             this.$store.dispatch('nextPageTv', page)
           }
+          this.scrollGridToTop()
       },
         // PREV PAGE
       prevPage () {
@@ -72,14 +90,25 @@ export default {
                 else {
                     this.$store.dispatch('prevPageTv', page)
                 }
+                this.scrollGridToTop()
           }
+      },
+      scrollGridToTop () {
+          this.$nextTick(() => {
+              const el = this.$refs.movieGrid
+              if (el && typeof el.scrollIntoView === 'function') {
+                  el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              } else {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+              }
+          })
       },
     },
     components: {
         appMovie: Movie,
         appFooter: Footer,
     },
-    computed: {     
+    computed: {
         movies() {
             if ( this.currentRoute == '/movies' ) {
                return this.$store.getters.movies
@@ -96,15 +125,12 @@ export default {
         },
         page () {
             return this.$store.getters.currentPage
+        },
+        selectedGenre () {
+            return this.$store.getters.selectedGenreName
         }
     },
     created () {
-            // // Fetches 'Action' genre as a default 
-            // axios.get('https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US').then(resp => {
-            //     resp.data.results.forEach(movie => {   
-            //         this.movies.push(movie)
-            //     });
-            // })
     },
 }
 </script>
@@ -112,67 +138,171 @@ export default {
 
 
 <style scoped>
-
 .movie-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    min-height:60vh;
-    margin-top:-0.95rem;
+    display: grid;
+    /*
+      Posters fill cells; max 5 per row on wide screens.
+      Floor = max(asset-min, (100% - 4 gaps) / 5).
+    */
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(
+            max(
+                var(--asset-min, 12.5rem),
+                calc((100% - 4 * var(--grid-gap-x, 1rem)) / 5)
+            ),
+            1fr
+        )
+    );
+    gap: var(--grid-gap-y, 1.35rem) var(--grid-gap-x, 1rem);
+    justify-items: stretch;
+    min-height: 55vh;
+    padding: 0.15rem 0 1.5rem;
 }
 #movie-grid {
-    width:80%;
-    margin-left:12.5rem;
-    height:100%;
+    width: calc(100% - var(--sidebar-width, 12rem));
+    margin-left: var(--sidebar-width, 12rem);
+    height: 100%;
+    min-height: calc(100vh - var(--header-height, 4rem) - var(--header-gap, 0.5rem));
+    padding: var(--page-pad-y, 0.85rem) var(--page-pad-x, 1.35rem) 0;
+    scroll-margin-top: calc(var(--header-height, 4rem) + var(--header-gap, 0.5rem));
 }
-.active {
-    border: 2px solid rgb(13, 153, 247);
+
+/* ── Toolbar: title left, pager right ─────────────────────── */
+.grid-toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1rem;
 }
-.buttons {
+.category-block {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+.category-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: var(--text-muted, #636c78);
+    line-height: 1;
+}
+.category-title {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02rem;
+    color: var(--white-font, #f4f6f8);
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: min(100%, 20rem);
+}
+
+/* ── Pager (matches search toggle / chrome) ───────────────── */
+.pager {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+    flex-shrink: 0;
+    background: var(--background-color-lighter, #151a20);
+    border: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
+    border-radius: var(--radius-lg, 10px);
+    padding: 0.2rem;
+}
+.pager.bottom {
     display: flex;
     justify-content: center;
-    text-align: center;
-    margin-bottom:1.25rem;
+    width: fit-content;
+    margin: 0.75rem auto 1.35rem;
 }
-button {
-    width: 3rem;
-    height:2rem;
-    background: rgba(0,0,0,0);
+.page-btn {
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
     outline: none;
-    border:none;
-    color:var(--white-font);
-    cursor:pointer;
-    margin:0.5rem;
-    margin-bottom:0.75rem;
-    margin-right:0.12rem;
-    margin-left:0.12rem;
-    font-size: 1.12rem;
+    border: none;
+    border-radius: var(--radius-md, 7px);
+    color: var(--text-secondary, #97a0aa);
+    cursor: pointer;
+    transition: background var(--transition-fast, 0.14s ease),
+                color var(--transition-fast, 0.14s ease);
+}
+.page-btn:hover {
+    background: var(--primary-muted, rgba(41, 171, 194, 0.14));
+    color: var(--primary-color, #29abc2);
+}
+.page-btn:active {
+    background: rgba(41, 171, 194, 0.22);
 }
 .arrow {
-    margin:0.5rem;
-    font-size:1.12rem;
-    transition: 0.25s;
-}
-.arrow:hover {
-    color: var(--primary-color);
+    font-size: 0.78rem;
 }
 .page {
-    font-size: 0.97rem;
-    margin: auto 0.95rem;
-    color: var(--white-font);
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.15rem;
+    min-width: 3.25rem;
+    padding: 0 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02rem;
+    user-select: none;
+}
+.page-current {
+    color: var(--white-font, #f4f6f8);
+}
+.page-sep {
+    color: var(--text-muted, #636c78);
+    font-weight: 500;
+}
+.page-total {
+    color: var(--text-secondary, #97a0aa);
+    font-weight: 500;
 }
 
-
-@media only screen and (max-width: 524px) {
-    #movie-grid {
-        margin-top:85px;
+@media only screen and (max-width: 720px) {
+    .grid-toolbar {
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.9rem;
+        padding-bottom: 0.7rem;
+    }
+    .category-title {
+        font-size: 1.1rem;
+        max-width: 10rem;
     }
 }
 
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 592px) {
     #movie-grid {
-        margin-left:150px;
+        width: calc(100% - var(--sidebar-width, 9.5rem));
+        margin-left: var(--sidebar-width, 9.5rem);
+        padding: var(--page-pad-y, 0.65rem) var(--page-pad-x, 0.85rem) 0;
+    }
+    .category-title {
+        max-width: 7.5rem;
+        font-size: 1rem;
+    }
+    .pager {
+        padding: 0.15rem;
+    }
+    .page-btn {
+        width: 1.85rem;
+        height: 1.85rem;
+    }
+    .page {
+        min-width: 2.75rem;
+        font-size: 0.75rem;
     }
 }
-
 </style>

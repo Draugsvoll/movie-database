@@ -1,18 +1,15 @@
 <template>
   <div id="app">
-        <router-view></router-view>
-    </div>
+    <router-view></router-view>
+  </div>
 </template>
 
 
 <script>
-// import Footer from './components/Footer'
-
 export default {
   data () {
     return {
       infoMovie: '',
-      // path: this.$route.path
     }
   },
   name: 'App',
@@ -27,20 +24,30 @@ export default {
 </script>
 
 
-<style >
+<style>
 .container {
   display: flex;
-    padding-top:5.9rem;
+  padding-top: calc(var(--header-height, 4rem) + var(--header-gap, 0.5rem));
 }
 body, html {
   min-height: 100%;
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   background: var(--background-color);
-  color:white;
-  font-family: sans-serif;
+  color: var(--white-font);
+  font-family: var(--font-sans);
 }
 * {
   box-sizing: border-box;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font-family: inherit;
+}
+img {
+  max-width: 100%;
 }
 </style>

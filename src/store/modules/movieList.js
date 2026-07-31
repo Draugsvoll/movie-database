@@ -24,10 +24,18 @@ const state = {
         movies: movies
         },
     genres: [],
+    selectedGenreName: '',
     tv: [],
     searchResult: [],
     favouriteMovies: ['peorbirepib'],
     favouriteTv: [],
+}
+
+function setGenreNameFromId (state, genreId) {
+    const match = state.genres.find(g => g.id === genreId)
+    if (match) {
+        state.selectedGenreName = match.name
+    }
 }
 
 const mutations = {
@@ -80,6 +88,7 @@ const mutations = {
         state.tv = []
         state.movieList.currentPage = 1
         state.movieList.genre = genre
+        setGenreNameFromId(state, genre)
         var page = state.movieList.currentPage
         axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=${page}`).then(resp => {
                 resp.data.results.forEach(movie => {   
@@ -93,6 +102,7 @@ const mutations = {
         state.tv = []
         state.movieList.currentPage = 1
         state.movieList.genre = genre
+        setGenreNameFromId(state, genre)
         var page = state.movieList.currentPage
         axios.get(`https://api.themoviedb.org/3/discover/tv?with_genres=${genre}&api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&page=${page}`).then(resp => {
                 resp.data.results.forEach(movie => {   
@@ -102,8 +112,12 @@ const mutations = {
                 });
             })
     },
+    'SET_SELECTED_GENRE_NAME' (state, name) {
+        state.selectedGenreName = name
+    },
     'FETCH_GENRE_LIST' (state) {
         state.genreList = [];
+        state.genres = [];
         const uniqueParam = new Date().getTime();
         axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&v=${uniqueParam}`)
         .then(resp => {
@@ -112,6 +126,7 @@ const mutations = {
             const newGenre = { id: genre.id, name: genre.name };
             state.genres.push(newGenre);
             });
+            setGenreNameFromId(state, state.movieList.genre)
             console.log(state.genres);
         });
     },
@@ -125,6 +140,7 @@ const mutations = {
                     const newGenre = { id: genre.id, name: genre.name }
                     state.genres.push(newGenre)
                 })
+                setGenreNameFromId(state, state.movieList.genre)
                 console.log('new tv genres: , ', state.genres)
             })
     },
@@ -174,6 +190,9 @@ const actions = {   // aviable actions on this site
     },
     fetchFavourites: ({ commit }, movieList) => {
         commit('FETCH_FAVOURITES', movieList)  
+    },
+    setSelectedGenreName: ({ commit }, name) => {
+        commit('SET_SELECTED_GENRE_NAME', name)
     }
 }
 
@@ -186,6 +205,12 @@ const getters = {
     },
     genres (state) {
         return state.genres
+    },
+    selectedGenreName (state) {
+        return state.selectedGenreName
+    },
+    currentGenreId (state) {
+        return state.movieList.genre
     },
     searchResults (state) {
         return state.movieList.movies

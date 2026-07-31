@@ -4,16 +4,38 @@
 
     <div class="container">
 
-      <div class="upper-btn">
-        <div :class="{ activeBtn : type == 'movie'}" class="select-btn" @click="viewMovies">
-          <div :class="{ pointer : type == 'movie' }" class="fas fa-chevron-right arrow1"></div> Movies
+      <header class="page-header">
+        <div class="page-heading">
+          <h1 class="page-title">Favourites</h1>
         </div>
-        <div :class="{ activeBtn : type === 'tv'}" class="select-btn" @click="viewTv">
-          <div :class="{ pointer : type == 'tv' }" class="fas fa-chevron-right arrow2"></div> Series
+        <div class="type-toggle" role="tablist" aria-label="Favourite type">
+          <button
+            type="button"
+            role="tab"
+            class="select-btn"
+            :class="{ activeBtn : type == 'movie' || type == null || type === '' }"
+            :aria-selected="type == 'movie' || type == null || type === ''"
+            @click="viewMovies"
+          >
+            Movies
+          </button>
+          <button
+            type="button"
+            role="tab"
+            class="select-btn"
+            :class="{ activeBtn : type === 'tv'}"
+            :aria-selected="type === 'tv'"
+            @click="viewTv"
+          >
+            Series
+          </button>
         </div>
-      </div>
+      </header>
 
-      <h3 v-if="listEmpty">No favourites added</h3>
+      <h3 class="empty-state" v-if="listEmpty">
+        <i class="far fa-heart"></i>
+        No favourites added yet
+      </h3>
 
       <!-- movie grid  -->
       <div class="movie-container">
@@ -30,7 +52,6 @@ import Axios from 'axios'
 import MovieGrid from '../MovieGrid'
 import Header from '../Header'
 import firebase from 'firebase'
-// import Footer from '../Footer'
 
 export default {
   data () {
@@ -42,7 +63,6 @@ export default {
     components: {
     appMoviegrid: MovieGrid,
     appHeader: Header,
-    // appFooter: Footer,
   },
   methods: {
     viewMovies () {
@@ -106,72 +126,112 @@ export default {
 
 
 <style scoped>
-h3 {
-  margin:auto;
-  margin-bottom:290px;
-}
-.query {
-  margin:1.5rem auto;
-}
-.pointer {
-  color:rgb(41, 171, 194) !important;
-}
-.arrow1, .arrow2 {
-  color:rgba(0,0,0,0);
-}
-.movie-container {
-  margin-left:-80px;
-  min-width:313px;
-
-}
-.empty {
-  visibility: hidden;
-}
-.activeBtn {
-  color:white !important;
+#outer-container {
+  min-height: 100vh;
+  background: var(--background-color);
 }
 .container {
   display: flex;
   flex-direction: column;
-  padding-top:100px;
+  align-items: center;
+  padding-top: calc(var(--header-height, 4rem) + var(--header-gap, 0.5rem) + var(--section-gap, 1.25rem));
+  padding-left: var(--page-pad-x, 1.35rem);
+  padding-right: var(--page-pad-x, 1.35rem);
+  padding-bottom: var(--page-pad-y, 0.85rem);
+  width: 100%;
+  max-width: 65rem;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
-body, html {
-  min-height: 100%;
-  margin:0;
-  padding:0;
-  background: rgb(0, 0, 0);
-  color:white;
-  font-family: sans-serif;
-}
-.upper-btn {
-  margin:2rem auto;
+
+/* Centered like original Favourites — title + pill toggle */
+.page-header {
   display: flex;
-  color:grey;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  margin: 0.15rem auto 1.35rem;
 }
-.upper-btn:hover {
-  color:white;
+.page-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  text-align: center;
+}
+.page-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--text-muted, #636c78);
+  line-height: 1;
+}
+.page-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02rem;
+  color: var(--white-font, #f4f6f8);
+  line-height: 1.15;
+}
+.empty-state {
+  margin: 2.75rem auto 3.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary, #97a0aa);
+  letter-spacing: 0.01rem;
+}
+.empty-state i {
+  font-size: 1.65rem;
+  color: var(--primary-color, #29abc2);
+  opacity: 0.65;
+}
+.movie-container {
+  width: 100%;
+  margin-top: 0.15rem;
+}
+.movie-container >>> #movie-grid {
+  width: 100%;
+  margin-left: 0;
+  padding: 0;
+}
+
+/* Keep current pill toggle design */
+.type-toggle {
+  display: inline-flex;
+  background: var(--background-color-lighter, #151a20);
+  border-radius: var(--radius-lg, 10px);
+  padding: 0.22rem;
+  border: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
 }
 .select-btn {
-  margin:0 0rem;
-  cursor:pointer;
-  color:grey;
-  font-size: 1.05rem;
-  padding:0.5rem;
-  letter-spacing: 0.005rem;
+  cursor: pointer;
+  color: var(--text-secondary, #97a0aa);
+  font-size: 0.86rem;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 0.48rem 1.2rem;
+  letter-spacing: 0.02rem;
+  border-radius: var(--radius-md, 7px);
+  border: none;
+  background: transparent;
+  outline: none;
+  transition: color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
-@media only screen and (max-width: 500px) {
-  img {
-    max-width:250px;
-  }
+.select-btn:hover {
+  color: var(--white-font, #f4f6f8);
+  background: rgba(255, 255, 255, 0.04);
 }
-@media only screen and (max-width: 655px) {
-  .movie-container {
-    margin-left:-30%;
-  }
-}
-@media only screen and (max-width: 525px) {
-  .upper-btn {
-    padding-top:8rem;
-  }
+.activeBtn {
+  color: var(--white-font, #f4f6f8) !important;
+  background: var(--primary-muted, rgba(41, 171, 194, 0.14)) !important;
+  box-shadow: inset 0 0 0 1px rgba(41, 171, 194, 0.3);
 }
 </style>

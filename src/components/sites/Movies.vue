@@ -35,19 +35,11 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  
+  padding-top: calc(var(--header-height, 4rem) + var(--header-gap, 0.5rem));
+  min-height: 100vh;
 }
-
-.box {
-  display: flex;
+#outer-container {
+  min-height: 100vh;
+  background: var(--background-color);
 }
-body, html {
-  min-height: 100%;
-  margin:0;
-  padding:0;
-  background: rgb(0, 0, 0);
-  color:white;
-  font-family: sans-serif;
-}
-
 </style>

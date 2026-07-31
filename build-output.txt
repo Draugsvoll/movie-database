@@ -1,0 +1,75 @@
+﻿
+> Netflix@0.1.0 build
+> node scripts/run-vue.js build
+
+[patch-http-parser] Patched websocket-driver for modern Node
+
+npm : -  Building for production...
+At line:1 char:52
++ ... H = "$env:APPDATA\nvm\v16.17.1;$env:PATH"; npm run build 2>&1 | Out-F ...
++                                                ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (-  Building for production...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+Browserslist: caniuse-lite is outdated. Please run:
+npx browserslist@latest --update-db
+[43m[30m WARNING [39m[49m [33mCompiled with 3 warnings[39m[90m20:13:06[39m
+
+[43m[30m warning [39m[49m 
+
+asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets: 
+  img/bg.792b1428.jpg (806 KiB)
+  js/chunk-vendors.7d42ba99.js (1.06 MiB)
+
+[43m[30m warning [39m[49m 
+
+entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  app (1.12 MiB)
+      js/chunk-vendors.7d42ba99.js
+      css/app.4d8a564f.css
+      js/app.5b44fdc2.js
+
+
+[43m[30m warning [39m[49m 
+
+webpack performance recommendations: 
+You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+For more info visit https://webpack.js.org/guides/code-splitting/
+
+  [36m[1mFile[22m[39m                                 [36m[1mSize[22m[39m               [36m[1mGzipped[22m[39m
+
+  [32mdist\js\chunk-vendors.7d42ba99.js[39m    1086.17 KiB        285.54 KiB
+  [32mdist\js\app.5b44fdc2.js[39m              35.09 KiB          7.81 KiB
+  [34mdist\css\app.4d8a564f.css[39m            29.63 KiB          4.87 KiB
+  [34mdist\style.css[39m                       2.46 KiB           0.91 KiB
+
+  [90mImages and other types of assets omitted.[39m
+
+[42m[30m DONE [39m[49m Build complete. The [36mdist[39m directory is ready to be deployed.
+[44m[30m INFO [39m[49m Check out deployment instructions at [36mhttps://cli.vuejs.org/guide/deployment.html[39m
+      

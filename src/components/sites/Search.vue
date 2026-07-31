@@ -2,26 +2,26 @@
   <div id="outer-container">
     <app-header></app-header>
 
-     
     <div class="container">
-      <!-- search field  -->
+      <!-- type toggle  -->
       <div class="upper-btn">
           <div :class="{ activeBtn : searchType == 'movie'}" class="select-btn" @click="searchMovie">
-            <div :class="{ pointer : searchType == 'movie' }" class="fas fa-chevron-right arrow1"></div> Movies
+            Movies
           </div>
           <div :class="{ activeBtn : searchType === 'tv'}" class="select-btn" @click="searchTv">
-            <div :class="{ pointer : searchType == 'tv' }" class="fas fa-chevron-right arrow2"></div> Series
+            Series
           </div>
-          <div  class="empty" @click="searchTv">asdsa</div>
       </div>
+
       <div class="searchField">
         <div class="search-bar">
-        <input v-model="searchTerm" ref="search" type="text" placeholder=" Search" value='' autofocus>
-        <button class="search" @click="search(searchTerm)">Search</button >
+          <i class="fas fa-search search-icon"></i>
+          <input v-model="searchTerm" ref="search" type="text" placeholder="Search titles..." value='' autofocus>
+          <button class="search" @click="search(searchTerm)">Search</button>
         </div>
       </div>
 
-      <div class="query"> {{ query }} </div>
+      <div class="query" v-if="query">Results for “{{ query }}”</div>
 
       <!-- movie grid  -->
       <div class="movie-container">
@@ -54,7 +54,6 @@ export default {
   components: {
     appMoviegrid: MovieGrid,
     appHeader: Header,
-    // appFooter: Footer
   },
   methods: {
       search(searchTerm) {
@@ -104,125 +103,139 @@ export default {
 </script>
 
 <style scoped>
-.query {
-  margin:1.5rem 0;
-  visibility: hidden;
-}
-.pointer {
-  color:rgb(41, 171, 194) !important;
-}
-.arrow1, .arrow2 {
-  color:rgba(0,0,0,0);
-}
-.movie-container {
-  margin-left:-80px;
-}
-button {
-  outline:none;
-  background: rgba(0,0,0,0);
-  color: white;
-  font-size: 1rem;
-  cursor:pointer;
-  border:1px solid rgb(41, 171, 194);
-}
-button:hover {
-  color:rgb(166, 223, 233);
-}
-.empty {
-  visibility: hidden;
-}
-.activeBtn {
-  color:white !important;
+#outer-container {
+  min-height: 100vh;
+  background: var(--background-color);
 }
 .container {
   display: flex;
   flex-direction: column;
-  padding-top:100px;
+  padding-top: calc(var(--header-height, 4rem) + var(--header-gap, 0.5rem) + var(--section-gap, 1.25rem));
+  align-items: center;
+  padding-left: var(--page-pad-x, 1.35rem);
+  padding-right: var(--page-pad-x, 1.35rem);
+  padding-bottom: var(--page-pad-y, 0.85rem);
 }
-body, html {
-  min-height: 100%;
-  margin:0;
-  padding:0;
-  background: rgb(0, 0, 0);
-  color:white;
-  font-family: sans-serif;
+.query {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary, #97a0aa);
+  letter-spacing: 0.01rem;
 }
-input {
-  width:15rem;
-  height:2rem;
-  margin-top:1rem;
-  font-size: 1.03rem;
-  letter-spacing: 0.005rem;
-  background: rgba(0,0,0,0);
-  border:none;
-  color: white;
-  outline:none;
-  border-bottom:1.5px solid rgb(41, 171, 194);
+.movie-container {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0.35rem;
 }
-::marker {
-  color:purple;
-}
-::placeholder {
-  color: rgb(84, 84, 84);
-
+/* Override MovieGrid sidebar offset on search (no genre list) */
+.movie-container >>> #movie-grid {
+  width: 100%;
+  margin-left: 0;
+  padding: 0;
 }
 .upper-btn {
-  margin:2rem auto;
-  display: flex;
-  color:grey;
-}
-.upper-btn:hover {
-  color:white;
+  margin: 0.15rem auto var(--section-gap, 1.25rem);
+  display: inline-flex;
+  background: var(--background-color-lighter, #151a20);
+  border-radius: var(--radius-lg, 10px);
+  padding: 0.25rem;
+  border: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
 }
 .select-btn {
-  margin:0 0rem;
-  cursor:pointer;
-  color:grey;
-  font-size: 1.0rem;
-  padding:0.5rem;
-  letter-spacing: 0.03rem;
+  cursor: pointer;
+  color: var(--text-secondary, #97a0aa);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  letter-spacing: 0.02rem;
+  border-radius: var(--radius-md, 7px);
+  transition: color 0.18s ease, background 0.18s ease;
+}
+.select-btn:hover {
+  color: var(--white-font, #f4f6f8);
+}
+.activeBtn {
+  color: var(--white-font, #f4f6f8) !important;
+  background: var(--primary-muted, rgba(41, 171, 194, 0.14));
+  box-shadow: inset 0 0 0 1px rgba(41, 171, 194, 0.3);
 }
 .searchField {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
+  width: 100%;
+  padding: 0;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  max-width: 30rem;
+  background: var(--background-color-lighter, #151a20);
+  border: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
+  border-radius: var(--radius-lg, 10px);
+  padding: 0.28rem 0.28rem 0.28rem 0.85rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.search-bar:focus-within {
+  border-color: var(--primary-color, #29abc2);
+  box-shadow: 0 0 0 3px var(--primary-muted, rgba(41, 171, 194, 0.14));
+}
+.search-icon {
+  color: var(--text-muted, #636c78);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+input {
+  flex: 1;
+  min-width: 0;
+  height: 2.2rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.01rem;
+  background: transparent;
+  border: none;
+  color: var(--white-font, #f4f6f8);
+  outline: none;
+}
+::placeholder {
+  color: var(--text-muted, #636c78);
 }
 .search {
-  width:4.8rem;
-  height:2.2rem;
-  margin-left:20px;
-  border-radius: 5px;
-  font-size:0.82rem;
-  transition: all 0.25s;
-  letter-spacing: 0.05rem;
+  flex-shrink: 0;
+  height: 2.2rem;
+  padding: 0 1rem;
+  border-radius: var(--radius-md, 7px);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03rem;
+  background: var(--primary-color, #29abc2);
+  color: #0b0d10;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.18s ease, box-shadow 0.18s ease;
 }
-@media only screen and (max-width: 470px) {
-  input {
-    width:250px;
+.search:hover {
+  background: var(--primary-hover, #3bc4dc);
+  box-shadow: 0 0 12px var(--primary-glow, rgba(41, 171, 194, 0.32));
+  color: #0b0d10;
+}
+
+@media only screen and (max-width: 480px) {
+  .search-bar {
+    flex-wrap: wrap;
+    padding: 0.55rem;
   }
-}
-@media only screen and (max-width: 371px) {
+  .search-icon {
+    display: none;
+  }
   input {
-    margin-left:10%;
+    width: 100%;
+    padding: 0 0.4rem;
   }
   .search {
-    margin:1rem auto;
-    margin-left:35%;
-  }
-}
-@media only screen and (max-width: 500px) {
-  img {
-    max-width:250px;
-  }
-}
-@media only screen and (max-width: 655px) {
-  .movie-container {
-    margin-left:-30%;
-  }
-}
-@media only screen and (max-width: 525px) {
-  .upper-btn {
-    padding-top:8rem;
+    width: 100%;
   }
 }
 </style>
-

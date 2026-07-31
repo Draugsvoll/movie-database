@@ -1,9 +1,10 @@
 <template>
     <div id="genre">
+            <div class="genre-label">Genres</div>
             <ul>
                 <app-genre v-for="(genre, index) in genres" v-bind:genre="genre" :key="genre.id"
-                            :class="{ active : index == activeIndex}"
-                            @click.native="activeIndex = index, getGenres(genre.id)"></app-genre>
+                            :class="{ active : genre.id == currentGenreId || index == activeIndex}"
+                            @click.native="selectGenre(genre, index)"></app-genre>
             </ul>
     </div>
 </template>
@@ -27,103 +28,107 @@ export default {
         appGenre: Genre
     },
     methods: {
-        getGenres (id) {
+        selectGenre (genre, index) {
+            this.activeIndex = index
+            this.$store.dispatch('setSelectedGenreName', genre.name)
             if ( this.currentSite == '/movies') {
-                this.$store.dispatch('fetchMovieList', id)
+                this.$store.dispatch('fetchMovieList', genre.id)
             }
             else {
-                this.$store.dispatch('fetchTvList', id)
+                this.$store.dispatch('fetchTvList', genre.id)
             }
-        }         
+        }
+    },
+    computed: {
+        genres () {
+            return this.$store.getters.genres
         },
-        computed: {
-            genres () {
-                return this.$store.getters.genres
-            }
-        },
-        created () {
-            if ( this.currentSite == '/movies') {
-                this.$store.dispatch('fetchGenreList')
-            }
-            else {
-                this.$store.dispatch('fetchTvGenreList')
-            }
-        }  
+        currentGenreId () {
+            return this.$store.getters.currentGenreId
+        }
+    },
+    created () {
+        if ( this.currentSite == '/movies') {
+            this.$store.dispatch('fetchGenreList')
+        }
+        else {
+            this.$store.dispatch('fetchTvGenreList')
+        }
+    }
 }
 </script>
 
 
 
 <style scoped>
-* {
-    letter-spacing: 0.06rem;
-}
-ul{
-    list-style: none;
-    margin:10px 0 0 0;
-    padding:0;
-    overflow-y: scroll;
-    height:80%;
-}
-::-webkit-scrollbar {
-  width: 0.31rem;
-  background:rgb(28, 30, 32);
-  border-radius:10px;
-}
-::-webkit-scrollbar-thumb {
-  background:rgb(19, 135, 156);
-  border-radius:10px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-color);
-      /* background:rgb(30, 145, 165); */
-}
 #genre {
-    width:12rem;
-    height:100%;
+    width: var(--sidebar-width, 12rem);
+    height: calc(100vh - var(--header-height, 4rem) - var(--header-gap, 0.5rem));
     position: fixed;
-    justify-content: center;
+    top: calc(var(--header-height, 4rem) + var(--header-gap, 0.5rem));
+    left: 0;
+    padding: var(--page-pad-y, 0.85rem) 0 1.25rem;
+    background: linear-gradient(180deg, rgba(11, 13, 16, 0.55) 0%, transparent 100%);
+    border-right: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
+    z-index: 10;
 }
-h1 {
-    text-align: center;
+.genre-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: var(--text-muted, #636c78);
+    padding: 0 0.9rem 0.7rem 1.1rem;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0.45rem 0.5rem 0;
+    overflow-y: auto;
+    height: calc(100% - 1.75rem);
+}
+ul::-webkit-scrollbar {
+    width: 3px;
+}
+ul::-webkit-scrollbar-track {
+    background: transparent;
+}
+ul::-webkit-scrollbar-thumb {
+    background: rgba(41, 171, 194, 0.35);
+    border-radius: 99px;
 }
 li {
-    margin-left:1rem;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    padding: 0.4rem;
-    margin-bottom:0.06rem;
-    width:85%;
-    font-size: 0.88rem;
+    margin: 0 0 0.12rem 0.45rem;
+    border-radius: 0 var(--radius-md, 7px) var(--radius-md, 7px) 0;
+    padding: 0.33rem 0.75rem;
+    width: calc(100% - 0.65rem);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.01rem;
     cursor: pointer;
-    border-left: 1px solid  rgb(17, 19, 22);
-    color:rgb(160, 159, 159);
-     transition: all 0.25s ease 0s;
+    border-left: 2px solid transparent;
+    color: var(--text-secondary, #97a0aa);
+    transition: color var(--transition-fast, 0.14s ease),
+                background var(--transition-fast, 0.14s ease),
+                border-color var(--transition-fast, 0.14s ease);
 }
-
 li:hover {
-    color:white;
-    background: var(--background-color-1);
-
+    color: var(--white-font, #f4f6f8);
+    background: rgba(255, 255, 255, 0.035);
 }
 .active {
-    color:rgb(254, 254, 255);
-    border-left:1px solid rgb(41, 171, 194);
-    background: var(--background-color-1);
-
-}
-
-
-@media only screen and (max-width: 524px) {
-    #genre {
-        margin-top:100px;
-    }
+    color: var(--white-font, #f4f6f8) !important;
+    border-left-color: var(--primary-color, #29abc2) !important;
+    background: var(--primary-muted, rgba(41, 171, 194, 0.14)) !important;
 }
 
 @media only screen and (max-width: 592px) {
     #genre {
-        width:150px;
+        width: var(--sidebar-width, 9.5rem);
+    }
+    li {
+        font-size: 0.8rem;
+        padding: 0.38rem 0.5rem;
     }
 }
-
 </style>

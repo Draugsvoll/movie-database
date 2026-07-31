@@ -1,10 +1,9 @@
 <template>
     <div class="container">
-        <!-- <app-header></app-header> -->
         <iframe v-bind:src=" `https://www.youtube.com/embed/${trailer}?autoplay=1`" allow="autoplay" frameborder='0'  ></iframe>
         <div class="btn-row">
-            <a href="javascript:history.go(-1)"><button><div class="fas fa-arrow-left" ></div> Back</button></a> 
-            <p>Not playing? <a href="javascript:window.location.reload()">refresh</a> </p>
+            <a href="javascript:history.go(-1)"><button><i class="fas fa-arrow-left"></i> Back</button></a> 
+            <p>Not playing? <a href="javascript:window.location.reload()">Refresh</a></p>
         </div>
     </div>
 </template>
@@ -21,11 +20,9 @@ export default {
         }
     },
     components: {
-        // appHeader: Header
     },
     created () {
             Axios.get(`https://api.themoviedb.org/3/movie/${this.id}?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US&append_to_response=videos,images`).then(resp => {
-            //    console.log(resp)
                this.trailer = resp.data.videos.results[0].key
             })
     }
@@ -35,71 +32,61 @@ export default {
 
 <style scoped>
 iframe {
-    width:100%;
-    height:93vh;
-    outline:none;
-    border:none;
-    margin:auto;
+    width: 100%;
+    height: calc(100vh - var(--header-height, 4rem));
+    min-height: 20rem;
+    outline: none;
+    border: none;
+    margin: auto;
+    background: #000;
 }
 .container {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-}
-.text {
-    margin:auto;
-}
-.text2 {
-    margin:auto;
-    display:inline-flex;
-}
-p {
-    margin:0 auto;
-    margin-top:0.62rem;
-    font-size:0.65rem;
-}
-a {
-    margin:0 auto;   
-    margin-top: 0.75rem; 
-    color:var(--primary-color);
-}
-button {
-    padding:0.5rem 0.7rem;
-    background: transparent;
-    color:white;
-    border:1px solid var(--primary-color);
-    font-size:0.8rem;
-    border-radius:3px;
-    cursor:pointer;
-}
-
-.box {
-    margin-top:3.1rem;
-}
-.btn-refresh {
-    width:5rem;
+    min-height: 100vh;
+    background: var(--background-color);
 }
 .btn-row {
-    display:flex;
+    display: flex;
     justify-content: center;
-}
-.btn-row > * {
-    display:block;
-    padding-top:0.7rem;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem var(--page-pad-x, 1.35rem);
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
 }
 .btn-row p {
-    margin:auto 0;
-    height:fit-content;
-    margin-left:1rem;
-    font-size: 0.65rem;
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--text-secondary, #97a0aa);
 }
-p {
-    margin:0 auto;
-    margin-top:0.62rem;
-    font-size:0.65rem;
+.btn-row p a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
 }
-a {
-    margin:auto 0; 
+.btn-row p a:hover {
+    text-decoration: underline;
+}
+button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1.1rem;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(41, 171, 194, 0.5);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: var(--radius-md, 8px);
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+button:hover {
+    background: var(--primary-muted, rgba(41, 171, 194, 0.15));
+    border-color: var(--primary-color);
+    box-shadow: 0 0 12px var(--primary-glow, rgba(41, 171, 194, 0.35));
 }
 </style>

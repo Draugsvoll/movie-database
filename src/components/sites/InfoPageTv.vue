@@ -6,18 +6,20 @@
         
         <!-- preview panel -->
         <div class="preview" :style="{ backgroundImage: `url(${base_url+movie.backdrop_path})` }" >
-            <div><button class="close" @click="goBack()"><div class="fas fa-arrow-left"> </div></button></div>
-            <div class="text">
-                <div><h1>{{ movie.original_name }}</h1></div>
-                <div class="overview"> <p>{{ movie.overview }}</p> </div>
-                <!-- Buttons -->
-                <button @click="play(movie.id)">Play <div class="fas fa-play"></div></button>
-                <button @click="play(movie.id)">Trailer <div class="far fa-eye"></div></button>
-                <button @click="addFavourite(movie)">+ Add <div class="fas fa-list"></div></button>
-                <button v-if="addedAnimation == true" class="added">Added to favourites </button>
+            <div class="preview-gradient"></div>
+            <div class="preview-content">
+                <button class="close" @click="goBack()" aria-label="Go back"><div class="fas fa-arrow-left"></div></button>
+                <div class="text">
+                    <h1>{{ movie.original_name }}</h1>
+                    <div class="overview"><p>{{ movie.overview }}</p></div>
+                    <div class="actions">
+                        <button class="btn-primary" @click="play(movie.id)">Play <i class="fas fa-play"></i></button>
+                        <button class="btn-secondary" @click="play(movie.id)">Trailer <i class="far fa-eye"></i></button>
+                        <button class="btn-secondary" @click="addFavourite(movie)">+ Add <i class="fas fa-list"></i></button>
+                        <span v-if="addedAnimation == true" class="added">Added to favourites</span>
+                    </div>
+                </div>
             </div>
-
-            
         </div>
 
         <!-- credits -->
@@ -101,6 +103,9 @@ export default {
                 })
         }
     },
+    mounted () {
+        window.scrollTo(0, 0)
+    },
     created () {
          Axios.get(`https://api.themoviedb.org/3/tv/${this.id}?api_key=889abe3247f9348a43ba33d2c9270735&language=en-US`).then(resp => {
                 console.log(resp.data)
@@ -122,149 +127,210 @@ export default {
 </script>
 
 <style scoped>
-* {
-    /* border:1px solid purple; */
-
-}
 h3 {
-    margin:0;
+    margin: 0;
 }
-.sub-headline {
-    margin: 1rem 0;
-    font-size: 1.5rem;
-    background: #091731;
-    max-width: 100%;
-    justify-content: center;
+.infopage {
+    margin: 0 auto;
+    color: white;
+    background: var(--background-color);
+    min-height: 100vh;
+}
+.preview {
+    position: relative;
+    background-size: cover;
+    background-position: center top;
+    min-height: 78vh;
     display: flex;
-    padding:0.6rem;
-    letter-spacing: 0.15rem;
+    align-items: flex-end;
 }
-.crew-text {
-    background: var(--background-color-lighter);
-    color:white;
-    padding:0.5rem;
-    max-width:220px;
-    width:220px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    overflow: hidden;          /* hides text outside box */
-    text-overflow: ellipsis;   /* adds ... when clipped */
-    white-space: nowrap;       /* keeps text on one line */
+.preview-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(11, 13, 16, 0.82) 0%,
+        rgba(11, 13, 16, 0.55) 22%,
+        rgba(11, 13, 16, 0.18) 48%,
+        rgba(11, 13, 16, 0.02) 100%
+    ),
+    linear-gradient(
+        0deg,
+        rgba(11, 13, 16, 0.72) 0%,
+        transparent 26%,
+        transparent 82%,
+        rgba(11, 13, 16, 0.15) 100%
+    );
+    pointer-events: none;
 }
-.crew-text > h3 {
-    margin-bottom:0.15rem;
+.preview-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 1.5rem max(var(--page-pad-x, 1.35rem), 3%) 3rem;
 }
-.actor-container, .crew-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 220px); /* fixed item width */
-    justify-content: center;  /* centers all rows horizontally */
-    gap: 1.5rem;               /* spacing between items */
-    margin-top: 1rem;
+.close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    margin: 0 0 1.35rem;
+    background: rgba(11, 13, 16, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    font-size: 0.9rem;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.14s ease;
 }
-.actor, .crew {
-    margin: 1rem 0.7rem;
+.close:hover {
+    background: var(--primary-muted, rgba(41, 171, 194, 0.14));
+    border-color: var(--primary-color);
+    transform: translateX(-2px);
+}
+.text {
+    max-width: 38rem;
+}
+h1 {
+    margin: 0 0 0.75rem;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+    font-size: clamp(1.55rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.02rem;
+    line-height: 1.12;
+}
+.overview {
+    margin: 0 0 1.15rem;
+}
+.overview p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    padding: 0.7rem 0.85rem;
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(8px);
+    border-radius: var(--radius-md, 7px);
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    color: rgba(244, 246, 248, 0.92);
+    text-shadow: none;
+}
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+.actions button {
+    outline: none;
+    padding: 0.7rem 1.05rem;
+    border-radius: var(--radius-md, 7px);
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02rem;
+    min-width: 6.5rem;
+    transition: background 0.18s ease, transform 0.14s ease, box-shadow 0.18s ease;
+}
+.actions button:hover {
+    transform: translateY(-1px);
+}
+.btn-primary {
+    background: var(--primary-color, #29abc2);
+    color: #0b0d10 !important;
+    box-shadow: 0 3px 12px var(--primary-glow, rgba(41, 171, 194, 0.32));
+}
+.btn-primary:hover {
+    background: var(--primary-hover, #3bc4dc);
+}
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+.added {
+    cursor: default;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--primary-color, #29abc2);
+    padding: 0.4rem 0.65rem;
+    background: var(--primary-muted, rgba(41, 171, 194, 0.14));
+    border-radius: var(--radius-md, 7px);
 }
 .credits {
     display: flex;
     flex-direction: column;
+    padding: 0.25rem var(--page-pad-x, 1.35rem) 2.75rem;
+}
+.sub-headline {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.07rem;
+    text-transform: uppercase;
+    color: var(--white-font);
+    background: transparent;
+    max-width: 100%;
+    justify-content: flex-start;
+    display: flex;
+    padding: 0.45rem 0.15rem;
+    border-bottom: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
+}
+.actor-container, .crew-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
     justify-content: center;
+    gap: var(--grid-gap-y, 1.15rem) var(--grid-gap-x, 0.9rem);
+    margin-top: 1.1rem;
 }
 .profile {
-    max-width:220px;
-    width:220px;
-    display: flex;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    width: 100%;
+    display: block;
+    border-radius: var(--radius-md, 7px) var(--radius-md, 7px) 0 0;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    background: var(--background-color-lighter);
 }
-.preview {
-    background-size: cover;
-    padding-left:1%;
-    min-height:88vh;
+.crew-text {
+    background: var(--background-color-lighter);
+    padding: 0.55rem 0.55rem;
+    width: 100%;
+    border-radius: 0 0 var(--radius-md, 7px) var(--radius-md, 7px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.78rem;
+    color: var(--text-secondary, #97a0aa);
+    border: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
+    border-top: none;
 }
-p {
-    font-size: 0.9rem;
-    padding:0.5rem;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    text-shadow: 1px 1px 1px black;
-}
-.text {
-    max-width:700px;
-}
-.infopage {
-    border-left: 1px solid black;
-    /* background: rgba(17, 27, 41, 0.9); */
-    min-width:775px;
-    right:0;
-    margin: auto auto;
-    color:white;
-}
-button {
-    outline:none;
-    padding:1.1rem 1.3rem;
-    background: rgba(9, 16, 27, 0.75);
-    border-radius:5px;
-    border:none;
-    color:white;
-    text-shadow: 1px 1px 1px black;
-    margin: 0px 10px 0px 0;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 400!important;
-}
-button:hover {
-    background: rgb(4, 7, 12);
-    /* border: 1px solid rgb(226, 224, 237); */
-}
-.added {
-    cursor:default;
-}
-
-.close {
-    padding: 1.2rem 2.3rem;
-    margin-top:1.2rem;
-    font-size:1.1rem;
-}
-.overview {
-    margin-top:1.0rem;
-    font-size: 1.1rem;
+.crew-text > h3 {
+    margin-bottom: 0.15rem;
+    font-size: 0.82rem;
+    color: var(--white-font);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 img {
-    width:inherit;
-}
-h1 {
-    margin:200px 0 15px 0;
-    text-shadow: 1px 1px 4px black;
-    font-size:3rem;
+    width: 100%;
 }
 
-/* SLIDES */
-.slide-enter-active {
-  animation: slide-in 450ms ease-out forwards;
-}
- .slide-leave-active {
-    animation: slide-out 350ms ease-out forwards;
-  } 
-@keyframes slide-in {
-  from {
-    transform: translateX(300px);
-    opacity: 0.8;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
- @keyframes slide-out {
-    from {
-      transform: translateX(0);
-      opacity:1;
+@media only screen and (max-width: 640px) {
+    .preview {
+        min-height: 70vh;
     }
-    to {
-      transform: translateX(300px);
-      opacity: 0;
+    .preview-content {
+        padding: 1rem var(--page-pad-x, 0.85rem) 2.25rem;
     }
-  } 
-
-
+    .actions button {
+        min-width: auto;
+        flex: 1 1 auto;
+    }
+}
 </style>
