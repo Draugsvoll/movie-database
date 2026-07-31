@@ -32,15 +32,15 @@ footer {
   background: transparent;
   min-height: auto;
   z-index: 10;
-  padding: 1.75rem var(--page-pad-x, 1.35rem) 1.35rem;
+  padding: clamp(1.5rem, 1.25rem + 0.5vw, 2.25rem) var(--page-pad-x, 1.75rem) clamp(1.15rem, 1rem + 0.35vw, 1.75rem);
   margin-top: 0.75rem;
   border-top: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
 }
 .icons {
   display: flex;
   justify-content: center;
-  gap: 0.65rem;
-  font-size: 0.95rem;
+  gap: 0.75rem;
+  font-size: var(--text-md, 1rem);
   color: var(--text-muted, #636c78);
   margin-top: 0.85rem;
 }
@@ -48,8 +48,8 @@ footer {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 50%;
   color: var(--text-secondary, #97a0aa);
   text-decoration: none;
@@ -65,7 +65,7 @@ footer {
 .copyright {
   display: flex;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: var(--text-2xs, 0.75rem);
   color: var(--text-muted, #636c78);
   margin-top: 0.75rem;
   letter-spacing: 0.02rem;
@@ -73,7 +73,7 @@ footer {
 .powered {
   color: var(--text-secondary, #97a0aa);
   text-align: center;
-  font-size: 0.7rem;
+  font-size: var(--text-2xs, 0.75rem);
   font-weight: 500;
   letter-spacing: 0.06rem;
   text-transform: uppercase;
@@ -90,7 +90,7 @@ footer {
   align-items: center;
 }
 .column img {
-  width: 4.5rem;
+  width: 5rem;
   opacity: 0.8;
   transition: opacity var(--transition-fast, 0.14s ease);
 }

@@ -53,13 +53,13 @@ iframe {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    padding: 0.85rem var(--page-pad-x, 1.35rem);
+    padding: 1rem var(--page-pad-x, 1.75rem);
     flex-wrap: wrap;
     border-top: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
 }
 .btn-row p {
     margin: 0;
-    font-size: 0.75rem;
+    font-size: var(--text-xs, 0.82rem);
     color: var(--text-secondary, #97a0aa);
 }
 .btn-row p a {
@@ -74,11 +74,11 @@ button {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    padding: 0.6rem 1.1rem;
+    padding: 0.7rem 1.2rem;
     background: transparent;
     color: white;
     border: 1px solid rgba(41, 171, 194, 0.5);
-    font-size: 0.85rem;
+    font-size: var(--text-sm, 0.92rem);
     font-weight: 600;
     border-radius: var(--radius-md, 8px);
     cursor: pointer;

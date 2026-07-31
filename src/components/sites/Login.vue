@@ -127,8 +127,8 @@ export default {
 }
 .login-card {
     width: 100%;
-    max-width: 24rem;
-    padding: 2.15rem 1.9rem 1.85rem;
+    max-width: min(26rem, 100%);
+    padding: 2.35rem 2.1rem 2rem;
     background: rgba(14, 16, 20, 0.78);
     backdrop-filter: blur(16px) saturate(1.15);
     -webkit-backdrop-filter: blur(16px) saturate(1.15);
@@ -140,19 +140,19 @@ export default {
     align-items: center;
 }
 img {
-    width: 3.75rem;
+    width: 4rem;
     margin-bottom: 1rem;
 }
 .welcome {
     margin: 0;
-    font-size: 1.35rem;
+    font-size: var(--text-xl, 1.45rem);
     font-weight: 700;
     letter-spacing: -0.015rem;
     color: var(--white-font, #f4f6f8);
 }
 .subtitle {
     margin: 0.3rem 0 1.35rem;
-    font-size: 0.84rem;
+    font-size: var(--text-sm, 0.9rem);
     color: var(--text-secondary, #97a0aa);
 }
 .form {
@@ -168,7 +168,7 @@ img {
     width: 100%;
 }
 .field-label {
-    font-size: 0.7rem;
+    font-size: var(--text-2xs, 0.72rem);
     font-weight: 600;
     letter-spacing: 0.06rem;
     text-transform: uppercase;
@@ -177,9 +177,9 @@ img {
 input {
     letter-spacing: 0.01rem;
     width: 100%;
-    font-size: 0.9rem;
-    height: 2.5rem;
-    padding: 0 0.8rem;
+    font-size: var(--text-md, 0.95rem);
+    height: 2.65rem;
+    padding: 0 0.9rem;
     background: rgba(255, 255, 255, 0.035);
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: var(--radius-md, 7px);
@@ -203,10 +203,10 @@ input:focus {
 }
 .btn > button {
     letter-spacing: 0.02rem;
-    font-size: 0.84rem;
+    font-size: var(--text-sm, 0.9rem);
     font-weight: 600;
     flex: 1;
-    padding: 0.7rem 0.9rem;
+    padding: 0.8rem 1rem;
     border: none;
     border-radius: var(--radius-md, 7px);
     color: white;

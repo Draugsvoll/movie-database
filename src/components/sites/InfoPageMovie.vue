@@ -166,14 +166,16 @@ h3 {
     position: relative;
     z-index: 1;
     width: 100%;
-    padding: 1.5rem max(var(--page-pad-x, 1.35rem), 3%) 3rem;
+    max-width: var(--content-max, 110rem);
+    margin: 0 auto;
+    padding: 1.5rem var(--page-pad-x, 1.75rem) 3rem;
 }
 .close {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 2.65rem;
+    height: 2.65rem;
     padding: 0;
     margin: 0 0 1.35rem;
     background: rgba(11, 13, 16, 0.55);
@@ -182,7 +184,7 @@ h3 {
     color: white;
     cursor: pointer;
     outline: none;
-    font-size: 0.9rem;
+    font-size: var(--text-md, 1rem);
     transition: background 0.18s ease, border-color 0.18s ease, transform 0.14s ease;
 }
 .close:hover {
@@ -191,12 +193,12 @@ h3 {
     transform: translateX(-2px);
 }
 .text {
-    max-width: 38rem;
+    max-width: var(--prose-max, 42rem);
 }
 h1 {
     margin: 0 0 0.75rem;
     text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
-    font-size: clamp(1.55rem, 3.5vw, 2.6rem);
+    font-size: var(--text-3xl, 2.35rem);
     font-weight: 700;
     letter-spacing: -0.02rem;
     line-height: 1.12;
@@ -206,9 +208,9 @@ h1 {
 }
 .overview p {
     margin: 0;
-    font-size: 0.88rem;
-    line-height: 1.5;
-    padding: 0.7rem 0.85rem;
+    font-size: var(--text-md, 0.98rem);
+    line-height: 1.55;
+    padding: 0.8rem 0.95rem;
     background: rgba(0, 0, 0, 0.42);
     backdrop-filter: blur(8px);
     border-radius: var(--radius-md, 7px);
@@ -224,15 +226,15 @@ h1 {
 }
 .actions button {
     outline: none;
-    padding: 0.7rem 1.05rem;
+    padding: 0.8rem 1.2rem;
     border-radius: var(--radius-md, 7px);
     border: none;
     color: white;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: var(--text-sm, 0.92rem);
     font-weight: 600;
     letter-spacing: 0.02rem;
-    min-width: 6.5rem;
+    min-width: 7rem;
     transition: background 0.18s ease, transform 0.14s ease, box-shadow 0.18s ease;
 }
 .actions button:hover {
@@ -255,21 +257,25 @@ h1 {
 }
 .added {
     cursor: default;
-    font-size: 0.78rem;
+    font-size: var(--text-xs, 0.82rem);
     font-weight: 600;
     color: var(--primary-color, #29abc2);
-    padding: 0.4rem 0.65rem;
+    padding: 0.45rem 0.75rem;
     background: var(--primary-muted, rgba(41, 171, 194, 0.14));
     border-radius: var(--radius-md, 7px);
 }
 .credits {
     display: flex;
     flex-direction: column;
-    padding: 0.25rem var(--page-pad-x, 1.35rem) 2.75rem;
+    padding: 0.25rem var(--page-pad-x, 1.75rem) 2.75rem;
+    max-width: var(--content-max, 110rem);
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 .sub-headline {
     margin: 1.5rem 0 0.5rem;
-    font-size: 0.95rem;
+    font-size: var(--text-md, 1rem);
     font-weight: 700;
     letter-spacing: 0.07rem;
     text-transform: uppercase;
@@ -278,12 +284,12 @@ h1 {
     max-width: 100%;
     justify-content: flex-start;
     display: flex;
-    padding: 0.45rem 0.15rem;
+    padding: 0.5rem 0.15rem;
     border-bottom: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
 }
 .actor-container, .crew-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5rem), 1fr));
     justify-content: center;
     gap: var(--grid-gap-y, 1.15rem) var(--grid-gap-x, 0.9rem);
     margin-top: 1.1rem;
@@ -298,20 +304,20 @@ h1 {
 }
 .crew-text {
     background: var(--background-color-lighter);
-    padding: 0.55rem 0.55rem;
+    padding: 0.6rem 0.65rem;
     width: 100%;
     border-radius: 0 0 var(--radius-md, 7px) var(--radius-md, 7px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 0.78rem;
+    font-size: var(--text-xs, 0.82rem);
     color: var(--text-secondary, #97a0aa);
     border: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
     border-top: none;
 }
 .crew-text > h3 {
     margin-bottom: 0.15rem;
-    font-size: 0.82rem;
+    font-size: var(--text-sm, 0.9rem);
     color: var(--white-font);
     overflow: hidden;
     text-overflow: ellipsis;

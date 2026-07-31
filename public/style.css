@@ -18,9 +18,9 @@
   --border-focus: rgba(41, 171, 194, 0.45);
 
   --asset-width: 12.5rem;
-  --header-height: 4rem;
-  --header-gap: 0.5rem;
-  --sidebar-width: 12rem;
+  --header-height: 4.15rem;
+  --header-gap: 0.55rem;
+  --sidebar-width: 12.25rem;
   --radius-sm: 4px;
   --radius-md: 7px;
   --radius-lg: 10px;
@@ -42,15 +42,36 @@
   --space-lg: 1.25rem;
   --space-xl: 1.75rem;
 
-  /* Page gutters — main content breathing room */
-  --page-pad-x: 3rem;
-  --page-pad-y: 0.9rem;
+  /* Page gutters */
+  --page-pad-x: 1.95rem;
+  --page-pad-y: 1.1rem;
   --page-pad-x-sm: 0.85rem;
-  --section-gap: 1.25rem;
-  /* Fixed gaps; posters grow/shrink to fill columns */
-  --grid-gap-x: 2.1rem;
-  --grid-gap-y: 2.35rem;
-  --asset-min: 12.5rem;
+  --section-gap: 1.35rem;
+
+  /*
+    Poster tracks use px (not rem) so cards do not double-scale with
+    root font-size. Chrome (header/sidebar) scales; posters stay balanced.
+  */
+  --grid-gap-x: 1.5rem;
+  --grid-gap-y: 1.25rem;
+  --asset-min: 150px;
+  --asset-max: 190px;
+
+  /* Centered pages (search / favourites) */
+  --content-max: 72rem;
+  --prose-max: 42rem;
+  --search-bar-max: 34rem;
+
+  /* Shared type scale (rem — scales with root on large screens) */
+  --text-2xs: 0.7rem;
+  --text-xs: 0.78rem;
+  --text-sm: 0.88rem;
+  --text-md: 0.95rem;
+  --text-base: 1rem;
+  --text-lg: 1.15rem;
+  --text-xl: 1.4rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
 
   --font-sans: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Roboto,
     "Helvetica Neue", Arial, sans-serif;
@@ -59,7 +80,12 @@
 /* ── Base ──────────────────────────────────────────────────── */
 html {
   font-family: var(--font-sans);
-  font-size: 16px;
+  /*
+    Fluid UI chrome scale (header, type, controls). Poster widths use
+    px tokens separately so cards do not become gigantic on 4K.
+    ~16px laptop → ~21px 4K.
+  */
+  font-size: clamp(15.5px, 0.32vw + 12px, 21px);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -70,6 +96,7 @@ body {
   background: var(--background-color);
   color: var(--white-font);
   line-height: 1.45;
+  font-size: var(--text-base);
 }
 
 * {
@@ -79,8 +106,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 0.4rem;
+  height: 0.4rem;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -93,19 +120,16 @@ body {
   background: var(--primary-color);
 }
 
-/* Selection */
 ::selection {
   background: var(--primary-muted);
   color: var(--white-font);
 }
 
-/* Focus ring for accessibility */
 :focus-visible {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 
-/* Links / buttons base */
 a {
   color: inherit;
 }
@@ -113,21 +137,143 @@ button {
   font-family: inherit;
 }
 
-/* Responsive root font */
-@media screen and (min-width: 2000px) {
+/* ── Layout density: smaller desktops → 4K ─────────────────── */
+/* (Root font-size is fluid above; breakpoints tune spacing / grid) */
+
+@media screen and (min-width: 1280px) {
   :root {
-    font-size: 17px;
+    --page-pad-x: 2.1rem;
+    --sidebar-width: 13rem;
+    --content-max: 84rem;
+    --asset-min: 155px;
+    --asset-max: 195px;
+    --grid-gap-x: 1.1rem;
+    --grid-gap-y: 1.35rem;
+    --header-height: 4.25rem;
   }
 }
-@media screen and (min-width: 3500px) {
+
+@media screen and (min-width: 1440px) {
   :root {
-    font-size: 20px;
+    --page-pad-x: 2.35rem;
+    --content-max: 96rem;
+    --asset-min: 160px;
+    --asset-max: 200px;
+    --search-bar-max: 36rem;
+    --sidebar-width: 13.5rem;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  :root {
+    --page-pad-x: 2.65rem;
+    --page-pad-y: 1.1rem;
+    --sidebar-width: 14rem;
+    --content-max: 108rem;
+    --asset-min: 165px;
+    --asset-max: 210px;
+    --grid-gap-x: 1.2rem;
+    --grid-gap-y: 1.5rem;
+    --prose-max: 44rem;
+    --search-bar-max: 38rem;
+    --header-height: 4.4rem;
+    --section-gap: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  :root {
+    --page-pad-x: 3.15rem;
+    --header-height: 4.55rem;
+    --sidebar-width: 14.75rem;
+    --content-max: 120rem;
+    --asset-min: 170px;
+    --asset-max: 215px;
+    --grid-gap-x: 1.3rem;
+    --grid-gap-y: 1.6rem;
+    --section-gap: 1.65rem;
+    --search-bar-max: 40rem;
+    --prose-max: 46rem;
+  }
+}
+
+/* QHD / 1440p — more columns, modest poster bump */
+@media screen and (min-width: 2560px) {
+  :root {
+    --page-pad-x: 3.75rem;
+    --page-pad-y: 1.25rem;
+    --header-height: 4.85rem;
+    --header-gap: 0.7rem;
+    --sidebar-width: 16rem;
+    --content-max: 140rem;
+    --asset-min: 180px;
+    --asset-max: 230px;
+    --grid-gap-x: 1.4rem;
+    --grid-gap-y: 1.75rem;
+    --prose-max: 48rem;
+    --search-bar-max: 44rem;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --section-gap: 1.85rem;
+  }
+}
+
+/* 4K UHD — denser grid, not giant posters */
+@media screen and (min-width: 3200px) {
+  :root {
+    --page-pad-x: 4.5rem;
+    --page-pad-y: 1.45rem;
+    --header-height: 5.15rem;
+    --header-gap: 0.8rem;
+    --sidebar-width: 17.5rem;
+    --content-max: 158rem;
+    --asset-min: 190px;
+    --asset-max: 245px;
+    --grid-gap-x: 1.55rem;
+    --grid-gap-y: 1.9rem;
+    --prose-max: 50rem;
+    --search-bar-max: 48rem;
+    --section-gap: 2rem;
+  }
+}
+
+/* Large 4K / 5K */
+@media screen and (min-width: 3840px) {
+  :root {
+    --page-pad-x: 5.25rem;
+    --page-pad-y: 1.6rem;
+    --header-height: 5.4rem;
+    --sidebar-width: 18.5rem;
+    --content-max: 172rem;
+    --asset-min: 200px;
+    --asset-max: 255px;
+    --grid-gap-x: 1.65rem;
+    --grid-gap-y: 2rem;
+    --search-bar-max: 52rem;
+  }
+}
+
+/* Narrower desktops / small windows */
+@media screen and (max-width: 1100px) {
+  :root {
+    --page-pad-x: 1.25rem;
+    --sidebar-width: 11rem;
+    --asset-min: 140px;
+    --asset-max: 180px;
+    --content-max: 100%;
+    --grid-gap-x: 0.9rem;
+    --grid-gap-y: 1.15rem;
+    --header-height: 4rem;
   }
 }
 
 @media screen and (max-width: 900px) {
   :root {
     --page-pad-x: 1.1rem;
+    --sidebar-width: 10rem;
+    --asset-min: 130px;
+    --asset-max: 170px;
   }
 }
 
@@ -137,8 +283,10 @@ button {
     --asset-width: 10.5rem;
     --page-pad-x: var(--page-pad-x-sm);
     --page-pad-y: 0.75rem;
-    --grid-gap-x: 1.5rem;
-    --grid-gap-y: 1.85rem;
-    --asset-min: 10rem;
+    --grid-gap-x: 0.75rem;
+    --grid-gap-y: 1rem;
+    --asset-min: 120px;
+    --asset-max: 160px;
+    --content-max: 100%;
   }
 }

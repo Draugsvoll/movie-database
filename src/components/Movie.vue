@@ -47,12 +47,13 @@
 export default {
     data () {
         return  {
-            base_url: "https://image.tmdb.org/t/p/w500",
+            /* w780 stays sharp on large / 4K cards; browser scales down on smaller screens */
+            base_url: "https://image.tmdb.org/t/p/w780",
             index: 0,
             path: this.$route.path + this.$route.query.type
         }
     },
-    image: 'https://image.tmdb.org/t/p/w500',
+    image: 'https://image.tmdb.org/t/p/w780',
     props: ['movie'],
     methods: {
         viewMovie(id) {
@@ -95,7 +96,7 @@ export default {
     cursor: pointer;
     display: block;
     width: 100%;
-    max-width: none; /* fill grid cell — grows/shrinks with column */
+    max-width: none; /* fill grid cell — even columns edge-to-edge */
     transition: transform var(--transition-duration-asset),
                 opacity 0.35s ease;
     opacity: 0;
@@ -147,7 +148,7 @@ export default {
     width: 100%;
     max-width: none;
     z-index: 2;
-    padding: 0.65rem 0.75rem 0.7rem;
+    padding: 0.75rem 0.85rem 0.8rem;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-0.2rem);
@@ -178,7 +179,7 @@ export default {
 
 .title {
     margin: 0;
-    font-size: 0.8rem;
+    font-size: var(--text-sm, 0.9rem);
     font-weight: 700;
     text-align: left;
     line-height: 1.25;
@@ -194,24 +195,24 @@ export default {
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    margin-top: 0.35rem;
+    margin-top: 0.4rem;
 }
 .year-chip {
     display: inline-flex;
     align-items: center;
-    font-size: 0.65rem;
+    font-size: var(--text-2xs, 0.72rem);
     font-weight: 600;
     letter-spacing: 0.04rem;
     color: var(--text-secondary, #97a0aa);
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 999px;
-    padding: 0.12rem 0.45rem;
+    padding: 0.15rem 0.5rem;
     line-height: 1.2;
 }
 .overview {
-    margin: 0.5rem 0 0;
-    font-size: 0.72rem;
+    margin: 0.55rem 0 0;
+    font-size: var(--text-xs, 0.8rem);
     font-weight: 400;
     line-height: 1.55;
     text-align: left;
@@ -248,8 +249,8 @@ export default {
     min-width: 0;
 }
 .tmdb-ring {
-    width: 1.85rem;
-    height: 1.85rem;
+    width: 2.05rem;
+    height: 2.05rem;
     border-radius: 50%;
     padding: 2px;
     flex-shrink: 0;
@@ -265,7 +266,7 @@ export default {
     background: #081c22;
 }
 .tmdb-val {
-    font-size: 0.62rem;
+    font-size: var(--text-2xs, 0.7rem);
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
@@ -278,7 +279,7 @@ export default {
     min-width: 0;
 }
 .tmdb-brand {
-    font-size: 0.62rem;
+    font-size: var(--text-2xs, 0.7rem);
     font-weight: 800;
     letter-spacing: 0.08em;
     line-height: 1;
@@ -288,17 +289,17 @@ export default {
 .stat {
     display: inline-flex;
     align-items: center;
-    gap: 0.28rem;
-    font-size: 0.7rem;
+    gap: 0.3rem;
+    font-size: var(--text-xs, 0.78rem);
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.01rem;
-    padding: 0.2rem 0.45rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 999px;
     line-height: 1;
 }
 .stat i {
-    font-size: 0.62rem;
+    font-size: 0.7rem;
 }
 .stat.popularity {
     color: var(--primary-color, #29abc2);
@@ -325,9 +326,9 @@ img {
     transform: scale(1.03);
 }
 .title2 {
-    font-size: 0.83rem;
+    font-size: var(--text-sm, 0.9rem);
     font-weight: 600;
-    margin: 0.75rem 0 0;
+    margin: 0.8rem 0 0;
     color: var(--white-font, #f4f6f8);
     letter-spacing: 0.01rem;
     line-height: 1.3;

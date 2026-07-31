@@ -71,14 +71,15 @@ export default {
     background: linear-gradient(180deg, rgba(11, 13, 16, 0.55) 0%, transparent 100%);
     border-right: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
     z-index: 10;
+    box-sizing: border-box;
 }
 .genre-label {
-    font-size: 0.65rem;
+    font-size: var(--text-2xs, 0.72rem);
     font-weight: 700;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
     color: var(--text-muted, #636c78);
-    padding: 0 0.9rem 0.7rem 1.1rem;
+    padding: 0 1rem 0.75rem 1.15rem;
 }
 ul {
     list-style: none;
@@ -98,11 +99,11 @@ ul::-webkit-scrollbar-thumb {
     border-radius: 99px;
 }
 li {
-    margin: 0 0 0.12rem 0.45rem;
+    margin: 0 0 0.15rem 0.45rem;
     border-radius: 0 var(--radius-md, 7px) var(--radius-md, 7px) 0;
-    padding: 0.33rem 0.75rem;
+    padding: 0.4rem 0.85rem;
     width: calc(100% - 0.65rem);
-    font-size: 0.85rem;
+    font-size: var(--text-sm, 0.9rem);
     font-weight: 500;
     letter-spacing: 0.01rem;
     cursor: pointer;

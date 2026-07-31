@@ -112,13 +112,18 @@ export default {
   flex-direction: column;
   padding-top: calc(var(--header-height, 4rem) + var(--header-gap, 0.5rem) + var(--section-gap, 1.25rem));
   align-items: center;
-  padding-left: var(--page-pad-x, 1.35rem);
-  padding-right: var(--page-pad-x, 1.35rem);
+  padding-left: var(--page-pad-x, 1.75rem);
+  padding-right: var(--page-pad-x, 1.75rem);
   padding-bottom: var(--page-pad-y, 0.85rem);
+  width: 100%;
+  max-width: var(--content-max, 90rem);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 .query {
   margin: 1rem 0 0.5rem;
-  font-size: 0.88rem;
+  font-size: var(--text-sm, 0.92rem);
   font-weight: 500;
   color: var(--text-secondary, #97a0aa);
   letter-spacing: 0.01rem;
@@ -145,9 +150,9 @@ export default {
 .select-btn {
   cursor: pointer;
   color: var(--text-secondary, #97a0aa);
-  font-size: 0.84rem;
+  font-size: var(--text-sm, 0.9rem);
   font-weight: 600;
-  padding: 0.5rem 1.25rem;
+  padding: 0.55rem 1.35rem;
   letter-spacing: 0.02rem;
   border-radius: var(--radius-md, 7px);
   transition: color 0.18s ease, background 0.18s ease;
@@ -171,7 +176,7 @@ export default {
   align-items: center;
   gap: 0.55rem;
   width: 100%;
-  max-width: 30rem;
+  max-width: var(--search-bar-max, 32rem);
   background: var(--background-color-lighter, #151a20);
   border: 1px solid var(--border-subtle, rgba(255,255,255,0.055));
   border-radius: var(--radius-lg, 10px);
@@ -184,14 +189,14 @@ export default {
 }
 .search-icon {
   color: var(--text-muted, #636c78);
-  font-size: 0.85rem;
+  font-size: var(--text-md, 0.95rem);
   flex-shrink: 0;
 }
 input {
   flex: 1;
   min-width: 0;
-  height: 2.2rem;
-  font-size: 0.9rem;
+  height: 2.45rem;
+  font-size: var(--text-md, 0.95rem);
   letter-spacing: 0.01rem;
   background: transparent;
   border: none;
@@ -203,10 +208,10 @@ input {
 }
 .search {
   flex-shrink: 0;
-  height: 2.2rem;
-  padding: 0 1rem;
+  height: 2.45rem;
+  padding: 0 1.15rem;
   border-radius: var(--radius-md, 7px);
-  font-size: 0.8rem;
+  font-size: var(--text-sm, 0.88rem);
   font-weight: 600;
   letter-spacing: 0.03rem;
   background: var(--primary-color, #29abc2);

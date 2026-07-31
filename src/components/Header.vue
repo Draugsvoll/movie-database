@@ -92,13 +92,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1.25rem;
+    gap: clamp(0.75rem, 1.5vw, 2rem);
     background: rgba(11, 13, 16, 0.9);
     backdrop-filter: blur(14px) saturate(1.2);
     -webkit-backdrop-filter: blur(14px) saturate(1.2);
     width: 100%;
     height: var(--header-height, 4rem);
-    padding: 0 var(--page-pad-x, 1.35rem);
+    padding: 0 var(--page-pad-x, 1.75rem);
     position: fixed;
     top: 0;
     left: 0;
@@ -108,7 +108,7 @@ header {
 }
 
 .logo img {
-    width: 2.5rem;
+    width: 2.65rem;
     height: auto;
     display: block;
     transition: transform var(--transition-duration, 0.22s ease),
@@ -132,8 +132,8 @@ header {
 }
 .nav_links li a {
     display: block;
-    padding: 0.45rem 0.9rem;
-    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    font-size: var(--text-sm, 0.9rem);
     font-weight: 500;
     color: var(--text-secondary, #97a0aa);
     letter-spacing: 0.01rem;
@@ -160,9 +160,9 @@ header {
     gap: 0.85rem;
 }
 .user {
-    font-size: 0.78rem;
+    font-size: var(--text-xs, 0.8rem);
     color: var(--text-muted, #636c78);
-    max-width: 12rem;
+    max-width: 16rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -174,10 +174,10 @@ header {
     outline: none;
     color: var(--primary-color, #29abc2);
     cursor: pointer;
-    font-size: 0.82rem;
+    font-size: var(--text-sm, 0.88rem);
     font-weight: 600;
     letter-spacing: 0.02rem;
-    padding: 0.4rem 0.9rem;
+    padding: 0.45rem 1rem;
     transition: background var(--transition-fast, 0.14s ease),
                 color var(--transition-fast, 0.14s ease),
                 border-color var(--transition-fast, 0.14s ease),

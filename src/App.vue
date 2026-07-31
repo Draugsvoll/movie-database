@@ -28,6 +28,7 @@ export default {
 .container {
   display: flex;
   padding-top: calc(var(--header-height, 4rem) + var(--header-gap, 0.5rem));
+  width: 100%;
 }
 body, html {
   min-height: 100%;

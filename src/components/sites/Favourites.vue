@@ -135,11 +135,11 @@ export default {
   flex-direction: column;
   align-items: center;
   padding-top: calc(var(--header-height, 4rem) + var(--header-gap, 0.5rem) + var(--section-gap, 1.25rem));
-  padding-left: var(--page-pad-x, 1.35rem);
-  padding-right: var(--page-pad-x, 1.35rem);
+  padding-left: var(--page-pad-x, 1.75rem);
+  padding-right: var(--page-pad-x, 1.75rem);
   padding-bottom: var(--page-pad-y, 0.85rem);
   width: 100%;
-  max-width: 65rem;
+  max-width: var(--content-max, 90rem);
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
@@ -162,7 +162,7 @@ export default {
   text-align: center;
 }
 .page-label {
-  font-size: 0.65rem;
+  font-size: var(--text-2xs, 0.72rem);
   font-weight: 700;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
@@ -171,7 +171,7 @@ export default {
 }
 .page-title {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: var(--text-xl, 1.5rem);
   font-weight: 700;
   letter-spacing: -0.02rem;
   color: var(--white-font, #f4f6f8);
@@ -183,13 +183,13 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.95rem;
+  font-size: var(--text-md, 1rem);
   font-weight: 500;
   color: var(--text-secondary, #97a0aa);
   letter-spacing: 0.01rem;
 }
 .empty-state i {
-  font-size: 1.65rem;
+  font-size: 1.85rem;
   color: var(--primary-color, #29abc2);
   opacity: 0.65;
 }
@@ -214,10 +214,10 @@ export default {
 .select-btn {
   cursor: pointer;
   color: var(--text-secondary, #97a0aa);
-  font-size: 0.86rem;
+  font-size: var(--text-sm, 0.9rem);
   font-weight: 600;
   font-family: inherit;
-  padding: 0.48rem 1.2rem;
+  padding: 0.55rem 1.35rem;
   letter-spacing: 0.02rem;
   border-radius: var(--radius-md, 7px);
   border: none;

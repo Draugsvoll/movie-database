@@ -141,20 +141,14 @@ export default {
 .movie-container {
     display: grid;
     /*
-      Posters fill cells; max 5 per row on wide screens.
-      Floor = max(asset-min, (100% - 4 gaps) / 5).
+      Equal columns fill the content width (aligns with toolbar).
+      --asset-min keeps posters from getting huge; 1fr shares leftover space.
     */
     grid-template-columns: repeat(
         auto-fill,
-        minmax(
-            max(
-                var(--asset-min, 12.5rem),
-                calc((100% - 4 * var(--grid-gap-x, 1rem)) / 5)
-            ),
-            1fr
-        )
+        minmax(min(100%, var(--asset-min, 150px)), 1fr)
     );
-    gap: var(--grid-gap-y, 1.35rem) var(--grid-gap-x, 1rem);
+    gap: var(--grid-gap-y, 1.25rem) var(--grid-gap-x, 1rem);
     justify-items: stretch;
     min-height: 55vh;
     padding: 0.15rem 0 1.5rem;
@@ -164,8 +158,9 @@ export default {
     margin-left: var(--sidebar-width, 12rem);
     height: 100%;
     min-height: calc(100vh - var(--header-height, 4rem) - var(--header-gap, 0.5rem));
-    padding: var(--page-pad-y, 0.85rem) var(--page-pad-x, 1.35rem) 0;
+    padding: var(--page-pad-y, 0.85rem) var(--page-pad-x, 1.75rem) 0;
     scroll-margin-top: calc(var(--header-height, 4rem) + var(--header-gap, 0.5rem));
+    max-width: none;
 }
 
 /* ── Toolbar: title left, pager right ─────────────────────── */
@@ -175,6 +170,8 @@ export default {
     justify-content: space-between;
     gap: 1rem;
     padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.055));
 }
 .category-block {
     min-width: 0;
@@ -183,7 +180,7 @@ export default {
     gap: 0.2rem;
 }
 .category-label {
-    font-size: 0.65rem;
+    font-size: var(--text-2xs, 0.72rem);
     font-weight: 700;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
@@ -192,7 +189,7 @@ export default {
 }
 .category-title {
     margin: 0;
-    font-size: 1.35rem;
+    font-size: var(--text-xl, 1.45rem);
     font-weight: 700;
     letter-spacing: -0.02rem;
     color: var(--white-font, #f4f6f8);
@@ -200,7 +197,7 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: min(100%, 20rem);
+    max-width: min(100%, 32rem);
 }
 
 /* ── Pager (matches search toggle / chrome) ───────────────── */
@@ -221,8 +218,8 @@ export default {
     margin: 0.75rem auto 1.35rem;
 }
 .page-btn {
-    width: 2rem;
-    height: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -243,16 +240,16 @@ export default {
     background: rgba(41, 171, 194, 0.22);
 }
 .arrow {
-    font-size: 0.78rem;
+    font-size: var(--text-sm, 0.88rem);
 }
 .page {
     display: inline-flex;
     align-items: baseline;
     justify-content: center;
     gap: 0.15rem;
-    min-width: 3.25rem;
-    padding: 0 0.35rem;
-    font-size: 0.8rem;
+    min-width: 3.5rem;
+    padding: 0 0.4rem;
+    font-size: var(--text-sm, 0.88rem);
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.02rem;
